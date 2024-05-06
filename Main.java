@@ -32,12 +32,21 @@ class Block {
     }
 
     public String toString() {
-        if flamableFire = true
+        String finalText = "";
+        if (flamableFire == true && flamableLava == true) {
+            finalText = "This block also catches fire from fire and lava sources.";
+        } else if (flamableFire == true && flamableLava == false) {
+            finalText = "This block catches fire due to fire but not lava.";
+        } else if (flamableFire == false && flamableLava == true) {
+            finalText = "This block dosent catch fire from fire, but does from lava.";
+        } else {
+            finalText = "This block is also not flammable.";
+        }
 
         return name + " otherwise refered to in the games code as \"" + technicalName + "\" was added in Version 1." + versionAdded + 
         ". It primarily spawns in the " +dimension + " in mainly " + biomes[0] + ". Some properities are: \n" + 
         "Stackability: " + stackable + "\nHardness: "+hardness+"\nBlast Resistance: "+blastResistance+"\nWaterlogable: " + waterlogable +
-        "\nRenewable: "+renewable+"add last fire code as a sentence";
+        "\nRenewable: "+renewable+"\n" + finalText;
     }
 
 }
