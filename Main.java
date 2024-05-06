@@ -22,12 +22,14 @@ class Block {
     boolean flamableFire; //If the block is flamable from nautural fire
     boolean flamableLava; //If the block is flamable due to lava
 
+    String model; // 3d model file path
+    String sfx; //sfx path
+
     //Creating a block
     public Block(String name, String technicalName, int versionAdded, int dimension, int[] biomes, String tool, 
                 String stackable, double hardness, double blastResistance, boolean waterlogable, boolean renewable,
-                boolean luminous, boolean flamableFire, boolean flamableLava) {
-
-
+                boolean luminous, boolean flamableFire, boolean flamableLava, String model, String sfx) {
+                    this(name, technicalName, versionAdded, dimension, biomes, tool, stackable, hardness, blastResistance, waterlogable, renewable, luminous, flamableFire, flamableLava, model, sfx);
                     
     }
 
