@@ -26,7 +26,9 @@ public class Main {
         // Create a JPanel to hold the canvas for drawing
         JPanel canvasPanel = new JPanel() {
             // Flag to determine if the overlay should be changed
-            private boolean isOverlaySelected = false;
+            private boolean isOverlayTopSelected = false;
+            private boolean isOverlayMiddleSelected = false;
+            private boolean isOverlayBottomSelected = false;
     
             @Override
             protected void paintComponent(Graphics g) {
@@ -39,13 +41,23 @@ public class Main {
                 }
     
                 // Load overlay image based on mouse position
-                if (isOverlaySelected) {
+                if (isOverlayTopSelected) {
+                    BufferedImage overlayImage = loadImage("MenuAssets\\ButtonTopSelected.png");
+                    if (overlayImage != null) {
+                        g.drawImage(overlayImage, 0, 0, getWidth(), getHeight(), this);
+                    }
+                } else if (isOverlayMiddleSelected) {
+                    BufferedImage overlayImage = loadImage("MenuAssets\\ButtonMiddleSelected.png");
+                    if (overlayImage != null) {
+                        g.drawImage(overlayImage, 0, 0, getWidth(), getHeight(), this);
+                    }
+                } else if (isOverlayBottomSelected) {
                     BufferedImage overlayImage = loadImage("MenuAssets\\ButtonBottomSelected.png");
                     if (overlayImage != null) {
                         g.drawImage(overlayImage, 0, 0, getWidth(), getHeight(), this);
                     }
                 } else {
-                    BufferedImage overlayImage = loadImage("MenuAssets\\ButtonBottom.png");
+                    BufferedImage overlayImage = loadImage("MenuAssets\\ButtonNoneSelected.png");
                     if (overlayImage != null) {
                         g.drawImage(overlayImage, 0, 0, getWidth(), getHeight(), this);
                     }
