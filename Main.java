@@ -6,8 +6,10 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.event.MouseInputAdapter;
 
 public class Main {
 
@@ -20,26 +22,63 @@ public class Main {
         JFrame frame = new JFrame("Minecraft Block Repository");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1080, 720);
-
+    
         // Create a JPanel to hold the canvas for drawing
         JPanel canvasPanel = new JPanel() {
+            // Flag to determine if the overlay should be changed
+            private boolean isOverlaySelected = false;
+    
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                // Draw the image across the entire canvas
-                BufferedImage image = loadImage(); // Load your image here
-                if (image != null) {
-                    g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+    
+                // Load background image
+                BufferedImage backgroundImage = loadImage("MenuAssets\\TempBg.jpg");
+                if (backgroundImage != null) {
+                    g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+                }
+    
+                // Load overlay image based on mouse position
+                if (isOverlaySelected) {
+                    BufferedImage overlayImage = loadImage("MenuAssets\\ButtonBottomSelected.png");
+                    if (overlayImage != null) {
+                        g.drawImage(overlayImage, 0, 0, getWidth(), getHeight(), this);
+                    }
+                } else {
+                    BufferedImage overlayImage = loadImage("MenuAssets\\ButtonBottom.png");
+                    if (overlayImage != null) {
+                        g.drawImage(overlayImage, 0, 0, getWidth(), getHeight(), this);
+                    }
                 }
             }
         };
-
+    
         // Set the preferred size of the canvas panel
         canvasPanel.setPreferredSize(new Dimension(1080, 720));
 
+    
+        // Add mouse listener to canvas panel to track mouse movements
+        canvasPanel.addMouseListener(new MouseInputAdapter() {
+            @Override
+            public void mouseMoved(java.awt.event.MouseEvent e) {
+                int mouseX = e.getX();
+                int mouseY = e.getY();
+    
+                // Determine if mouse is within specific range
+                if (mouseX >= 100 && mouseX <= 200 && mouseY >= 100 && mouseY <= 200) {
+                    ((JPanel) e.getSource()).putClientProperty("isOverlaySelected", true);
+                } else {
+                    ((JPanel) e.getSource()).putClientProperty("isOverlaySelected", false);
+                }
+    
+                // Repaint the canvas panel to reflect changes
+                canvasPanel.repaint();
+            }
+        });
+    
         // Add the canvas panel to the frame
         frame.getContentPane().add(canvasPanel);
-
+    
         // Display the window
         frame.pack(); // Adjusts frame size based on content's preferred size
         frame.setLocationRelativeTo(null); // Center the frame on screen
@@ -47,10 +86,9 @@ public class Main {
     }
 
     // Load an image from file (replace this with your image loading logic)
-    private static BufferedImage loadImage() {
+    private static BufferedImage loadImage(String filename) {
         try {
-            // Example: Load an image from a file
-            return ImageIO.read(new File("MenuBackground.png"));
+            return ImageIO.read(new File(filename));
         } catch (IOException e) {
             e.printStackTrace();
             return null;
