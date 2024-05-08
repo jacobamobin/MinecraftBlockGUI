@@ -3,6 +3,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import javax.swing.Timer;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -13,6 +14,14 @@ import javax.swing.event.MouseInputAdapter;
 
 public class Main {
 
+    private static final int FRAME_WIDTH = 1080;
+    private static final int FRAME_HEIGHT = 720;
+    private static final int FRAME_RATE = 60; // Frames per second (adjust as needed)
+
+    private static boolean isOverlayTopSelected = false;
+    private static boolean isOverlayMiddleSelected = false;
+    private static boolean isOverlayBottomSelected = false;
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(Main::createAndShowGUI);
     }
@@ -21,80 +30,79 @@ public class Main {
         // Create and set up the window
         JFrame frame = new JFrame("Minecraft Block Repository");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1080, 720);
-    
+        frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+
         // Create a JPanel to hold the canvas for drawing
         JPanel canvasPanel = new JPanel() {
-            // Flag to determine if the overlay should be changed
-            private boolean isOverlayTopSelected = false;
-            private boolean isOverlayMiddleSelected = false;
-            private boolean isOverlayBottomSelected = false;
-    
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-    
+
                 // Load background image
                 BufferedImage backgroundImage = loadImage("MenuAssets\\TempBg.jpg");
                 if (backgroundImage != null) {
                     g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
                 }
-    
-                // Load overlay image based on mouse position
+
+                // Load overlay image based on selection
                 if (isOverlayTopSelected) {
-                    BufferedImage overlayImage = loadImage("MenuAssets\\ButtonTopSelected.png");
+                    BufferedImage overlayImage = loadImage("MenuAssets\\ButtonsTopSelected.png");
                     if (overlayImage != null) {
                         g.drawImage(overlayImage, 0, 0, getWidth(), getHeight(), this);
                     }
                 } else if (isOverlayMiddleSelected) {
-                    BufferedImage overlayImage = loadImage("MenuAssets\\ButtonMiddleSelected.png");
+                    BufferedImage overlayImage = loadImage("MenuAssets\\ButtonsMiddleSelected.png");
                     if (overlayImage != null) {
                         g.drawImage(overlayImage, 0, 0, getWidth(), getHeight(), this);
                     }
                 } else if (isOverlayBottomSelected) {
-                    BufferedImage overlayImage = loadImage("MenuAssets\\ButtonBottomSelected.png");
+                    BufferedImage overlayImage = loadImage("MenuAssets\\ButtonsBottomSelected.png");
                     if (overlayImage != null) {
                         g.drawImage(overlayImage, 0, 0, getWidth(), getHeight(), this);
                     }
                 } else {
-                    BufferedImage overlayImage = loadImage("MenuAssets\\ButtonNoneSelected.png");
+                    BufferedImage overlayImage = loadImage("MenuAssets\\ButtonsNoneSelected.png");
                     if (overlayImage != null) {
                         g.drawImage(overlayImage, 0, 0, getWidth(), getHeight(), this);
                     }
                 }
             }
         };
-    
-        // Set the preferred size of the canvas panel
-        canvasPanel.setPreferredSize(new Dimension(1080, 720));
 
-    
+        // Set the preferred size of the canvas panel
+        canvasPanel.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
+
         // Add mouse listener to canvas panel to track mouse movements
-        canvasPanel.addMouseListener(new MouseInputAdapter() {
+        canvasPanel.addMouseMotionListener(new MouseInputAdapter() {
             @Override
             public void mouseMoved(java.awt.event.MouseEvent e) {
-                int mouseX = e.getX();
-                int mouseY = e.getY();
-    
-                // Determine if mouse is within specific range
-                if (mouseX >= 100 && mouseX <= 200 && mouseY >= 100 && mouseY <= 200) {
-                    ((JPanel) e.getSource()).putClientProperty("isOverlaySelected", true);
-                } else {
-                    ((JPanel) e.getSource()).putClientProperty("isOverlaySelected", false);
-                }
-    
-                // Repaint the canvas panel to reflect changes
-                canvasPanel.repaint();
+                updateOverlaySelection(e.getX(), e.getY());
             }
         });
-    
+
         // Add the canvas panel to the frame
         frame.getContentPane().add(canvasPanel);
-    
+
         // Display the window
-        frame.pack(); // Adjusts frame size based on content's preferred size
-        frame.setLocationRelativeTo(null); // Center the frame on screen
+        frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
+        // Set up a timer to update and repaint the canvas at a fixed interval
+        Timer timer = new Timer(1000 / FRAME_RATE, e -> {
+            canvasPanel.repaint(); // Repaint the canvas every frame
+        });
+        timer.start(); // Start the timer
+    }
+
+    private static void updateOverlaySelection(int mouseX, int mouseY) {
+        isOverlayTopSelected = isWithinButtonRange(mouseX, mouseY, 100, 200, 100, 200);
+        isOverlayMiddleSelected = isWithinButtonRange(mouseX, mouseY, 300, 400, 100, 200);
+        isOverlayBottomSelected = isWithinButtonRange(mouseX, mouseY, 500, 600, 100, 200);
+    }
+
+    private static boolean isWithinButtonRange(int x, int y, int minX, int maxX, int minY, int maxY) {
+        return (x >= minX && x <= maxX && y >= minY && y <= maxY);
     }
 
     // Load an image from file (replace this with your image loading logic)
