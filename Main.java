@@ -185,23 +185,32 @@ public class Main {
                     + renewable + "\n" + flammableInfo;
         }
 
+        /* IMPORTANT: HOW TO USE - First create a Clip object:
+              Clip currentClip = playSFX("Block_Break.wav", 5f);
+           When you want it to stop do the following:
+              if (currentClip != null) 
+                 currentClip.stop(); // Stop the currently playing sound effect
+           The if structure prevents the program from stopping a clip that has alread finished
+        */
         // It takes .wav format files, not .mp3 files.
-        public void playSFX(String song, float volume)
+        public Clip playSFX(String song, float volume)
         {
-            try
-            {
-                AudioInputStream audioStream = AudioSystem.getAudioInputStream(this.getClass().getResource("/res/"+song));
-                Clip clip = AudioSystem.getClip();
-                clip.open(audioStream);
-                FloatControl setVolume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-                setVolume.setValue(volume); //the reduces the volume by the input value
-                clip.start();
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-                System.out.println("Run time error when adding audio file " + song);
-            }
+           Clip clip = null;
+           try
+           {
+              AudioInputStream audioStream = AudioSystem.getAudioInputStream(this.getClass().getResource("/res/"+song));
+              clip = AudioSystem.getClip();
+              clip.open(audioStream);
+              FloatControl setVolume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+              setVolume.setValue(volume); // Reduces the volume by the input value
+              clip.start();
+           }
+           catch (Exception e)
+           {
+              e.printStackTrace();
+              System.out.println("Runtime error when adding audio file " + song);
+           }
+           return clip;
         }
 
         
