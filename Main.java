@@ -179,5 +179,26 @@ public class Main {
                     + "\nBlast Resistance: " + blastResistance + "\nWaterlogable: " + waterlogable + "\nRenewable: "
                     + renewable + "\n" + flammableInfo;
         }
+
+        // It takes .wav format files, not .mp3 files.
+        public void playSFX(String song, float volume)
+        {
+            try
+            {
+                AudioInputStream audioStream = AudioSystem.getAudioInputStream(this.getClass().getResource("/res/"+song));
+                Clip clip = AudioSystem.getClip();
+                clip.open(audioStream);
+                FloatControl setVolume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+                setVolume.setValue(volume); //the reduces the volume by the input value
+                clip.start();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+                System.out.println("Run time error when adding audio file " + song);
+            }
+        }
+
+        
     }
 }
