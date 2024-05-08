@@ -96,9 +96,9 @@ public class Main {
     }
 
     private static void updateOverlaySelection(int mouseX, int mouseY) {
-        isOverlayTopSelected = isWithinButtonRange(mouseX, mouseY, 100, 200, 100, 200);
-        isOverlayMiddleSelected = isWithinButtonRange(mouseX, mouseY, 300, 400, 100, 200);
-        isOverlayBottomSelected = isWithinButtonRange(mouseX, mouseY, 500, 600, 100, 200);
+        isOverlayTopSelected = isWithinButtonRange(mouseX, mouseY, 70, 518, 204, 294);
+        isOverlayMiddleSelected = isWithinButtonRange(mouseX, mouseY, 70, 518, 315, 405);
+        isOverlayBottomSelected = isWithinButtonRange(mouseX, mouseY, 70, 518, 425, 515);
     }
 
     private static boolean isWithinButtonRange(int x, int y, int minX, int maxX, int minY, int maxY) {
