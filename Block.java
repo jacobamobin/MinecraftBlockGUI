@@ -2,7 +2,8 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
-static class Block {
+
+class Block {
     // Fields
     String name; // Name of block
     int versionAdded; // The version that this block was added to the game originally
@@ -92,5 +93,5 @@ static class Block {
         return clip;
 
      }
-
+    }
         
