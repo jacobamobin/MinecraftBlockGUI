@@ -36,6 +36,7 @@ public class Main {
         JFrame frame = new JFrame("Minecraft Block Repository");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+        frame.setResizable(false);
 
         // Create a JPanel to hold the canvas for drawing
         JPanel canvasPanel = new JPanel() {
