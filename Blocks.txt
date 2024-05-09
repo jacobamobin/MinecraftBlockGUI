@@ -1,0 +1,50 @@
+TNT,Yes,Yes (64),0,0,No,No,Yes (15),Craftable
+Stone,Yes,Yes(64),6,1.5,No,No,No,Overworld
+Cherry Log,Yes,Yes(64),2,2,No,No,No,Overworld
+Dirt,Yes,Yes(64),0.5,0.5,No,No,No,Overworld
+Birch Log,Yes,Yes(64),2,2,No,No,No,Overworld
+Diorite,Yes,Yes(64),6,1.5,No,No,No,Overworld
+Oak Log,Yes,Yes(64),2,2,No,No,Yes,Overworld
+Deepslate Tiles,No,Yes(64),6,3.5,No,No,No,Craftable
+Prismarine,Yes,Yes(64),6,1.5,No,No,No,Overworld
+Cobblestone,Yes,Yes(64),6,2,No,No,Yes,Overworld
+Piston,Yes,Yes (64),0.5,1.5,No,No,No,N/A
+Bedrock,No,Yes (64),3600000,-1,No,No,No,Overworld/Nether
+Sculk,Yes,Yes(64),0.2,0.2,No,No,No,Overworld
+Sponge,Yes,Yes(64),0.6,0.6,No,No,No,Overworld
+End stone,Yes,Yes(64),9,3,No,No,No,End
+Obsidian,Yes,Yes(64),1200,50,No,No,No,End/Overworld
+Polished Andesite,Yes,Yes(64),6,1.5,No,No,No,Craftable
+Wool,Yes,Yes (64),0.8,0.8,No,No,Yes (30),Overworld/Craftable
+Concrete,Yes,Yes(64),1.8,1.8,No,No,No,Overworld
+Leaves,Yes,Yes (64),0.2,0.2,No,Partial,Yes (30),Overworld
+Basalt,Yes,Yes(64),4.2,1.25,No,No,No,Overworld
+Granite,Yes,Yes(64),6,1.5,No,No,No,Overworld
+Shulker box,Yes,Yes(64),2,2,No,No,No,End
+Hay bale,Yes,Yes (64),0.5,0.5,No,No,Yes (60),Overworld
+Redstone Lamp,Yes,Yes (64),0.3,0.3,Yes,Partial,No,Craftable
+Sea lantern,Yes,Yes (64),0.3,0.3,Yes,Partial,No,Overworld/Craftable
+Soul Sand,Yes,Yes(64),0.5,0.5,No,No,No,Nether
+Calcite,Yes,Yes(64),0.75,0.75,No,No,No,Overworld
+Command block,No,Yes (64),3600000,-1,No,No,No,Dev console
+Lodestone,No,Yes(64),6,1.5,No,No,No,Craftable
+Magma block,Yes,Yes (64),0.5,0.5,Yes,No,No,Nether
+Crafting Table,Yes,Yes(64),2.5,2.5,No,No,No,Craftable
+Juke Box,Yes,Yes (64),0.8,0.8,No,No,No,Craftable
+Note Block,Yes,Yes (64),0.4,0.4,No,No,No,Craftable
+Observer,Yes,Yes(64),3,3,No,Partial,No,Craftable
+Block of Diamond,No,Yes(64),6,5,No,No,No,Craftable
+Block of Gold,No,Yes(64),6,5,No,No,No,Craftable
+Block of Emerald,No,Yes(64),6,5,No,No,No,Craftable
+Block of Iron,No,Yes(64),6,5,No,No,No,Craftable
+Iron ore,No,Yes(64),3,3,No,No,No,Overworld
+Diamond ore,No,Yes(64),3,3,No,No,No,Overworld
+Gold ore,No,Yes(64),3,3,No,No,No,Overworld
+Emerald ore,No,Yes(64),3,3,No,No,No,Overworld
+Bricks,Yes,Yes (64),6,2,No,No,No,Craftable
+Bookshelf,Yes,Yes (64),1.5,1.5,No,No,Yes (30),Craftable
+Furnace,Yes,Yes (64),3.5,3.5,Yes (13) (when active),Partial (when active),No,Overworld/Craftable
+Ice,Yes,Yes (64),0.5,0.5,No,Partial,No,Overworld
+Packed Ice,Yes,Yes (64),0.5,0.5,No,No,No,Overworld
+Redstone ore,No,Yes (64),3,3,Yes (9) (when lit),No,No,Overworld
+Block of Redstone ,Yes,Yes (64),6,5,No,No,No,Craftable
