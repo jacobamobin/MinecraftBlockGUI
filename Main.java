@@ -17,7 +17,7 @@ public class Main {
 
     private static final int FRAME_WIDTH = 1080;
     private static final int FRAME_HEIGHT = 720;
-    private static final int FRAME_RATE = 30; // Frames per second (adjust as needed)
+    private static final int FRAME_RATE = 60; // Frames per second (adjust as needed)
 
     private static boolean isOverlayTopSelected = false;
     private static boolean isOverlayMiddleSelected = false;
