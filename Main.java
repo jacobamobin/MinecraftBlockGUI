@@ -24,6 +24,8 @@ public class Main {
     private static boolean isOverlayBottomSelected = false;
 
     private static JPanel canvasPanel;
+    public static String sortType = "Name"; //Name, Version, Stackable,  Tool, Biomes, Dimension, Water,  Hardness, BlastRes,  Luminious, Renewable,  Fire, Lava, 
+    public static Boolean firstButton = true;
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(Main::createAndShowGUI);
@@ -107,7 +109,6 @@ public class Main {
     }
 
     private static void handleClickEvent(int x, int y) {
-        System.out.println("Pressed");
         if (isOverlayTopSelected = isWithinButtonRange(x, y, 70, 518, 204, 294)) {
             // Close the current JFrame
             //JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(canvasPanel);
@@ -115,10 +116,7 @@ public class Main {
             viewPanel();
         } else if (isOverlayMiddleSelected = isWithinButtonRange(x, y, 70, 518, 315, 405)) {
             //HARRY CHU AND KAEMON THIS IS WEHRE YOU WORK OFF OF FOR THE GUI TMROW
-            //HARRY CHU AND KAEMON THIS IS WEHRE YOU WORK OFF OF FOR THE GUI TMROW
-            //HARRY CHU AND KAEMON THIS IS WEHRE YOU WORK OFF OF FOR THE GUI TMROW
-            //HARRY CHU AND KAEMON THIS IS WEHRE YOU WORK OFF OF FOR THE GUI TMROW
-            //HARRY CHU AND KAEMON THIS IS WEHRE YOU WORK OFF OF FOR THE GUI TMROW
+            
         } else if (isOverlayBottomSelected = isWithinButtonRange(x, y, 70, 518, 425, 515)) {
             System.exit(0);
         }
@@ -146,8 +144,7 @@ public class Main {
     } 
 
     public static void viewPanel() {
-        String sortType = "Name"; //Name, Version, Stackable,  Tool, Biomes, Dimension, Water,  Hardness, BlastRes,  Luminious, Renewable,  Fire, Lava, 
-        Boolean firstButton = true;
+        
 
         // Open a new JFrame with a blank canvas
         JFrame newFrame = new JFrame("View Blocks");
@@ -335,20 +332,21 @@ public class Main {
         };
 
 
-        canvasPanel.addMouseListener(new MouseInputAdapter() {
+        blankCanvasPanel.addMouseListener(new MouseInputAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent e) {
-                
+                handleClickEventSort(e.getX(), e.getY());
             }
         });
 
         // Add mouse listener to canvas panel to track mouse movements
-        canvasPanel.addMouseMotionListener(new MouseInputAdapter() {
+        blankCanvasPanel.addMouseMotionListener(new MouseInputAdapter() {
             @Override
             public void mouseMoved(java.awt.event.MouseEvent e) {
-                
+                //ignore for now
             }
         });
+
 
         blankCanvasPanel.setPreferredSize(new Dimension(Main.FRAME_WIDTH, Main.FRAME_HEIGHT));
         newFrame.getContentPane().add(blankCanvasPanel);
@@ -357,8 +355,46 @@ public class Main {
         newFrame.setLocationRelativeTo(null);
         newFrame.setVisible(true);
 
+        // Set up a timer to update and repaint the canvas at a fixed interval
+        Timer timer = new Timer(1000 / FRAME_RATE, e -> {
+            canvasPanel.repaint(); // Repaint the canvas every frame
+        });
+        timer.start(); // Start the timer
+
         
+    }
+
+    private static void handleClickEventSort(int x, int y) {
+        if(isWithinButtonRange(x, y, 544, 819, 0, 50)) {
+            if(sortType == "Name") {
+                sortType = "Version";
+            } else if (sortType == "Version") {
+                sortType = "Stackable";
+            } else if (sortType == "Tool") {
+                sortType = "Biomes";
+            } else if (sortType == "Dimension") {
+                sortType = "Water";
+            } else if (sortType == "Water") {
+                sortType = "Hardness";
+            } else if (sortType == "Hardness") {
+                sortType = "BlastRes";
+            } else if (sortType == "BlastRes") {
+                sortType = "Luminous";
+            } else if (sortType == "Luminous") {
+                sortType = "Renewable";
+            } else if (sortType == "Renewable") {
+                sortType = "Fire";
+            } else {
+                sortType = "Lava";
+            }
+                
+
+                
+        }
+
     }
 
 
 }
+
+
