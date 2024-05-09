@@ -123,7 +123,6 @@ public class Main {
     static class Block {
         // Fields
         String name; // Name of block
-        String technicalName; // Technical name of block when running commands in Minecraft
         int versionAdded; // The version that this block was added to the game originally
 
         int dimension; // Primary Dimension of the block
@@ -144,11 +143,10 @@ public class Main {
         String sfx; // SFX path
 
         // Creating a block
-        public Block(String name, String technicalName, int versionAdded, int dimension, int[] biomes, String tool,
+        public Block(String name, int versionAdded, int dimension, int[] biomes, String tool,
                 String stackable, double hardness, double blastResistance, boolean waterlogable, boolean renewable,
                 boolean luminous, boolean flammableFire, boolean flammableLava, String model, String sfx) {
             this.name = name;
-            this.technicalName = technicalName;
             this.versionAdded = versionAdded;
             this.dimension = dimension;
             this.biomes = biomes;
@@ -178,7 +176,7 @@ public class Main {
                 flammableInfo = "This block is also not flammable.";
             }
 
-            return name + " otherwise referred to in the game's code as \"" + technicalName + "\" was added in Version 1."
+            return name + " was added in Version 1."
                     + versionAdded + ". It primarily spawns in the " + dimension + " in mainly " + biomes[0]
                     + ". Some properties are: \n" + "Stackability: " + stackable + "\nHardness: " + hardness
                     + "\nBlast Resistance: " + blastResistance + "\nWaterlogable: " + waterlogable + "\nRenewable: "
