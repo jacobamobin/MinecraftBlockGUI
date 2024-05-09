@@ -146,6 +146,9 @@ public class Main {
     } 
 
     public static void viewPanel() {
+        String sortType = "Name"; //Name, Version, Stackable,  Tool, Biomes, Dimension, Water,  Hardness, BlastRes,  Luminious, Renewable,  Fire, Lava, 
+        Boolean firstButton = true;
+
         // Open a new JFrame with a blank canvas
         JFrame newFrame = new JFrame("View Blocks");
         newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -157,6 +160,7 @@ public class Main {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 // Draw shit
+                
 
                 BufferedImage backgroundImage = loadImage("ViewPannelAssets\\Background.png");
                 if (backgroundImage != null) {
@@ -170,22 +174,154 @@ public class Main {
                 if (quanityBG != null) {
                     g.drawImage(quanityBG, 0, 0, getWidth(), getHeight(), this);
                 }
-                BufferedImage activeSortMethod = loadImage("ViewPannelAssets\\Dimension.png");
+
+                //Draw Sort Type
+                //Name, Version,   Tool, Stackable, Biomes, Dimension, Water,  Hardness, BlastRes,  Luminious, Renewable,  Fire, Lava, 
+                String buttonFilePath = ""; //File path for dropdown button
+                String buttonFilePathON = ""; //File path for top 
+                String buttonFilePathOFF = ""; //file path for bottom
+                switch(sortType) {
+                    case "Name":
+                        buttonFilePath = "ViewPannelAssets\\Name.png";
+                        if(firstButton) {
+                            buttonFilePathON = "ViewPannelAssets\\A-ZON.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\Z-AOFF.png";
+                        } else {
+                            buttonFilePathON = "ViewPannelAssets\\A-ZOFF.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\Z-AON.png";
+                        }
+                        break; 
+                    case "Version":
+                        buttonFilePath = "ViewPannelAssets\\Version.png";
+                        if(firstButton) {
+                            buttonFilePathON = "ViewPannelAssets\\NewestON.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\OldestOFF.png";
+                        } else {
+                            buttonFilePathON = "ViewPannelAssets\\NewestOFF.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\OldestON.png";
+                        }
+                        break;
+                    case "Tool":
+                        buttonFilePath = "ViewPannelAssets\\Version.png";
+                        if(firstButton) {
+                            buttonFilePathON = "ViewPannelAssets\\BestON.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\WorstOFF.png";
+                        } else {
+                            buttonFilePathON = "ViewPannelAssets\\BestOFF.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\WorstON.png";
+                        }
+                        break;
+                    case "Stackable":
+                        buttonFilePath = "ViewPannelAssets\\Version.png";
+                        if(firstButton) {
+                            buttonFilePathON = "ViewPannelAssets\\BestON.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\WorstOFF.png";
+                        } else {
+                            buttonFilePathON = "ViewPannelAssets\\BestOFF.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\WorstON.png";
+                        }
+                        break;
+                    case "Dimension":
+                        buttonFilePath = "ViewPannelAssets\\Dimension.png";
+                        if(firstButton) {
+                            buttonFilePathON = "ViewPannelAssets\\TopON.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\BottomOFF.png";
+                        } else {
+                            buttonFilePathON = "ViewPannelAssets\\TopOFF.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\BottomON.png";
+                        }
+                        break;
+                    case "Hardness":
+                        buttonFilePath = "ViewPannelAssets\\Hardness.png";
+                        if(firstButton) {
+                            buttonFilePathON = "ViewPannelAssets\\HardestON.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\SoftestOFF.png";
+                        } else {
+                            buttonFilePathON = "ViewPannelAssets\\HardestpOFF.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\SoftestON.png";
+                        }
+                        break;
+                    case "BlastResistance":
+                        buttonFilePath = "ViewPannelAssets\\BlastRes.png";
+                        if(firstButton) {
+                            buttonFilePathON = "ViewPannelAssets\\MostON.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\LeastOFF.png";
+                        } else {
+                            buttonFilePathON = "ViewPannelAssets\\MostOFF.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\LeastON.png";
+                        }
+                        break;
+                    case "Water":
+                        buttonFilePath = "ViewPannelAssets\\Water.png";
+                        if(firstButton) {
+                            buttonFilePathON = "ViewPannelAssets\\TrueON.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\FalseOFF.png";
+                        } else {
+                            buttonFilePathON = "ViewPannelAssets\\TrueOFF.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\FalseON.png";
+                        }
+                        break;
+                    case "Renewable":
+                        buttonFilePath = "ViewPannelAssets\\Renewable.png";
+                        if(firstButton) {
+                            buttonFilePathON = "ViewPannelAssets\\TrueON.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\FalseOFF.png";
+                        } else {
+                            buttonFilePathON = "ViewPannelAssets\\TrueOFF.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\FalseON.png";
+                        }
+                        break;
+                    case "Luminous":
+                        buttonFilePath = "ViewPannelAssets\\Luminous.png";
+                        if(firstButton) {
+                            buttonFilePathON = "ViewPannelAssets\\TrueON.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\FalseOFF.png";
+                        } else {
+                            buttonFilePathON = "ViewPannelAssets\\TrueOFF.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\FalseON.png";
+                        }
+                        break;
+                    case "Fire":
+                        buttonFilePath = "ViewPannelAssets\\Fire.png";
+                        if(firstButton) {
+                            buttonFilePathON = "ViewPannelAssets\\TrueON.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\FalseOFF.png";
+                        } else {
+                            buttonFilePathON = "ViewPannelAssets\\TrueOFF.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\FalseON.png";
+                        }
+                        break;
+                    case "Lava":
+                        buttonFilePath = "ViewPannelAssets\\Lava.png";
+                        if(firstButton) {
+                            buttonFilePathON = "ViewPannelAssets\\TrueON.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\FalseOFF.png";
+                        } else {
+                            buttonFilePathON = "ViewPannelAssets\\TrueOFF.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\FalseON.png";
+                        }
+                        break;
+                    
+                }
+                BufferedImage activeSortMethod = loadImage(buttonFilePath);
                 if (activeSortMethod != null) {
                     g.drawImage(activeSortMethod, 543, 0, 276, 50, this);
                 }
+                BufferedImage sortOption1 = loadImage(buttonFilePathON);
+                if (sortOption1 != null) {
+                    g.drawImage(sortOption1, 820, 0, 130, 50, this);
+                }
+                BufferedImage sortOption2 = loadImage(buttonFilePathOFF);
+                if (sortOption2 != null) {
+                    g.drawImage(sortOption2, 950, 0, 130, 50, this);
+                }
+                
+
                 BufferedImage sideBar = loadImage("ViewPannelAssets\\Sidebar.png");
                 if (sideBar != null) {
                     g.drawImage(sideBar, 0, 0, getWidth(), getHeight(), this);
                 }
-                BufferedImage sortOption1 = loadImage("ViewPannelAssets\\A-ZON.png");
-                if (sortOption1 != null) {
-                    g.drawImage(sortOption1, 820, 0, 130, 50, this);
-                }
-                BufferedImage sortOption2 = loadImage("ViewPannelAssets\\Z-AOFF.png");
-                if (sortOption2 != null) {
-                    g.drawImage(sortOption2, 950, 0, 130, 50, this);
-                }
+                
                 BufferedImage block1 = loadImage("ViewPannelAssets\\BackGroundOfBlockSelected.png");
                 if (block1 != null) {
                     g.drawImage(block1, 0, 0, getWidth(), getHeight(), this);
@@ -198,11 +334,31 @@ public class Main {
             }
         };
 
+
+        canvasPanel.addMouseListener(new MouseInputAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                
+            }
+        });
+
+        // Add mouse listener to canvas panel to track mouse movements
+        canvasPanel.addMouseMotionListener(new MouseInputAdapter() {
+            @Override
+            public void mouseMoved(java.awt.event.MouseEvent e) {
+                
+            }
+        });
+
         blankCanvasPanel.setPreferredSize(new Dimension(Main.FRAME_WIDTH, Main.FRAME_HEIGHT));
         newFrame.getContentPane().add(blankCanvasPanel);
 
         newFrame.pack();
         newFrame.setLocationRelativeTo(null);
         newFrame.setVisible(true);
+
+        
     }
+
+
 }
