@@ -1,3 +1,4 @@
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -21,6 +22,8 @@ public class Main {
     private static boolean isOverlayTopSelected = false;
     private static boolean isOverlayMiddleSelected = false;
     private static boolean isOverlayBottomSelected = false;
+
+    private static JPanel canvasPanel;
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(Main::createAndShowGUI);
@@ -73,6 +76,13 @@ public class Main {
         // Set the preferred size of the canvas panel
         canvasPanel.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
 
+        canvasPanel.addMouseListener(new MouseInputAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                handleClickEvent(e.getX(), e.getY());
+            }
+        });
+
         // Add mouse listener to canvas panel to track mouse movements
         canvasPanel.addMouseMotionListener(new MouseInputAdapter() {
             @Override
@@ -96,6 +106,25 @@ public class Main {
         timer.start(); // Start the timer
     }
 
+    private static void handleClickEvent(int x, int y) {
+        System.out.println("Pressed");
+        if (isOverlayTopSelected = isWithinButtonRange(x, y, 70, 518, 204, 294)) {
+            // Close the current JFrame
+            //JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(canvasPanel);
+            //currentFrame.dispose();
+            viewPanel();
+        } else if (isOverlayMiddleSelected = isWithinButtonRange(x, y, 70, 518, 315, 405)) {
+            //HARRY CHU AND KAEMON THIS IS WEHRE YOU WORK OFF OF FOR THE GUI TMROW
+            //HARRY CHU AND KAEMON THIS IS WEHRE YOU WORK OFF OF FOR THE GUI TMROW
+            //HARRY CHU AND KAEMON THIS IS WEHRE YOU WORK OFF OF FOR THE GUI TMROW
+            //HARRY CHU AND KAEMON THIS IS WEHRE YOU WORK OFF OF FOR THE GUI TMROW
+            //HARRY CHU AND KAEMON THIS IS WEHRE YOU WORK OFF OF FOR THE GUI TMROW
+        } else if (isOverlayBottomSelected = isWithinButtonRange(x, y, 70, 518, 425, 515)) {
+            System.exit(0);
+        }
+
+    }
+
     private static void updateOverlaySelection(int mouseX, int mouseY) {
         isOverlayTopSelected = isWithinButtonRange(mouseX, mouseY, 70, 518, 204, 294);
         isOverlayMiddleSelected = isWithinButtonRange(mouseX, mouseY, 70, 518, 315, 405);
@@ -115,4 +144,65 @@ public class Main {
             return null;
         }
     } 
+
+    public static void viewPanel() {
+        // Open a new JFrame with a blank canvas
+        JFrame newFrame = new JFrame("View Blocks");
+        newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        newFrame.setSize(Main.FRAME_WIDTH, Main.FRAME_HEIGHT);
+        newFrame.setResizable(false);
+
+        JPanel blankCanvasPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                // Draw shit
+
+                BufferedImage backgroundImage = loadImage("ViewPannelAssets\\Background.png");
+                if (backgroundImage != null) {
+                    g.drawImage(backgroundImage, 0, 50, 1080, 10000, this);
+                }
+                BufferedImage textBar = loadImage("ViewPannelAssets\\TopTypeBar.png");
+                if (textBar != null) {
+                    g.drawImage(textBar, 0, 0, getWidth(), getHeight(), this);
+                }
+                BufferedImage quanityBG = loadImage("ViewPannelAssets\\Spacer.png");
+                if (quanityBG != null) {
+                    g.drawImage(quanityBG, 0, 0, getWidth(), getHeight(), this);
+                }
+                BufferedImage activeSortMethod = loadImage("ViewPannelAssets\\Dimension.png");
+                if (activeSortMethod != null) {
+                    g.drawImage(activeSortMethod, 543, 0, 276, 50, this);
+                }
+                BufferedImage sideBar = loadImage("ViewPannelAssets\\Sidebar.png");
+                if (sideBar != null) {
+                    g.drawImage(sideBar, 0, 0, getWidth(), getHeight(), this);
+                }
+                BufferedImage sortOption1 = loadImage("ViewPannelAssets\\A-ZON.png");
+                if (sortOption1 != null) {
+                    g.drawImage(sortOption1, 820, 0, 130, 50, this);
+                }
+                BufferedImage sortOption2 = loadImage("ViewPannelAssets\\Z-AOFF.png");
+                if (sortOption2 != null) {
+                    g.drawImage(sortOption2, 950, 0, 130, 50, this);
+                }
+                BufferedImage block1 = loadImage("ViewPannelAssets\\BackGroundOfBlockSelected.png");
+                if (block1 != null) {
+                    g.drawImage(block1, 0, 0, getWidth(), getHeight(), this);
+                }
+                BufferedImage block2 = loadImage("ViewPannelAssets\\BackGroundOfBlockUnselected.png");
+                if (block2 != null) {
+                    g.drawImage(block2, 0, (0 + 100), getWidth(), getHeight(), this);
+                }
+
+            }
+        };
+
+        blankCanvasPanel.setPreferredSize(new Dimension(Main.FRAME_WIDTH, Main.FRAME_HEIGHT));
+        newFrame.getContentPane().add(blankCanvasPanel);
+
+        newFrame.pack();
+        newFrame.setLocationRelativeTo(null);
+        newFrame.setVisible(true);
+    }
 }
