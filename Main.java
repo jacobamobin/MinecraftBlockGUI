@@ -188,7 +188,7 @@ public class Main {
                 switch(sortType) {
                     case "Name":
                         buttonFilePath = "ViewPannelAssets\\Name.png";
-                        if(firstButton) {
+                        if(firstButton == true) {
                             buttonFilePathON = "ViewPannelAssets\\A-ZON.png";
                             buttonFilePathOFF = "ViewPannelAssets\\Z-AOFF.png";
                         } else {
@@ -198,7 +198,7 @@ public class Main {
                         break; 
                     case "Version":
                         buttonFilePath = "ViewPannelAssets\\Version.png";
-                        if(firstButton) {
+                        if(firstButton == true) {
                             buttonFilePathON = "ViewPannelAssets\\NewestON.png";
                             buttonFilePathOFF = "ViewPannelAssets\\OldestOFF.png";
                         } else {
@@ -208,7 +208,7 @@ public class Main {
                         break;
                     case "Tool":
                         buttonFilePath = "ViewPannelAssets\\Tool.png";
-                        if(firstButton) {
+                        if(firstButton == true) {
                             buttonFilePathON = "ViewPannelAssets\\BestON.png";
                             buttonFilePathOFF = "ViewPannelAssets\\WorstOFF.png";
                         } else {
@@ -218,7 +218,7 @@ public class Main {
                         break;
                     case "Stackable":
                         buttonFilePath = "ViewPannelAssets\\Stack.png";
-                        if(firstButton) {
+                        if(firstButton == true) {
                             buttonFilePathON = "ViewPannelAssets\\StackedON.png";
                             buttonFilePathOFF = "ViewPannelAssets\\NotOFF.png.png";
                         } else {
@@ -228,7 +228,7 @@ public class Main {
                         break;
                     case "Dimension":
                         buttonFilePath = "ViewPannelAssets\\Dimension.png";
-                        if(firstButton) {
+                        if(firstButton == true) {
                             buttonFilePathON = "ViewPannelAssets\\TopON.png";
                             buttonFilePathOFF = "ViewPannelAssets\\BottomOFF.png";
                         } else {
@@ -238,7 +238,7 @@ public class Main {
                         break;
                     case "Hardness":
                         buttonFilePath = "ViewPannelAssets\\Hardness.png";
-                        if(firstButton) {
+                        if(firstButton == true) {
                             buttonFilePathON = "ViewPannelAssets\\HardestON.png";
                             buttonFilePathOFF = "ViewPannelAssets\\SoftestOFF.png";
                         } else {
@@ -248,7 +248,7 @@ public class Main {
                         break;
                     case "BlastRes":
                         buttonFilePath = "ViewPannelAssets\\BlastRes.png";
-                        if(firstButton) {
+                        if(firstButton == true) {
                             buttonFilePathON = "ViewPannelAssets\\MostON.png";
                             buttonFilePathOFF = "ViewPannelAssets\\LeastOFF.png";
                         } else {
@@ -258,7 +258,7 @@ public class Main {
                         break;
                     case "Water":
                         buttonFilePath = "ViewPannelAssets\\Water.png";
-                        if(firstButton) {
+                        if(firstButton == true) {
                             buttonFilePathON = "ViewPannelAssets\\TrueON.png";
                             buttonFilePathOFF = "ViewPannelAssets\\FalseOFF.png";
                         } else {
@@ -268,7 +268,7 @@ public class Main {
                         break;
                     case "Renewable":
                         buttonFilePath = "ViewPannelAssets\\Renewable.png";
-                        if(firstButton) {
+                        if(firstButton == true) {
                             buttonFilePathON = "ViewPannelAssets\\TrueON.png";
                             buttonFilePathOFF = "ViewPannelAssets\\FalseOFF.png";
                         } else {
@@ -278,7 +278,7 @@ public class Main {
                         break;
                     case "Luminous":
                         buttonFilePath = "ViewPannelAssets\\Luminous.png";
-                        if(firstButton) {
+                        if(firstButton == true) {
                             buttonFilePathON = "ViewPannelAssets\\TrueON.png";
                             buttonFilePathOFF = "ViewPannelAssets\\FalseOFF.png";
                         } else {
@@ -288,7 +288,7 @@ public class Main {
                         break;
                     case "Fire":
                         buttonFilePath = "ViewPannelAssets\\Fire.png";
-                        if(firstButton) {
+                        if(firstButton == true) {
                             buttonFilePathON = "ViewPannelAssets\\TrueON.png";
                             buttonFilePathOFF = "ViewPannelAssets\\FalseOFF.png";
                         } else {
@@ -298,7 +298,7 @@ public class Main {
                         break;
                     case "Lava":
                         buttonFilePath = "ViewPannelAssets\\Lava.png";
-                        if(firstButton) {
+                        if(firstButton == true) {
                             buttonFilePathON = "ViewPannelAssets\\TrueON.png";
                             buttonFilePathOFF = "ViewPannelAssets\\FalseOFF.png";
                         } else {
@@ -402,13 +402,13 @@ public class Main {
                 sortType = "Name";
             }
                 
-            if(isWithinButtonRange(x, y, 820, 950, 0, 50)) {
-                firstButton = true;
-            } else if (isWithinButtonRange(x, y, 950, 1080, 0, 50)) {
-                firstButton = false;
-            }
-                
+        } else if(isWithinButtonRange(x, y, 820, 950, 0, 50)) {
+            firstButton = true;
+        } else if (isWithinButtonRange(x, y, 950, 1080, 0, 50)) {
+            firstButton = false;
         }
+                
+        
 
     }
 
