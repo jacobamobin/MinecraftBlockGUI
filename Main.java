@@ -29,6 +29,14 @@ public class Main {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(Main::createAndShowGUI);
+      
+      //read block list block list
+      //ArrayList<Block> blocks = readInData("Blocks.txt");
+      
+      // use built in forEach method to print all blocks (unsorted
+      //System.out.println("Unaltered List: \n\n");
+      //for(Block myBlock : blocks)
+         //System.out.println(myBlock);
     }
 
     private static void createAndShowGUI() {
@@ -199,7 +207,7 @@ public class Main {
                         }
                         break;
                     case "Tool":
-                        buttonFilePath = "ViewPannelAssets\\Version.png";
+                        buttonFilePath = "ViewPannelAssets\\Tool.png";
                         if(firstButton) {
                             buttonFilePathON = "ViewPannelAssets\\BestON.png";
                             buttonFilePathOFF = "ViewPannelAssets\\WorstOFF.png";
@@ -209,13 +217,13 @@ public class Main {
                         }
                         break;
                     case "Stackable":
-                        buttonFilePath = "ViewPannelAssets\\Version.png";
+                        buttonFilePath = "ViewPannelAssets\\Stack.png";
                         if(firstButton) {
-                            buttonFilePathON = "ViewPannelAssets\\BestON.png";
-                            buttonFilePathOFF = "ViewPannelAssets\\WorstOFF.png";
+                            buttonFilePathON = "ViewPannelAssets\\StackedON.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\NotOFF.png.png";
                         } else {
-                            buttonFilePathON = "ViewPannelAssets\\BestOFF.png";
-                            buttonFilePathOFF = "ViewPannelAssets\\WorstON.png";
+                            buttonFilePathON = "ViewPannelAssets\\StackedOFF.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\NotON.png";
                         }
                         break;
                     case "Dimension":
@@ -238,7 +246,7 @@ public class Main {
                             buttonFilePathOFF = "ViewPannelAssets\\SoftestON.png";
                         }
                         break;
-                    case "BlastResistance":
+                    case "BlastRes":
                         buttonFilePath = "ViewPannelAssets\\BlastRes.png";
                         if(firstButton) {
                             buttonFilePathON = "ViewPannelAssets\\MostON.png";
@@ -356,10 +364,10 @@ public class Main {
         newFrame.setVisible(true);
 
         // Set up a timer to update and repaint the canvas at a fixed interval
-        Timer timer = new Timer(1000 / FRAME_RATE, e -> {
-            canvasPanel.repaint(); // Repaint the canvas every frame
+        Timer timerNew = new Timer(1000 / FRAME_RATE, e -> {
+            blankCanvasPanel.repaint(); // Repaint the canvas every frame
         });
-        timer.start(); // Start the timer
+        timerNew.start(); // Start the timer
 
         
     }
@@ -370,8 +378,10 @@ public class Main {
                 sortType = "Version";
             } else if (sortType == "Version") {
                 sortType = "Stackable";
+            } else if (sortType == "Stackable") {
+                sortType = "Tool";
             } else if (sortType == "Tool") {
-                sortType = "Biomes";
+                sortType = "Dimension";
             } else if (sortType == "Dimension") {
                 sortType = "Water";
             } else if (sortType == "Water") {
@@ -384,8 +394,12 @@ public class Main {
                 sortType = "Renewable";
             } else if (sortType == "Renewable") {
                 sortType = "Fire";
-            } else {
+            } else if (sortType == "Fire") {
                 sortType = "Lava";
+            } else if (sortType == "Lava") {
+                sortType = "Name";
+            } else {
+                sortType = "Name";
             }
                 
 
@@ -394,6 +408,50 @@ public class Main {
 
     }
 
+    
+     //reads blocks.text and makes an array list *(this is copy pasted so might be shitty)*
+     /* 
+     public static ArrayList<Block> readInData(String fileName)
+   {
+      ArrayList<Block> blocks = new ArrayList<Block>();
+      
+      try
+      {
+         System.getProperty("user.dir");
+         BufferedReader reader = new BufferedReader( new FileReader(fileName));
+         String line;
+         
+         while ((line = reader.readLine())!=null)
+         {
+            // split the line into an array (String.split())
+            String[] data = line.split(",");
+            
+            // build blocks array
+            double[] marks = new double[8];
+            for(int i = 0; i<marks.length; i++)
+               if (!data[i+3].equals("") && !data[i+3].equals(null))
+                  marks[i] = Double.valueOf(data[i+3]);
+               else
+                  marks[i] = 0.0;
+         
+            // instantiate a block object with the data
+            //Block myBlock = new Block();
+            
+            // convert the student number String object to an Integer object
+            // -->Integer myKey = Integer.valueOf(data[0]);
+            
+            //add student to the list
+            //blocks.add(myBlock);
+         }
+      }
+      catch ( IOException iox )
+      {
+         System.out.println("Problem Reading "+ fileName);
+      }
+      
+      return blocks;
+   }
+   */
 
 }
 
