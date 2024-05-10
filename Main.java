@@ -1,9 +1,17 @@
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.swing.Timer;
 
 import javax.imageio.ImageIO;
@@ -26,6 +34,7 @@ public class Main {
     private static JPanel canvasPanel;
     public static String sortType = "Name"; //Name, Version, Stackable,  Tool, Biomes, Dimension, Water,  Hardness, BlastRes,  Luminious, Renewable,  Fire, Lava, 
     public static Boolean firstButton = true;
+    
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(Main::createAndShowGUI);
@@ -141,15 +150,41 @@ public class Main {
         return (x >= minX && x <= maxX && y >= minY && y <= maxY);
     }
 
-    // Load an image from file (replace this with your image loading logic)
+    private static Map<String, BufferedImage> imageCache = new HashMap<>();
+
     private static BufferedImage loadImage(String filename) {
-        try {
-            return ImageIO.read(new File(filename));
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
+        if (imageCache.containsKey(filename)) {
+            return imageCache.get(filename);
+        } else {
+            try {
+                BufferedImage image = ImageIO.read(new File(filename));
+                imageCache.put(filename, image);
+                return image;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
         }
-    } 
+    }
+
+    // Define a class to represent each sorting type with its associated file paths
+    static class SortType {
+        String type;
+        String buttonFilePath;
+        String buttonFilePathON;
+        String buttonFilePathOFF;
+
+        public SortType(String type, String buttonFilePath, String buttonFilePathON, String buttonFilePathOFF) {
+            this.type = type;
+            this.buttonFilePath = buttonFilePath;
+            this.buttonFilePathON = buttonFilePathON;
+            this.buttonFilePathOFF = buttonFilePathOFF;
+        }
+    }
+
+    static int scrollDist = 0;
+    static int mouseX = 0;
+    static int mouseY = 0;
 
     public static void viewPanel() {
         
@@ -159,18 +194,56 @@ public class Main {
         newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         newFrame.setSize(Main.FRAME_WIDTH, Main.FRAME_HEIGHT);
         newFrame.setResizable(false);
+        
 
         JPanel blankCanvasPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 // Draw shit
-                
-
                 BufferedImage backgroundImage = loadImage("ViewPannelAssets\\Background.png");
                 if (backgroundImage != null) {
-                    g.drawImage(backgroundImage, 0, 50, 1080, 10000, this);
+                    g.drawImage(backgroundImage, 0, - 2000 +  50+(scrollDist)/4, 1080, 10000, this);
                 }
+
+
+
+                String testArray[] = {"Grass", "Dirt", "Wood", "Sand", "Grass", "Dirt", "Wood", "Sand","Grass", "Dirt", "Wood", "Sand",};
+
+                for (int i = 0; i < testArray.length; i++) {
+                    if(isWithinButtonRange(mouseX, mouseY, 5, 950 , (scrollDist)+(i*100)+50, (scrollDist)+(i*100)+150)) {
+                        BufferedImage highlighted = loadImage("ViewPannelAssets\\BackGroundOfBlockSelected.png");
+                        if (highlighted != null) {
+                            g.drawImage(highlighted, 0, (scrollDist)+(i*100), getWidth(), getHeight(), this);
+                        }
+
+                    } else {
+                        BufferedImage unselected = loadImage("ViewPannelAssets\\BackGroundOfBlockUnselected.png");
+                        if (unselected != null) {
+                            g.drawImage(unselected, 0, (scrollDist)+(i*100), getWidth(), getHeight(), this);
+                        }
+                    }
+                    g.setColor(Color.WHITE);
+                    Font font = new Font("Arial", Font.PLAIN, 60);
+                    g.setFont(font);
+                    int y = (scrollDist)+(i*100) + 100 + 20; // Adjust Y position based on loop iteration
+                    String text = String.valueOf(i+1);
+                    g.drawString(text, 30, y); 
+                    text = testArray[i];
+                    g.drawString(text, 150, y); 
+                }
+                /* 
+                BufferedImage block1 = loadImage("ViewPannelAssets\\BackGroundOfBlockSelected.png");
+                if (block1 != null) {
+                    g.drawImage(block1, 0, 0, getWidth(), getHeight(), this);
+                }
+                BufferedImage block2 = loadImage("ViewPannelAssets\\BackGroundOfBlockUnselected.png");
+                if (block2 != null) {
+                    g.drawImage(block2, 0, (0 + 100), getWidth(), getHeight(), this);
+                } */
+
+
+                
                 BufferedImage textBar = loadImage("ViewPannelAssets\\TopTypeBar.png");
                 if (textBar != null) {
                     g.drawImage(textBar, 0, 0, getWidth(), getHeight(), this);
@@ -220,7 +293,7 @@ public class Main {
                         buttonFilePath = "ViewPannelAssets\\Stack.png";
                         if(firstButton == true) {
                             buttonFilePathON = "ViewPannelAssets\\StackedON.png";
-                            buttonFilePathOFF = "ViewPannelAssets\\NotOFF.png.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\NotOFF.png";
                         } else {
                             buttonFilePathON = "ViewPannelAssets\\StackedOFF.png";
                             buttonFilePathOFF = "ViewPannelAssets\\NotON.png";
@@ -242,7 +315,7 @@ public class Main {
                             buttonFilePathON = "ViewPannelAssets\\HardestON.png";
                             buttonFilePathOFF = "ViewPannelAssets\\SoftestOFF.png";
                         } else {
-                            buttonFilePathON = "ViewPannelAssets\\HardestpOFF.png";
+                            buttonFilePathON = "ViewPannelAssets\\HardestOFF.png";
                             buttonFilePathOFF = "ViewPannelAssets\\SoftestON.png";
                         }
                         break;
@@ -308,9 +381,11 @@ public class Main {
                         break;
                     
                 }
+                
+                
                 BufferedImage activeSortMethod = loadImage(buttonFilePath);
                 if (activeSortMethod != null) {
-                    g.drawImage(activeSortMethod, 543, 0, 276, 50, this);
+                    g.drawImage(activeSortMethod, 544, 0, 276, 50, this);
                 }
                 BufferedImage sortOption1 = loadImage(buttonFilePathON);
                 if (sortOption1 != null) {
@@ -325,16 +400,10 @@ public class Main {
                 BufferedImage sideBar = loadImage("ViewPannelAssets\\Sidebar.png");
                 if (sideBar != null) {
                     g.drawImage(sideBar, 0, 0, getWidth(), getHeight(), this);
+   
                 }
                 
-                BufferedImage block1 = loadImage("ViewPannelAssets\\BackGroundOfBlockSelected.png");
-                if (block1 != null) {
-                    g.drawImage(block1, 0, 0, getWidth(), getHeight(), this);
-                }
-                BufferedImage block2 = loadImage("ViewPannelAssets\\BackGroundOfBlockUnselected.png");
-                if (block2 != null) {
-                    g.drawImage(block2, 0, (0 + 100), getWidth(), getHeight(), this);
-                }
+                
 
             }
         };
@@ -351,7 +420,23 @@ public class Main {
         blankCanvasPanel.addMouseMotionListener(new MouseInputAdapter() {
             @Override
             public void mouseMoved(java.awt.event.MouseEvent e) {
-                //ignore for now
+                mouseX = (e.getX());
+                mouseY = (e.getY());
+            }
+        });
+
+        blankCanvasPanel.addMouseWheelListener(new MouseWheelListener() {
+            @Override
+            public void mouseWheelMoved(MouseWheelEvent e) {
+                int scrollAmount = e.getWheelRotation();
+                if (scrollAmount < 0) {
+                    System.out.println("Mouse wheel scrolled up");
+                    scrollDist += 20;
+
+                } else if (scrollAmount > 0) {
+                    System.out.println("Mouse wheel scrolled down");
+                    scrollDist -= 20;
+                }
             }
         });
 
@@ -371,6 +456,8 @@ public class Main {
 
         
     }
+
+
 
     private static void handleClickEventSort(int x, int y) {
         if(isWithinButtonRange(x, y, 544, 819, 0, 50)) {
