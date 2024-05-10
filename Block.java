@@ -6,64 +6,43 @@ import javax.sound.sampled.FloatControl;
 class Block {
     // Fields
     String name; // Name of block
-    int versionAdded; // The version that this block was added to the game originally
-    int dimension; // Primary Dimension of the block
-    int[] biomes; // Biomes this block can be found in
-
-    String tool; // What tool is needed to break and receive the block as an item
-    String stackable; // How stackable this block is in your inventory
-
-    double hardness; // The in-game hardness of the block
-    double blastResistance; // In-game blast resistance
-    boolean waterlogable; // If this block absorbs water
     boolean renewable; // If the block is renewable naturally
-    boolean luminous; // If this block gives off light
-    boolean flammableFire; // If the block is flammable from natural fire
-    boolean flammableLava; // If the block is flammable due to lava
+    String stackable; // How stackable this block is in your inventory
+    double blastRes; // In-game blast resistance
+    double hardness; // The in-game hardness of the block
+    String luminous; // If this block gives off light
+    boolean flammable; // If the block is flammable from natural fire
+    String dimension; // Primary Dimension of the block
 
-    String model; // 3D model file path
+    String texture; // texture file path that we will put on the block model
     String sfx; // SFX path
 
     // Creating a block
-    public Block(String name, int versionAdded, int dimension, int[] biomes, String tool,
-            String stackable, double hardness, double blastResistance, boolean waterlogable, boolean renewable,
-            boolean luminous, boolean flammableFire, boolean flammableLava, String model, String sfx) {
+    public Block(String name, boolean renewable, String stackable, double blastRes, double hardness, String luminous,boolean flammable, String dimenstion, String texture, String sfx) {
         this.name = name;
-        this.versionAdded = versionAdded;
         this.dimension = dimension;
-        this.biomes = biomes;
-        this.tool = tool;
         this.stackable = stackable;
         this.hardness = hardness;
-        this.blastResistance = blastResistance;
-        this.waterlogable = waterlogable;
+        this.blastRes = blastRes;
         this.renewable = renewable;
         this.luminous = luminous;
-        this.flammableFire = flammableFire;
-        this.flammableLava = flammableLava;
-        this.model = model;
+        this.flammable = flammable;
+        this.texture = texture;
         this.sfx = sfx;
-
     }
 
     public String toString() {
         String flammableInfo = "";
-        if (flammableFire && flammableLava) {
-            flammableInfo = "This block also catches fire from fire and lava sources.";
-        } else if (flammableFire && !flammableLava) {
-            flammableInfo = "This block catches fire due to fire but not lava.";
-        } else if (!flammableFire && flammableLava) {
-            flammableInfo = "This block doesn't catch fire from fire, but does from lava.";
-        } else {
-            flammableInfo = "This block is also not flammable.";
-        }
+        if (flammable)
+            flammableInfo = "This block also catches fire.";
+        else
+            flammableInfo = "This block is not flammable.";
         
-        return name + " was added in Version 1."
-                + versionAdded + ". It primarily spawns in the " + dimension + " in mainly " + biomes[0]
-                + ". Some properties are: \n" + "Stackability: " + stackable + "\nHardness: " + hardness
-                + "\nBlast Resistance: " + blastResistance + "\nWaterlogable: " + waterlogable + "\nRenewable: "
-                + renewable + "\n" + flammableInfo;
-     }
+        return name + ". It spawns in the " + dimension +". Properties: \n" + "Stackability: " + stackable + "\nHardness: " + hardness
+                    + "\nBlast Resistance: " + blastRes + "\nIs Renewable: "
+                    + renewable + "\n" + flammableInfo;
+
+                     }
 
      /* IMPORTANT: HOW TO USE - First create a Clip object:
            Clip currentClip = playSFX("Block_Break.wav", 5f);
