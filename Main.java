@@ -402,7 +402,11 @@ public class Main {
                 sortType = "Name";
             }
                 
-
+            if(isWithinButtonRange(x, y, 820, 950, 0, 50)) {
+                firstButton = true;
+            } else if (isWithinButtonRange(x, y, 950, 1080, 0, 50)) {
+                firstButton = false;
+            }
                 
         }
 
