@@ -218,6 +218,14 @@ public class Main {
         newFrame.pack();
         newFrame.setLocationRelativeTo(null);
         newFrame.setVisible(true);
+
+
+        // Set up a timer to update and repaint the canvas at a fixed interval
+        Timer timer = new Timer(1000 / FRAME_RATE, e -> {
+            blankCanvasPanel.repaint(); // Repaint the canvas every frame
+        });
+        timer.start(); // Start the timer
+
     }
     
      //reads blocks.text and makes an array list *(this is copy pasted so might be shitty)*
