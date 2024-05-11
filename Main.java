@@ -432,6 +432,8 @@ public class Main {
                 font = new Font("Arial", Font.PLAIN,10);
                 g.drawString(text, 465, 45); 
 
+                
+
             }
         };
 
