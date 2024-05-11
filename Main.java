@@ -185,6 +185,7 @@ public class Main {
     static int scrollDist = 0;
     static int mouseX = 0;
     static int mouseY = 0;
+    static boolean isDropDownOpen = false;
 
     public static void viewPanel() {
         
@@ -208,30 +209,40 @@ public class Main {
 
 
 
-                String testArray[] = {"Grass", "Dirt", "Wood", "Sand", "Grass", "Dirt", "Wood", "Sand","Grass", "Dirt", "Wood", "Sand",};
+                String testArray[] = {"Grass", "Dirt", "Wood", "Sand", "Grass", "Dirt", "Wood", "Sand","Grass", "Dirt", "Wood", "Sand" };
+                Font font = new Font("Arial", Font.PLAIN, 60);
+                int numberOfObjects = 0;
 
                 for (int i = 0; i < testArray.length; i++) {
-                    if(isWithinButtonRange(mouseX, mouseY, 5, 950 , (scrollDist)+(i*100)+50, (scrollDist)+(i*100)+150)) {
+                    if(isWithinButtonRange(mouseX, mouseY, 5, 950 , (scrollDist)+(i*100)+50, (scrollDist)+(i*100)+150) && isDropDownOpen == false) {
                         BufferedImage highlighted = loadImage("ViewPannelAssets\\BackGroundOfBlockSelected.png");
                         if (highlighted != null) {
-                            g.drawImage(highlighted, 0, (scrollDist)+(i*100), getWidth(), getHeight(), this);
+                            g.drawImage(highlighted, 0-5, (scrollDist)+(i*100)-5, getWidth()+10, getHeight()+10, this);
+                            g.setColor(Color.WHITE);
+                            font = new Font("Arial", Font.PLAIN, 70);
+                            numberOfObjects += 1;
                         }
 
                     } else {
                         BufferedImage unselected = loadImage("ViewPannelAssets\\BackGroundOfBlockUnselected.png");
                         if (unselected != null) {
                             g.drawImage(unselected, 0, (scrollDist)+(i*100), getWidth(), getHeight(), this);
+                            g.setColor(Color.LIGHT_GRAY);
+                            font = new Font("Arial", Font.PLAIN, 60);
+                            numberOfObjects += 1;
                         }
                     }
-                    g.setColor(Color.WHITE);
-                    Font font = new Font("Arial", Font.PLAIN, 60);
+                    
+                    
                     g.setFont(font);
                     int y = (scrollDist)+(i*100) + 100 + 20; // Adjust Y position based on loop iteration
                     String text = String.valueOf(i+1);
                     g.drawString(text, 30, y); 
                     text = testArray[i];
                     g.drawString(text, 150, y); 
+
                 }
+                
                 /* 
                 BufferedImage block1 = loadImage("ViewPannelAssets\\BackGroundOfBlockSelected.png");
                 if (block1 != null) {
@@ -254,7 +265,7 @@ public class Main {
                 }
 
                 //Draw Sort Type
-                //Name, Version,   Tool, Stackable, Biomes, Dimension, Water,  Hardness, BlastRes,  Luminious, Renewable,  Fire, Lava, 
+                //Name, Version,   Tool, Stackable,, Dimension, Water,  Hardness, BlastRes,  Luminious, Renewable,  Fire, Lava, 
                 String buttonFilePath = ""; //File path for dropdown button
                 String buttonFilePathON = ""; //File path for top 
                 String buttonFilePathOFF = ""; //file path for bottom
@@ -395,6 +406,19 @@ public class Main {
                 if (sortOption2 != null) {
                     g.drawImage(sortOption2, 950, 0, 130, 50, this);
                 }
+
+                if(isDropDownOpen == true) { /// name, Version,   Tool, Stackable,, Dimension, Water,  Hardness, BlastRes,  Luminious, Renewable,  Fire, Lava, 
+                    String sortOption[] = {"Name", "Version", "Tool", "Stack", "Dimension", "Water", "Hardness", "BlastRes", "Luminous", "Renewable", "Fire", "Lava"};
+                    int y = 50;
+
+                    for(String sort : sortOption) {
+                        BufferedImage dropdownSortMethod = loadImage("ViewPannelAssets\\"+sort+".png");
+                        if (dropdownSortMethod != null) {
+                            g.drawImage(dropdownSortMethod, 544, y, 276, 50, this);
+                        }
+                        y += 50;
+                    }
+                } 
                 
 
                 BufferedImage sideBar = loadImage("ViewPannelAssets\\Sidebar.png");
@@ -403,7 +427,10 @@ public class Main {
    
                 }
                 
-                
+                String text = String.valueOf(numberOfObjects);
+                g.setColor(Color.WHITE);
+                font = new Font("Arial", Font.PLAIN,10);
+                g.drawString(text, 465, 45); 
 
             }
         };
@@ -460,44 +487,91 @@ public class Main {
 
 
     private static void handleClickEventSort(int x, int y) {
-        if(isWithinButtonRange(x, y, 544, 819, 0, 50)) {
-            if(sortType == "Name") {
-                sortType = "Version";
-            } else if (sortType == "Version") {
-                sortType = "Stackable";
-            } else if (sortType == "Stackable") {
-                sortType = "Tool";
-            } else if (sortType == "Tool") {
-                sortType = "Dimension";
-            } else if (sortType == "Dimension") {
-                sortType = "Water";
-            } else if (sortType == "Water") {
-                sortType = "Hardness";
-            } else if (sortType == "Hardness") {
-                sortType = "BlastRes";
-            } else if (sortType == "BlastRes") {
-                sortType = "Luminous";
-            } else if (sortType == "Luminous") {
-                sortType = "Renewable";
-            } else if (sortType == "Renewable") {
-                sortType = "Fire";
-            } else if (sortType == "Fire") {
-                sortType = "Lava";
-            } else if (sortType == "Lava") {
-                sortType = "Name";
-            } else {
-                sortType = "Name";
+        if(isDropDownOpen == false) {
+            if(isWithinButtonRange(x, y, 544, 819, 0, 50)) {
+                isDropDownOpen = true;
+                /* 
+                if(sortType == "Name") {
+                    sortType = "Version";
+                } else if (sortType == "Version") {
+                    sortType = "Stackable";
+                } else if (sortType == "Stackable") {
+                    sortType = "Tool";
+                } else if (sortType == "Tool") {
+                    sortType = "Dimension";
+                } else if (sortType == "Dimension") {
+                    sortType = "Water";
+                } else if (sortType == "Water") {
+                    sortType = "Hardness";
+                } else if (sortType == "Hardness") {
+                    sortType = "BlastRes";
+                } else if (sortType == "BlastRes") {
+                    sortType = "Luminous";
+                } else if (sortType == "Luminous") {
+                    sortType = "Renewable";
+                } else if (sortType == "Renewable") {
+                    sortType = "Fire";
+                } else if (sortType == "Fire") {
+                    sortType = "Lava";
+                } else if (sortType == "Lava") {
+                    sortType = "Name";
+                } else {
+                    sortType = "Name";
+                } */
+                    
+            } else if(isWithinButtonRange(x, y, 820, 950, 0, 50)) {
+                firstButton = true;
+            } else if (isWithinButtonRange(x, y, 950, 1080, 0, 50)) {
+                firstButton = false;
             }
-                
-        } else if(isWithinButtonRange(x, y, 820, 950, 0, 50)) {
-            firstButton = true;
-        } else if (isWithinButtonRange(x, y, 950, 1080, 0, 50)) {
-            firstButton = false;
+            // add logic for block selection
+        } else if (isDropDownOpen == true) {
+            if(isWithinButtonRange(x, y, 820, 950, 0, 50)) {
+                firstButton = true;
+            } else if (isWithinButtonRange(x, y, 950, 1080, 0, 50)) {
+                firstButton = false;
+            } else if (isWithinButtonRange(x, y, 544, 819, 50, 100)) { 
+                sortType = "Name";
+                isDropDownOpen = false;
+            } else if (isWithinButtonRange(x, y, 544, 819, 100, 150)) { 
+                sortType = "Version";
+                isDropDownOpen = false;
+            } else if (isWithinButtonRange(x, y, 544, 819, 150, 200)) {
+                sortType = "Tool";
+                isDropDownOpen = false;
+            } else if (isWithinButtonRange(x, y, 544, 819, 200, 250)) {
+                sortType = "Stackable";
+                isDropDownOpen = false;
+            } else if (isWithinButtonRange(x, y, 544, 819, 250, 300)) {
+                sortType = "Dimension";
+                isDropDownOpen = false;
+            } else if (isWithinButtonRange(x, y, 544, 819, 300, 350)) {
+                sortType = "Water";
+                isDropDownOpen = false;
+            } else if (isWithinButtonRange(x, y, 544, 819, 350, 400)) {
+                sortType = "Hardness";
+                isDropDownOpen = false;
+            } else if (isWithinButtonRange(x, y, 544, 819,400, 450)) {
+                sortType = "BlastRes";
+                isDropDownOpen = false;
+            } else if (isWithinButtonRange(x, y, 544, 819, 450, 500)) {
+                sortType = "Luminous";
+                isDropDownOpen = false;
+            } else if (isWithinButtonRange(x, y, 544, 819, 500, 550)) {
+                sortType = "Renewable";
+                isDropDownOpen = false;
+            } else if (isWithinButtonRange(x, y, 544, 819, 550, 600)) {
+                sortType = "Fire";
+                isDropDownOpen = false;
+            } else if (isWithinButtonRange(x, y, 544, 819, 600, 650)) {
+                sortType = "Lava";
+                isDropDownOpen = false;
+            } else {
+                isDropDownOpen = false;
+            }
         }
-                
-        
-
     }
+
 
     
      //reads blocks.text and makes an array list *(this is copy pasted so might be shitty)*
