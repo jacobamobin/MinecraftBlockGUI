@@ -127,24 +127,24 @@ public class Main {
     }
 
     private static void handleClickEvent(int x, int y) {
-        if (isOverlayTopSelected = isWithinButtonRange(x, y, 70, 518, 204, 294)) {
+        if (isOverlayTopSelected = isWithinButtonRange(x, y, 665, 909, 244, 310)) {
             // Close the current JFrame
             //JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(canvasPanel);
             //currentFrame.dispose();
             viewPanel();
-        } else if (isOverlayMiddleSelected = isWithinButtonRange(x, y, 70, 518, 315, 405)) {
+        } else if (isOverlayMiddleSelected = isWithinButtonRange(x, y, 665, 909, 329, 393)) {
             viewPanel2();
             
-        } else if (isOverlayBottomSelected = isWithinButtonRange(x, y, 70, 518, 425, 515)) {
+        } else if (isOverlayBottomSelected = isWithinButtonRange(x, y, 665, 909, 409, 476)) {
             System.exit(0);
         }
 
     }
 
     private static void updateOverlaySelection(int mouseX, int mouseY) {
-        isOverlayTopSelected = isWithinButtonRange(mouseX, mouseY, 70, 518, 204, 294);
-        isOverlayMiddleSelected = isWithinButtonRange(mouseX, mouseY, 70, 518, 315, 405);
-        isOverlayBottomSelected = isWithinButtonRange(mouseX, mouseY, 70, 518, 425, 515);
+        isOverlayTopSelected = isWithinButtonRange(mouseX, mouseY, 665, 909, 244, 310);
+        isOverlayMiddleSelected = isWithinButtonRange(mouseX, mouseY, 665, 909, 329, 393);
+        isOverlayBottomSelected = isWithinButtonRange(mouseX, mouseY, 665, 909, 409, 476);
     }
 
     private static boolean isWithinButtonRange(int x, int y, int minX, int maxX, int minY, int maxY) {
