@@ -1,50 +1,100 @@
-TNT,Yes,Yes (64),0,0,No,No,Yes (15),Craftable
-Stone,Yes,Yes(64),6,1.5,No,No,No,Overworld
-Cherry Log,Yes,Yes(64),2,2,No,No,No,Overworld
-Dirt,Yes,Yes(64),0.5,0.5,No,No,No,Overworld
-Birch Log,Yes,Yes(64),2,2,No,No,No,Overworld
-Diorite,Yes,Yes(64),6,1.5,No,No,No,Overworld
-Oak Log,Yes,Yes(64),2,2,No,No,Yes,Overworld
-Deepslate Tiles,No,Yes(64),6,3.5,No,No,No,Craftable
-Prismarine,Yes,Yes(64),6,1.5,No,No,No,Overworld
-Cobblestone,Yes,Yes(64),6,2,No,No,Yes,Overworld
-Piston,Yes,Yes (64),0.5,1.5,No,No,No,N/A
-Bedrock,No,Yes (64),3600000,-1,No,No,No,Overworld/Nether
-Sculk,Yes,Yes(64),0.2,0.2,No,No,No,Overworld
-Sponge,Yes,Yes(64),0.6,0.6,No,No,No,Overworld
-End stone,Yes,Yes(64),9,3,No,No,No,End
-Obsidian,Yes,Yes(64),1200,50,No,No,No,End/Overworld
-Polished Andesite,Yes,Yes(64),6,1.5,No,No,No,Craftable
-Wool,Yes,Yes (64),0.8,0.8,No,No,Yes (30),Overworld/Craftable
-Concrete,Yes,Yes(64),1.8,1.8,No,No,No,Overworld
-Leaves,Yes,Yes (64),0.2,0.2,No,Partial,Yes (30),Overworld
-Basalt,Yes,Yes(64),4.2,1.25,No,No,No,Overworld
-Granite,Yes,Yes(64),6,1.5,No,No,No,Overworld
-Shulker box,Yes,Yes(64),2,2,No,No,No,End
-Hay bale,Yes,Yes (64),0.5,0.5,No,No,Yes (60),Overworld
-Redstone Lamp,Yes,Yes (64),0.3,0.3,Yes,Partial,No,Craftable
-Sea lantern,Yes,Yes (64),0.3,0.3,Yes,Partial,No,Overworld/Craftable
-Soul Sand,Yes,Yes(64),0.5,0.5,No,No,No,Nether
-Calcite,Yes,Yes(64),0.75,0.75,No,No,No,Overworld
-Command block,No,Yes (64),3600000,-1,No,No,No,Dev console
-Lodestone,No,Yes(64),6,1.5,No,No,No,Craftable
-Magma block,Yes,Yes (64),0.5,0.5,Yes,No,No,Nether
-Crafting Table,Yes,Yes(64),2.5,2.5,No,No,No,Craftable
-Juke Box,Yes,Yes (64),0.8,0.8,No,No,No,Craftable
-Note Block,Yes,Yes (64),0.4,0.4,No,No,No,Craftable
-Observer,Yes,Yes(64),3,3,No,Partial,No,Craftable
-Block of Diamond,No,Yes(64),6,5,No,No,No,Craftable
-Block of Gold,No,Yes(64),6,5,No,No,No,Craftable
-Block of Emerald,No,Yes(64),6,5,No,No,No,Craftable
-Block of Iron,No,Yes(64),6,5,No,No,No,Craftable
-Iron ore,No,Yes(64),3,3,No,No,No,Overworld
-Diamond ore,No,Yes(64),3,3,No,No,No,Overworld
-Gold ore,No,Yes(64),3,3,No,No,No,Overworld
-Emerald ore,No,Yes(64),3,3,No,No,No,Overworld
-Bricks,Yes,Yes (64),6,2,No,No,No,Craftable
-Bookshelf,Yes,Yes (64),1.5,1.5,No,No,Yes (30),Craftable
-Furnace,Yes,Yes (64),3.5,3.5,Yes (13) (when active),Partial (when active),No,Overworld/Craftable
-Ice,Yes,Yes (64),0.5,0.5,No,Partial,No,Overworld
-Packed Ice,Yes,Yes (64),0.5,0.5,No,No,No,Overworld
-Redstone ore,No,Yes (64),3,3,Yes (9) (when lit),No,No,Overworld
-Block of Redstone ,Yes,Yes (64),6,5,No,No,No,Craftable
+Stone,Yes,Yes (64),6,1.5,No,No,No,Overworld,,001
+Cherry Log,Yes,Yes (64),2,2,No,No,No,Overworld,,002
+Dirt,Yes,Yes (64),0.5,0.5,No,No,No,Overworld,,003
+Birch Log,Yes,Yes (64),2,2,No,No,No,Overworld,,004
+Diorite,Yes,Yes (64),6,1.5,No,No,No,Overworld,,005
+Oak Log,Yes,Yes (64),2,2,No,No,Yes,Overworld,,006
+Deepslate Tiles,No,Yes (64),6,3.5,No,No,No,Craftable,,007
+Prismarine,Yes,Yes (64),6,1.5,No,No,No,Overworld,,008
+Cobblestone,Yes,Yes (64),6,2,No,No,Yes,Overworld,,009
+Piston,Yes,Yes (64),0.5,1.5,No,No,No,N/A,,010
+Bedrock,No,Yes (64),3600000,-1,No,No,No,Overworld/Nether,,011
+Sculk,Yes,Yes (64),0.2,0.2,No,No,No,Overworld,,012
+Sponge,Yes,Yes (64),0.6,0.6,No,No,No,Overworld,,013
+End stone,Yes,Yes (64),9,3,No,No,No,End,,014
+Obsidian,Yes,Yes (64),1200,50,No,No,No,End/Overworld,,015
+Polished Andesite,Yes,Yes (64),6,1.5,No,No,No,Craftable,,016
+Wool,Yes,Yes (64),0.8,0.8,No,No,Yes (30),Overworld/Craftable,,017
+Concrete,Yes,Yes (64),1.8,1.8,No,No,No,Overworld,,018
+Leaves,Yes,Yes (64),0.2,0.2,No,Partial,Yes (30),Overworld,,019
+Basalt,Yes,Yes (64),4.2,1.25,No,No,No,Overworld,,020
+Granite,Yes,Yes (64),6,1.5,No,No,No,Overworld,,021
+Shulker box,Yes,Yes (64),2,2,No,No,No,End,,022
+Hay bale,Yes,Yes (64),0.5,0.5,No,No,Yes (60),Overworld,,023
+Redstone Lamp,Yes,Yes (64),0.3,0.3,Yes,Partial,No,Craftable,,024
+Sea lantern,Yes,Yes (64),0.3,0.3,Yes,Partial,No,Overworld/Craftable,,025
+Soul Sand,Yes,Yes (64),0.5,0.5,No,No,No,Nether,,026
+Calcite,Yes,Yes (64),0.75,0.75,No,No,No,Overworld,,027
+Command block,No,Yes (64),3600000,-1,No,No,No,Dev console,,028
+Lodestone,No,Yes (64),6,1.5,No,No,No,Craftable,,029
+Magma block,Yes,Yes (64),0.5,0.5,Yes,No,No,Nether,,030
+Crafting Table,Yes,Yes (64),2.5,2.5,No,No,No,Craftable,,031
+Juke Box,Yes,Yes (64),0.8,0.8,No,No,No,Craftable,,032
+Note Block,Yes,Yes (64),0.4,0.4,No,No,No,Craftable,,033
+Observer,Yes,Yes (64),3,3,No,Partial,No,Craftable,,034
+Block of Diamond,No,Yes (64),6,5,No,No,No,Craftable,,035
+Block of Gold,No,Yes (64),6,5,No,No,No,Craftable,,036
+Block of Emerald,No,Yes (64),6,5,No,No,No,Craftable,,037
+Block of Iron,No,Yes (64),6,5,No,No,No,Craftable,,038
+Iron ore,No,Yes (64),3,3,No,No,No,Overworld,,039
+Diamond ore,No,Yes (64),3,3,No,No,No,Overworld,,040
+Gold ore,No,Yes (64),3,3,No,No,No,Overworld,,041
+Emerald ore,No,Yes (64),3,3,No,No,No,Overworld,,042
+Bricks,Yes,Yes (64),6,2,No,No,No,Craftable,,043
+Bookshelf,Yes,Yes (64),1.5,1.5,No,No,No,Overworld/Craftable,,044
+Furnace,Yes,Yes (64),3.5,3.5,Yes (13) (When Active),Partial (When Active),No,Overworld/Craftable,,045
+Ice,Yes,Yes (64),0.5,0.5,No,Partial,No,Overworld,,046
+Packed Ice,Yes,Yes (64),0.5,0.5,No,No,No,Overworld,,047
+Redstone ore,No,Yes (64),3,3,Yes (9) (When Active),No,No,Overworld,,048
+Block of Redstone ,Yes,Yes (64),6,5,No,No,No,Craftable,,049
+Acacia plank,Yes,Yes (64),3,2,No,No,Yes (5),End,,050
+Barrel,Yes,Yes (64),2.5,2.5,No,No,No,Craftable,,051
+Cactus,Yes,Yes (64),0.4,0.4,No,Yes,No,Overworld,,052
+Dark Prismarine,No,Yes (64),6,1.5,No,No,No,Overworld/Craftable,,053
+Gilded Blackstone,No,Yes (64),6,1.5,No,No,No,Nether/Craftable,,054
+Fire Coral Block,Yes,Yes (64),6,1.5,No,Yes,No,Overworld,,055
+Grass Block,Yes,Yes (64),0.6,0.6,No,No,No,Overworld,,056
+Jack o'Lantern,Yes,Yes (64),1,1,Yes (15),Partial (Blocks light),No,Overworld/Craftable,,057
+Shroomlight,Yes,Yes (64),1,1,Yes (15),No,No,Overworld/Craftable,,058
+Slime Block,Yes,Yes (64),0,0,No,Partial,No,Craftable,,059
+Podzol,Yes,Yes (64),0.5,0.5,No,No,No,Overworld,,060
+Dried Kelp Block,Yes,Yes (64),2.5,0.5,No,No,Yes (30),Craftable,,061
+TNT,Yes,Yes (64),0,0,No,No,Yes (15),Craftable,,062
+Pumpkin,Yes,Yes (64),1,1,No,No,No,Overworld,,063
+Farmland,Yes,Yes (64),0.6,0.6,No,No,No,Overworld,,064
+Gravel,Yes,Yes (64),0.6,0.6,No,No,No,Overworld,,065
+Blast Furnace,Yes,Yes (64),3.5,3.5,Yes (13) (When Active),Partial (When Active),No,Overworld/Craftable,,066
+Rooted Dirt,Yes,Yes (64),0.5,0.5,No,No,No,Overworld,,067
+Horn Coral Block,Yes,Yes (64),6,1.5,No,Yes,No,Overworld,,068
+Coarse Dirt,Yes,Yes (64),0.5,0.5,Yes,No,No,Overworld,,069
+Infested Cobblestone,Yes,Yes (64),1,1,No,No,No,Overworld,,070
+Sand,Yes,Yes (64),0.5,0.5,No,No,No,Overworld,,071
+Sandstone,Yes,Yes (64),0.8,0.8,No,No,No,Overworld,,072
+Smithing Table,Yes,Yes (64),2.5,2.5,No,No,No,Overworld/Craftable,,073
+Smoker,Yes,Yes (64),3.5,3.5,Yes (13) (When Active),Partial (When Active),No,Overworld/Craftable,,074
+Coal Ore,No,Yes (64),3,3,No,No,No,Overworld,,075
+Purpur Block,Yes,Yes (64),6,1.5,No,No,No,End,,076
+Cracked Stone Brick,Yes,Yes (64),6,1.5,No,Yes,No,Overworld,,077
+Terracotta,Yes,Yes (64),4.2,1.25,No,No,No,Overworld,,078
+Honeycomb Block,Yes,Yes (64),0.6,0.6,No,No,No,Overworld,,079
+Reinforced Deepslate,No,Yes (64),1200,55,No,No,No,Dev console,,080
+Smooth Red Sandstone,Yes,Yes (64),6,2,No,No,No,Craftable,,081
+Brown Mushroom Block,Yes,Yes (64),0.2,0.2,No,No,No,Overworld,,082
+Red Mushroom Block,Yes,Yes (64),0.2,0.2,No,No,No,Overworld,,083
+Stem Mushroom Block,Yes,Yes (64),0.2,0.2,No,No,No,Overworld,,084
+Concrete Powder,Yes,Yes (64),0.5,0.5,Yes,No,No,Overworld,,085
+Tuff,Yes,Yes (64),6,1.5,No,Yes,No,Overworld,,086
+Target,Yes,Yes (64),0.5,0.5,Yes,No,Yes (15),Overworld/Craftable,,087
+Nylium,Yes,Yes (64),0.4,0.4,No,No,No,Craftable,,088
+Mud,Yes,Yes (64),0.5,0.5,Yes,No,No,Overworld/Craftable,,089
+Mycelium,Yes,Yes (64),0.6,0.6,No,No,No,Overworld,,090
+Muddy Mangrove Roots,Yes,Yes (64),0.7,0.7,No,No,No,Overworld,,091
+Nether Bricks,Yes,Yes (64),6,2,No,Yes,No,Nether,,092
+Mud Bricks,Yes,Yes (64),3,1.5,No,Yes,No,Overworld/Craftable,,093
+Nether Gold Ore,Yes,Yes (64),3,3,No,Yes,No,Nether,,094
+Nether Wart Block,Yes,Yes (64),1,1,No,Yes,No,Nether/Craftable,,095
+Warped Wart Block,Yes,Yes (64),1,1,No,Yes,No,Nether,,096
+Waxed Block of Copper,Yes,Yes (64),6,3,No,Yes,No,Craftable,,097
+Packed Mud,Yes,Yes (64),0.5,0.5,Yes,No,No,Overworld/Craftable,,098
+Pearlescent,Yes,Yes (64),0.3,0.3,Yes (13),No,No,Overworld/Craftable,,099
+Dropper,Yes,Yes (64),3.5,3.5,No,No,No,Overworld/Craftable,,100
