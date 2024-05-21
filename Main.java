@@ -250,6 +250,117 @@ public class Main {
         JPanel canvas1 = new JPanel();
         canvas1.setPreferredSize(new Dimension(1080, 50));
         canvas1.setBackground(Color.BLUE); // Set background color for demonstration
+        BufferedImage textBar = loadImage("ViewPannelAssets\\TopTypeBar.png");
+        if (textBar != null) {
+            canvas1.drawImage(textBar, 0, 0, 1080, 720, this);
+        }
+        BufferedImage quanityBG = loadImage("ViewPannelAssets\\Spacer.png");
+        if (quanityBG != null) {
+            canvas1.drawImage(quanityBG, 0, 0, 1080, 720, this);
+        }
+
+        //Draw Sort Type
+        //Name, Version,   Tool, Stackable,, Dimension, Water,  Hardness, BlastRes,  Luminious, Renewable,  Fire, Lava, 
+        String buttonFilePath = ""; //File path for dropdown button
+        String buttonFilePathON = ""; //File path for top 
+        String buttonFilePathOFF = ""; //file path for bottom
+        switch(sortType) {
+            case "Name":
+                buttonFilePath = "ViewPannelAssets\\Name.png";
+                if(firstButton == true) {
+                    buttonFilePathON = "ViewPannelAssets\\A-ZON.png";
+                    buttonFilePathOFF = "ViewPannelAssets\\Z-AOFF.png";
+                } else {
+                    buttonFilePathON = "ViewPannelAssets\\A-ZOFF.png";
+                    buttonFilePathOFF = "ViewPannelAssets\\Z-AON.png";
+                }
+                break; 
+            case "Stackable":
+                buttonFilePath = "ViewPannelAssets\\Stack.png";
+                if(firstButton == true) {
+                    buttonFilePathON = "ViewPannelAssets\\StackedON.png";
+                    buttonFilePathOFF = "ViewPannelAssets\\NotOFF.png";
+                } else {
+                    buttonFilePathON = "ViewPannelAssets\\StackedOFF.png";
+                    buttonFilePathOFF = "ViewPannelAssets\\NotON.png";
+                }
+                break;
+            case "Dimension":
+                buttonFilePath = "ViewPannelAssets\\Dimension.png";
+                if(firstButton == true) {
+                    buttonFilePathON = "ViewPannelAssets\\TopON.png";
+                    buttonFilePathOFF = "ViewPannelAssets\\BottomOFF.png";
+                } else {
+                    buttonFilePathON = "ViewPannelAssets\\TopOFF.png";
+                    buttonFilePathOFF = "ViewPannelAssets\\BottomON.png";
+                }
+                break;
+            case "Hardness":
+                buttonFilePath = "ViewPannelAssets\\Hardness.png";
+                if(firstButton == true) {
+                    buttonFilePathON = "ViewPannelAssets\\HardestON.png";
+                    buttonFilePathOFF = "ViewPannelAssets\\SoftestOFF.png";
+                } else {
+                    buttonFilePathON = "ViewPannelAssets\\HardestOFF.png";
+                    buttonFilePathOFF = "ViewPannelAssets\\SoftestON.png";
+                }
+                break;
+            case "BlastRes":
+                buttonFilePath = "ViewPannelAssets\\BlastRes.png";
+                if(firstButton == true) {
+                    buttonFilePathON = "ViewPannelAssets\\MostON.png";
+                    buttonFilePathOFF = "ViewPannelAssets\\LeastOFF.png";
+                } else {
+                    buttonFilePathON = "ViewPannelAssets\\MostOFF.png";
+                    buttonFilePathOFF = "ViewPannelAssets\\LeastON.png";
+                }
+                break;
+            case "Renewable":
+                buttonFilePath = "ViewPannelAssets\\Renewable.png";
+                if(firstButton == true) {
+                    buttonFilePathON = "ViewPannelAssets\\TrueON.png";
+                    buttonFilePathOFF = "ViewPannelAssets\\FalseOFF.png";
+                } else {
+                    buttonFilePathON = "ViewPannelAssets\\TrueOFF.png";
+                    buttonFilePathOFF = "ViewPannelAssets\\FalseON.png";
+                }
+                break;
+            case "Luminous":
+                buttonFilePath = "ViewPannelAssets\\Luminous.png";
+                if(firstButton == true) {
+                    buttonFilePathON = "ViewPannelAssets\\TrueON.png";
+                    buttonFilePathOFF = "ViewPannelAssets\\FalseOFF.png";
+                } else {
+                    buttonFilePathON = "ViewPannelAssets\\TrueOFF.png";
+                    buttonFilePathOFF = "ViewPannelAssets\\FalseON.png";
+                }
+                break;
+            case "Fire":
+                buttonFilePath = "ViewPannelAssets\\Fire.png";
+                if(firstButton == true) {
+                    buttonFilePathON = "ViewPannelAssets\\TrueON.png";
+                    buttonFilePathOFF = "ViewPannelAssets\\FalseOFF.png";
+                } else {
+                    buttonFilePathON = "ViewPannelAssets\\TrueOFF.png";
+                    buttonFilePathOFF = "ViewPannelAssets\\FalseON.png";
+                }
+                break;
+            
+        }
+        
+        BufferedImage activeSortMethod = loadImage(buttonFilePath);
+        if (activeSortMethod != null) {
+            canvas1.drawImage(activeSortMethod, 544, 0, 276, 50, this);
+        }
+        BufferedImage sortOption1 = loadImage(buttonFilePathON);
+        if (sortOption1 != null) {
+            canvas1.drawImage(sortOption1, 820, 0, 130, 50, this);
+        }
+        BufferedImage sortOption2 = loadImage(buttonFilePathOFF);
+        if (sortOption2 != null) {
+            canvas1.drawImage(sortOption2, 950, 0, 130, 50, this);
+        }
+
 
         // Create Canvas 2 on the left (60% height of the bottom space)
         JPanel canvas2 = new JPanel();
