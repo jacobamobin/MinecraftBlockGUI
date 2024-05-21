@@ -7,7 +7,7 @@ Oak Log,TRUE,Yes (64),2,2,No,TRUE,Overworld,OakLog.wav,006
 Deepslate Tiles,FALSE,Yes (64),6,3.5,No,FALSE,Craftable,DeepslateTiles.wav,007
 Prismarine,TRUE,Yes (64),6,1.5,No,FALSE,Overworld,Prismarine.wav,008
 Cobblestone,TRUE,Yes (64),6,2,No,FALSE,Overworld,Cobblestone.wav,009
-Piston,TRUE,Yes (64),0.5,1.5,No,FALSE,N/A,Piston.wav,010
+Piston,TRUE,Yes (64),0.5,1.5,No,FALSE,Craftable,Piston.wav,010
 Bedrock,FALSE,Yes (64),3600000,-1,No,FALSE,Overworld/Nether,Bedrock.wav,011
 Sculk,TRUE,Yes (64),0.2,0.2,No,FALSE,Overworld,Sculk.wav,012
 Sponge,TRUE,Yes (64),0.6,0.6,No,FALSE,Overworld,Sponge.wav,013
