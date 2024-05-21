@@ -13,24 +13,23 @@ class Block {
     String luminous; // If this block gives off light
     boolean flammable; // If the block is flammable from natural fire
     String dimension; // Primary Dimension of the block
-
     String texture; // texture file path that we will put on the block model
     String sfx; // SFX path
 
     // Creating a block
-    public Block(String name, boolean renewable, String stackable, double blastRes, double hardness, String luminous,boolean flammable, String dimenstion, String texture, String sfx) {
+    public Block(String name, boolean renewable, String stackable, double blastRes, double hardness, String luminous,boolean flammable, String dimension, String texture, String sfx) {
         this.name = name;
-        this.dimension = dimension;
         this.stackable = stackable;
         this.hardness = hardness;
         this.blastRes = blastRes;
         this.renewable = renewable;
         this.luminous = luminous;
         this.flammable = flammable;
+        this.dimension = dimension;
         this.texture = texture;
         this.sfx = sfx;
     }
-
+    
     public String toString() {
         String flammableInfo = "";
         if (flammable)
@@ -38,10 +37,9 @@ class Block {
         else
             flammableInfo = "This block is not flammable.";
         
-        return name + ". It spawns in the " + dimension +". Properties: \n" + "Stackability: " + stackable + "\nHardness: " + hardness
+        return name + ". \nIt spawns in the " + dimension +".\n" + "Stackability: " + stackable + "\nHardness: " + hardness
                     + "\nBlast Resistance: " + blastRes + "\nIs Renewable: "
-                    + renewable + "\n" + flammableInfo;
-
+                    + renewable + "\n" + flammableInfo + "\n\n";
                      }
 
      /* IMPORTANT: HOW TO USE - First create a Clip object:
@@ -72,5 +70,4 @@ class Block {
         return clip;
 
      }
-    }
-        
+}  
