@@ -78,11 +78,11 @@ Cracked Stone Brick,Yes,Yes (64),6,1.5,No,Yes,No,Overworld,CrackedStoneBrick.wav
 Terracotta,Yes,Yes (64),4.2,1.25,No,No,No,Overworld,Terracotta.wav,078
 Honeycomb Block,Yes,Yes (64),0.6,0.6,No,No,No,Overworld,HoneycombBlock.wav,079
 Reinforced Deepslate,No,Yes (64),1200,55,No,No,No,Dev console,ReinforcedDeepslate.wav,080
-Smooth Red Sandstone,Yes,Yes (64),6,2,No,No,No,Craftable,Smooth Red Sandstone.wav,081
-Brown Mushroom Block,Yes,Yes (64),0.2,0.2,No,No,No,Overworld,Brown Mushroom Block.wav,082
-Red Mushroom Block,Yes,Yes (64),0.2,0.2,No,No,No,Overworld,Red Mushroom Block.wav,083
-Stem Mushroom Block,Yes,Yes (64),0.2,0.2,No,No,No,Overworld,Stem Mushroom Block.wav,084
-Concrete Powder,Yes,Yes (64),0.5,0.5,Yes,No,No,Overworld,Concrete Powder.wav,085
+Smooth Red Sandstone,Yes,Yes (64),6,2,No,No,No,Craftable,SmoothRedSandstone.wav,081
+Brown Mushroom Block,Yes,Yes (64),0.2,0.2,No,No,No,Overworld,BrownMushroomBlock.wav,082
+Red Mushroom Block,Yes,Yes (64),0.2,0.2,No,No,No,Overworld,Red MushroomBlock.wav,083
+Stem Mushroom Block,Yes,Yes (64),0.2,0.2,No,No,No,Overworld,StemMushroomBlock.wav,084
+Concrete Powder,Yes,Yes (64),0.5,0.5,Yes,No,No,Overworld,ConcretePowder.wav,085
 Tuff,Yes,Yes (64),6,1.5,No,Yes,No,Overworld,Tuff.wav,086
 Target,Yes,Yes (64),0.5,0.5,Yes,No,Yes (15),Overworld/Craftable,Target.wav,087
 Nylium,Yes,Yes (64),0.4,0.4,No,No,No,Craftable,Nylium.wav,088
@@ -90,11 +90,11 @@ Mud,Yes,Yes (64),0.5,0.5,Yes,No,No,Overworld/Craftable,Mud.wav,089
 Mycelium,Yes,Yes (64),0.6,0.6,No,No,No,Overworld,Mycelium.wav,090
 Muddy Mangrove Roots,Yes,Yes (64),0.7,0.7,No,No,No,Overworld,Muddy Mangrove Roots.wav,091
 Nether Bricks,Yes,Yes (64),6,2,No,Yes,No,Nether,Nether Bricks.wav,092
-Mud Bricks,Yes,Yes (64),3,1.5,No,Yes,No,Overworld/Craftable,Mud Bricks.wav,093
-Nether Gold Ore,Yes,Yes (64),3,3,No,Yes,No,Nether,Nether Gold Ore.wav,094
-Nether Wart Block,Yes,Yes (64),1,1,No,Yes,No,Nether/Craftable,Nether Wart Block.wav,095
+Mud Bricks,Yes,Yes (64),3,1.5,No,Yes,No,Overworld/Craftable,MudBricks.wav,093
+Nether Gold Ore,Yes,Yes (64),3,3,No,Yes,No,Nether,NetherGoldOre.wav,094
+Nether Wart Block,Yes,Yes (64),1,1,No,Yes,No,Nether/Craftable,NetherWartBlock.wav,095
 Warped Wart Block,Yes,Yes (64),1,1,No,Yes,No,Nether,Warped Wart Block.wav,096
-Waxed Block of Copper,Yes,Yes (64),6,3,No,Yes,No,Craftable,Waxed Block of Copper.wav,097
-Packed Mud,Yes,Yes (64),0.5,0.5,Yes,No,No,Overworld/Craftable,Packed Mud.wav,098
+Waxed Block of Copper,Yes,Yes (64),6,3,No,Yes,No,Craftable,WaxedCopperBlock.wav,097
+Packed Mud,Yes,Yes (64),0.5,0.5,Yes,No,No,Overworld/Craftable,PackedMud.wav,098
 Pearlescent,Yes,Yes (64),0.3,0.3,Yes (13),No,No,Overworld/Craftable,Pearlescent.wav,099
 Dropper,Yes,Yes (64),3.5,3.5,No,No,No,Overworld/Craftable,Dropper.wav,100
