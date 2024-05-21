@@ -21,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.event.MouseInputAdapter;
+import javax.swing.text.html.BlockView;
 
 public class Main {
 
@@ -38,7 +39,7 @@ public class Main {
     
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(Main::createAndShowGUI);
+        SwingUtilities.invokeLater(Main::mainMenu);
       
       //read block list block list
       //ArrayList<Block> blocks = readInData("Blocks.txt");
@@ -49,7 +50,7 @@ public class Main {
          //System.out.println(myBlock);
     }
 
-    private static void createAndShowGUI() {
+    private static void mainMenu() {
         // Create and set up the window
         JFrame frame = new JFrame("Minecraft Block Repository");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -131,12 +132,12 @@ public class Main {
             // Close the current JFrame
             //JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(canvasPanel);
             //currentFrame.dispose();
-            viewPanel();
+            blockListGUI();
         } else if (isOverlayMiddleSelected = isWithinButtonRange(x, y, 665, 909, 329, 393)) {
-            viewPanel2();
+            blockEditGUI();
             
         } else if (isOverlayBottomSelected = isWithinButtonRange(x, y, 665, 909, 409, 476)) {
-            viewPanel3();
+            blockView3dGUI();
             //System.exit(0);
         }
 
@@ -189,7 +190,7 @@ public class Main {
     static int mouseY = 0;
     static boolean isDropDownOpen = false;
 
-    public static void viewPanel3() {
+    public static void blockView3dGUI() {
         JFrame frame = new JFrame("3D Canvas Example");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600); // Set your desired size
@@ -236,7 +237,10 @@ public class Main {
         timer.start(); // Start the timer
     }
 
-    public static void viewPanel2() {
+    
+    public static void blockEditGUI() {
+        
+
         JFrame newFrame = new JFrame("Edit Blocks");
         newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         newFrame.setSize(Main.FRAME_WIDTH, Main.FRAME_HEIGHT);
@@ -250,116 +254,7 @@ public class Main {
         JPanel canvas1 = new JPanel();
         canvas1.setPreferredSize(new Dimension(1080, 50));
         canvas1.setBackground(Color.BLUE); // Set background color for demonstration
-        BufferedImage textBar = loadImage("ViewPannelAssets\\TopTypeBar.png");
-        if (textBar != null) {
-            canvas1.drawImage(textBar, 0, 0, 1080, 720, this);
-        }
-        BufferedImage quanityBG = loadImage("ViewPannelAssets\\Spacer.png");
-        if (quanityBG != null) {
-            canvas1.drawImage(quanityBG, 0, 0, 1080, 720, this);
-        }
-
-        //Draw Sort Type
-        //Name, Version,   Tool, Stackable,, Dimension, Water,  Hardness, BlastRes,  Luminious, Renewable,  Fire, Lava, 
-        String buttonFilePath = ""; //File path for dropdown button
-        String buttonFilePathON = ""; //File path for top 
-        String buttonFilePathOFF = ""; //file path for bottom
-        switch(sortType) {
-            case "Name":
-                buttonFilePath = "ViewPannelAssets\\Name.png";
-                if(firstButton == true) {
-                    buttonFilePathON = "ViewPannelAssets\\A-ZON.png";
-                    buttonFilePathOFF = "ViewPannelAssets\\Z-AOFF.png";
-                } else {
-                    buttonFilePathON = "ViewPannelAssets\\A-ZOFF.png";
-                    buttonFilePathOFF = "ViewPannelAssets\\Z-AON.png";
-                }
-                break; 
-            case "Stackable":
-                buttonFilePath = "ViewPannelAssets\\Stack.png";
-                if(firstButton == true) {
-                    buttonFilePathON = "ViewPannelAssets\\StackedON.png";
-                    buttonFilePathOFF = "ViewPannelAssets\\NotOFF.png";
-                } else {
-                    buttonFilePathON = "ViewPannelAssets\\StackedOFF.png";
-                    buttonFilePathOFF = "ViewPannelAssets\\NotON.png";
-                }
-                break;
-            case "Dimension":
-                buttonFilePath = "ViewPannelAssets\\Dimension.png";
-                if(firstButton == true) {
-                    buttonFilePathON = "ViewPannelAssets\\TopON.png";
-                    buttonFilePathOFF = "ViewPannelAssets\\BottomOFF.png";
-                } else {
-                    buttonFilePathON = "ViewPannelAssets\\TopOFF.png";
-                    buttonFilePathOFF = "ViewPannelAssets\\BottomON.png";
-                }
-                break;
-            case "Hardness":
-                buttonFilePath = "ViewPannelAssets\\Hardness.png";
-                if(firstButton == true) {
-                    buttonFilePathON = "ViewPannelAssets\\HardestON.png";
-                    buttonFilePathOFF = "ViewPannelAssets\\SoftestOFF.png";
-                } else {
-                    buttonFilePathON = "ViewPannelAssets\\HardestOFF.png";
-                    buttonFilePathOFF = "ViewPannelAssets\\SoftestON.png";
-                }
-                break;
-            case "BlastRes":
-                buttonFilePath = "ViewPannelAssets\\BlastRes.png";
-                if(firstButton == true) {
-                    buttonFilePathON = "ViewPannelAssets\\MostON.png";
-                    buttonFilePathOFF = "ViewPannelAssets\\LeastOFF.png";
-                } else {
-                    buttonFilePathON = "ViewPannelAssets\\MostOFF.png";
-                    buttonFilePathOFF = "ViewPannelAssets\\LeastON.png";
-                }
-                break;
-            case "Renewable":
-                buttonFilePath = "ViewPannelAssets\\Renewable.png";
-                if(firstButton == true) {
-                    buttonFilePathON = "ViewPannelAssets\\TrueON.png";
-                    buttonFilePathOFF = "ViewPannelAssets\\FalseOFF.png";
-                } else {
-                    buttonFilePathON = "ViewPannelAssets\\TrueOFF.png";
-                    buttonFilePathOFF = "ViewPannelAssets\\FalseON.png";
-                }
-                break;
-            case "Luminous":
-                buttonFilePath = "ViewPannelAssets\\Luminous.png";
-                if(firstButton == true) {
-                    buttonFilePathON = "ViewPannelAssets\\TrueON.png";
-                    buttonFilePathOFF = "ViewPannelAssets\\FalseOFF.png";
-                } else {
-                    buttonFilePathON = "ViewPannelAssets\\TrueOFF.png";
-                    buttonFilePathOFF = "ViewPannelAssets\\FalseON.png";
-                }
-                break;
-            case "Fire":
-                buttonFilePath = "ViewPannelAssets\\Fire.png";
-                if(firstButton == true) {
-                    buttonFilePathON = "ViewPannelAssets\\TrueON.png";
-                    buttonFilePathOFF = "ViewPannelAssets\\FalseOFF.png";
-                } else {
-                    buttonFilePathON = "ViewPannelAssets\\TrueOFF.png";
-                    buttonFilePathOFF = "ViewPannelAssets\\FalseON.png";
-                }
-                break;
-            
-        }
         
-        BufferedImage activeSortMethod = loadImage(buttonFilePath);
-        if (activeSortMethod != null) {
-            canvas1.drawImage(activeSortMethod, 544, 0, 276, 50, this);
-        }
-        BufferedImage sortOption1 = loadImage(buttonFilePathON);
-        if (sortOption1 != null) {
-            canvas1.drawImage(sortOption1, 820, 0, 130, 50, this);
-        }
-        BufferedImage sortOption2 = loadImage(buttonFilePathOFF);
-        if (sortOption2 != null) {
-            canvas1.drawImage(sortOption2, 950, 0, 130, 50, this);
-        }
 
 
         // Create Canvas 2 on the left (60% height of the bottom space)
@@ -400,7 +295,7 @@ public class Main {
 
 
 
-    public static void viewPanel() {
+    public static void blockListGUI() {
         
 
         // Open a new JFrame with a blank canvas
