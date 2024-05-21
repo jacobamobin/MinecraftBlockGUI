@@ -382,26 +382,6 @@ public class Main {
                             buttonFilePathOFF = "ViewPannelAssets\\Z-AON.png";
                         }
                         break; 
-                    case "Version":
-                        buttonFilePath = "ViewPannelAssets\\Version.png";
-                        if(firstButton == true) {
-                            buttonFilePathON = "ViewPannelAssets\\NewestON.png";
-                            buttonFilePathOFF = "ViewPannelAssets\\OldestOFF.png";
-                        } else {
-                            buttonFilePathON = "ViewPannelAssets\\NewestOFF.png";
-                            buttonFilePathOFF = "ViewPannelAssets\\OldestON.png";
-                        }
-                        break;
-                    case "Tool":
-                        buttonFilePath = "ViewPannelAssets\\Tool.png";
-                        if(firstButton == true) {
-                            buttonFilePathON = "ViewPannelAssets\\BestON.png";
-                            buttonFilePathOFF = "ViewPannelAssets\\WorstOFF.png";
-                        } else {
-                            buttonFilePathON = "ViewPannelAssets\\BestOFF.png";
-                            buttonFilePathOFF = "ViewPannelAssets\\WorstON.png";
-                        }
-                        break;
                     case "Stackable":
                         buttonFilePath = "ViewPannelAssets\\Stack.png";
                         if(firstButton == true) {
@@ -442,16 +422,6 @@ public class Main {
                             buttonFilePathOFF = "ViewPannelAssets\\LeastON.png";
                         }
                         break;
-                    case "Water":
-                        buttonFilePath = "ViewPannelAssets\\Water.png";
-                        if(firstButton == true) {
-                            buttonFilePathON = "ViewPannelAssets\\TrueON.png";
-                            buttonFilePathOFF = "ViewPannelAssets\\FalseOFF.png";
-                        } else {
-                            buttonFilePathON = "ViewPannelAssets\\TrueOFF.png";
-                            buttonFilePathOFF = "ViewPannelAssets\\FalseON.png";
-                        }
-                        break;
                     case "Renewable":
                         buttonFilePath = "ViewPannelAssets\\Renewable.png";
                         if(firstButton == true) {
@@ -482,19 +452,8 @@ public class Main {
                             buttonFilePathOFF = "ViewPannelAssets\\FalseON.png";
                         }
                         break;
-                    case "Lava":
-                        buttonFilePath = "ViewPannelAssets\\Lava.png";
-                        if(firstButton == true) {
-                            buttonFilePathON = "ViewPannelAssets\\TrueON.png";
-                            buttonFilePathOFF = "ViewPannelAssets\\FalseOFF.png";
-                        } else {
-                            buttonFilePathON = "ViewPannelAssets\\TrueOFF.png";
-                            buttonFilePathOFF = "ViewPannelAssets\\FalseON.png";
-                        }
-                        break;
                     
                 }
-                
                 
                 BufferedImage activeSortMethod = loadImage(buttonFilePath);
                 if (activeSortMethod != null) {
