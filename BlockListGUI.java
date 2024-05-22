@@ -188,12 +188,7 @@ public class BlockListGUI {
 
                 if (isDropDownOpen) {
                     String sortOption[] = {"Name", "Dimension", "Hardness", "BlastRes", "Renewable", "Luminous", "Fire"};
-                    int dropdownY = 0;
-
-                    BufferedImage dropDownBG = loadImage("ViewPannelAssets\\SortDropDown.png");
-                    if (dropDownBG != null) {
-                        g.drawImage(dropDownBG, 544, 0, 276, 400, this);
-                    }
+                    int dropdownY = 50;
                     for (String option : sortOption) {
                         BufferedImage sortMethod = loadImage("ViewPannelAssets\\" + option + ".png");
                         if (sortMethod != null) {
@@ -287,16 +282,8 @@ public class BlockListGUI {
                 isDropDownOpen = true;
                 /* 
                 if(sortType == "Name") {
-                    sortType = "Version";
-                } else if (sortType == "Version") {
-                    sortType = "Stackable";
-                } else if (sortType == "Stackable") {
-                    sortType = "Tool";
-                } else if (sortType == "Tool") {
                     sortType = "Dimension";
                 } else if (sortType == "Dimension") {
-                    sortType = "Water";
-                } else if (sortType == "Water") {
                     sortType = "Hardness";
                 } else if (sortType == "Hardness") {
                     sortType = "BlastRes";
@@ -307,8 +294,6 @@ public class BlockListGUI {
                 } else if (sortType == "Renewable") {
                     sortType = "Fire";
                 } else if (sortType == "Fire") {
-                    sortType = "Lava";
-                } else if (sortType == "Lava") {
                     sortType = "Name";
                 } else {
                     sortType = "Name";
@@ -328,38 +313,26 @@ public class BlockListGUI {
             } else if (isWithinButtonRange(x, y, 544, 819, 50, 100)) { 
                 sortType = "Name";
                 isDropDownOpen = false;
-            } else if (isWithinButtonRange(x, y, 544, 819, 100, 150)) { 
-                sortType = "Version";
-                isDropDownOpen = false;
-            } else if (isWithinButtonRange(x, y, 544, 819, 150, 200)) {
-                sortType = "Tool";
-                isDropDownOpen = false;
-            } else if (isWithinButtonRange(x, y, 544, 819, 200, 250)) {
+            /*  } else if (isWithinButtonRange(x, y, 544, 819, 200, 250)) {
                 sortType = "Stackable";
-                isDropDownOpen = false;
-            } else if (isWithinButtonRange(x, y, 544, 819, 250, 300)) {
+                isDropDownOpen = false;*/
+            } else if (isWithinButtonRange(x, y, 544, 819, 100, 150)) {
                 sortType = "Dimension";
                 isDropDownOpen = false;
-            } else if (isWithinButtonRange(x, y, 544, 819, 300, 350)) {
-                sortType = "Water";
-                isDropDownOpen = false;
-            } else if (isWithinButtonRange(x, y, 544, 819, 350, 400)) {
+            } else if (isWithinButtonRange(x, y, 544, 819, 150, 200)) {
                 sortType = "Hardness";
                 isDropDownOpen = false;
-            } else if (isWithinButtonRange(x, y, 544, 819,400, 450)) {
+            } else if (isWithinButtonRange(x, y, 544, 819,200, 250)) {
                 sortType = "BlastRes";
                 isDropDownOpen = false;
-            } else if (isWithinButtonRange(x, y, 544, 819, 450, 500)) {
-                sortType = "Luminous";
-                isDropDownOpen = false;
-            } else if (isWithinButtonRange(x, y, 544, 819, 500, 550)) {
+            } else if (isWithinButtonRange(x, y, 544, 819, 250, 300)) {
                 sortType = "Renewable";
                 isDropDownOpen = false;
-            } else if (isWithinButtonRange(x, y, 544, 819, 550, 600)) {
-                sortType = "Fire";
+            } else if (isWithinButtonRange(x, y, 544, 819, 300, 350)) {
+                sortType = "Luminous";
                 isDropDownOpen = false;
-            } else if (isWithinButtonRange(x, y, 544, 819, 600, 650)) {
-                sortType = "Lava";
+            } else if (isWithinButtonRange(x, y, 544, 819, 350, 400)) {
+                sortType = "Fire";
                 isDropDownOpen = false;
             } else {
                 isDropDownOpen = false;
