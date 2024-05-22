@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.event.MouseInputAdapter;
 
@@ -103,11 +104,11 @@ public class MainMenuGUI {
 
     private static void handleClickEvent(int x, int y) {
         if (isOverlayTopSelected = isWithinButtonRange(x, y, 665, 909, 244, 310)) {
-            blockListGUI();
+            SwingUtilities.invokeLater(BlockListGUI::blockListGUI);
         } else if (isOverlayMiddleSelected = isWithinButtonRange(x, y, 665, 909, 329, 393)) {
-            blockEditGUI();
+            SwingUtilities.invokeLater(BlockListGUI::blockListGUI);
         } else if (isOverlayBottomSelected = isWithinButtonRange(x, y, 665, 909, 409, 476)) {
-            blockView3dGUI();
+            SwingUtilities.invokeLater(BlockListGUI::blockListGUI);
         }
     }
 
@@ -134,17 +135,5 @@ public class MainMenuGUI {
                 return null;
             }
         }
-    }
-
-    private static void blockListGUI() {
-        // Placeholder for block list GUI logic
-    }
-
-    private static void blockEditGUI() {
-        // Placeholder for block edit GUI logic
-    }
-
-    private static void blockView3dGUI() {
-        // Placeholder for block view 3D GUI logic
     }
 }
