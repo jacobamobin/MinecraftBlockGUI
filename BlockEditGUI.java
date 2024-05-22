@@ -39,7 +39,7 @@ public class BlockEditGUI {
         // Create a nested panel for Canvas 2 and Canvas 3
         JPanel bottomPanel = new JPanel();
         bottomPanel.setLayout(new BorderLayout());
-        bottomPanel.add(canvas2, BorderLayout.WEST);
+        bottomPanel.add(canvas2, BorderLayout.EAST);
         bottomPanel.add(canvas3, BorderLayout.CENTER);
 
         // Add Canvas 1 to the top of the main panel
