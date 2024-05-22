@@ -106,9 +106,9 @@ public class MainMenuGUI {
         if (isOverlayTopSelected = isWithinButtonRange(x, y, 665, 909, 244, 310)) {
             SwingUtilities.invokeLater(BlockListGUI::blockListGUI);
         } else if (isOverlayMiddleSelected = isWithinButtonRange(x, y, 665, 909, 329, 393)) {
-            SwingUtilities.invokeLater(BlockListGUI::blockListGUI);
+            SwingUtilities.invokeLater(BlockEditGUI::blockEditGUI);
         } else if (isOverlayBottomSelected = isWithinButtonRange(x, y, 665, 909, 409, 476)) {
-            SwingUtilities.invokeLater(BlockListGUI::blockListGUI);
+            SwingUtilities.invokeLater(BlockView3dGUI::blockView3dGUI);
         }
     }
 
