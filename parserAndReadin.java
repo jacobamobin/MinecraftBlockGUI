@@ -55,6 +55,19 @@ public class parserAndReadin
 
         return blocks;
     }
+
+    public static void editEntry(ArrayList<Block> blocks, String blockName, Block updatedBlock) 
+    {
+        for (int i = 0; i < blocks.size(); i++) 
+        {
+            Block block = blocks.get(i);
+            if (block.getName().equals(blockName)) 
+            {
+                blocks.set(i, updatedBlock);
+                break;
+            }
+        }
+    }
     
     public static void removeEntry(ArrayList<Block> blocks, String blockName)
     {
