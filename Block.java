@@ -41,6 +41,106 @@ class Block {
                     + "\nBlast Resistance: " + blastRes + "\nIs Renewable: "
                     + renewable + "\n" + flammableInfo + "\n\n";
                      }
+    //Accessor and Mutator methods (IDK how to put this anywhere else. This'll have to do)
+    public String getName() 
+    {
+        return name;
+    }
+
+    public void setName(String name) 
+    {
+        this.name = name;
+    }
+
+    public boolean isRenewability() 
+    {
+        return renewable;
+    }
+
+    public void setRenewability(boolean renewable) 
+    {
+        this.renewable = renewable;
+    }
+
+    public String getStackability() 
+    {
+        return stackable;
+    }
+
+    public void setStackability(String stackability) 
+    {
+        this.stackable = stackable;
+    }
+
+    public double getBlastres() 
+    {
+        return blastRes;
+    }
+
+    public void setBlastres(double blastRes) 
+    {
+        this.blastRes = blastRes;
+    }
+
+    public double getHardness() 
+    {
+        return hardness;
+    }
+
+    public void setHardness(double hardness) 
+    {
+        this.hardness = hardness;
+    }
+
+    public String getLuminous() 
+    {
+        return luminous;
+    }
+
+    public void setLuminous(String luminous) 
+    {
+        this.luminous = luminous;
+    }
+
+    public boolean isFlammable() {
+        return flammable;
+    }
+
+    public void setFlammable(boolean flammable) 
+    {
+        this.flammable = flammable;
+    }
+
+    public String getDimension() 
+    {
+        return dimension;
+    }
+
+    public void setDimension(String dimension) 
+    {
+        this.dimension = dimension;
+    }
+
+    public String getSFX() 
+    {
+        return sfx;
+    }
+
+    public void setSFX(String sfx) 
+    {
+        this.sfx = sfx;
+    }
+
+    public String getTexture() 
+    {
+        return texture;
+    }
+
+    public void setTexture(String texture) 
+    {
+        this.texture = texture;
+    }
+    //End of setters and getters
 
      /* IMPORTANT: HOW TO USE - First create a Clip object:
            Clip currentClip = playSFX("Block_Break.wav", 5f);
