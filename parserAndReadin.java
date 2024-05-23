@@ -55,4 +55,14 @@ public class parserAndReadin
 
         return blocks;
     }
+    
+    public static void removeEntry(ArrayList<Block> blocks, String blockName)
+    {
+        blocks.removeIf(block -> block.getName().equals(blockName));
+    }
+
+    public static void addEntry(ArrayList<Block> blocks, Block newBlock) 
+    {
+        blocks.add(newBlock);
+    }
 }
