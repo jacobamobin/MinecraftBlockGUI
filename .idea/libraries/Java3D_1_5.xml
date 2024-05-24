@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Java3D 1.5">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/Java3D 1.5.2/Java3D 1.5.2/j3dcore.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/Java3D 1.5.2/Java3D 1.5.2/j3dutils.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/Java3D 1.5.2/Java3D 1.5.2/vecmath.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <NATIVE>
+      <root url="file://$USER_HOME$/Downloads/Java3D 1.5.2/Java3D 1.5.2" />
+    </NATIVE>
+    <SOURCES />
+  </library>
+</component>

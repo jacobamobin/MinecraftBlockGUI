@@ -1,16 +1,12 @@
-import java.awt.Dimension;
-import java.awt.Graphics;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import javax.swing.event.MouseInputAdapter;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-import javax.swing.Timer;
-import javax.swing.event.MouseInputAdapter;
 
 public class MainMenuGUI {
 

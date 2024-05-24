@@ -1,10 +1,5 @@
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Color;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.Timer;
+import javax.swing.*;
+import java.awt.*;
 
 public class BlockEditGUI {
     public static void blockEditGUI() {
@@ -24,7 +19,7 @@ public class BlockEditGUI {
         canvas1.setPreferredSize(new Dimension(1080, 50));
         canvas1.setBackground(Color.BLUE); // Set background color for demonstration
         
-
+        
 
         // Create Canvas 2 on the left (60% height of the bottom space)
         JPanel canvas2 = new JPanel();
