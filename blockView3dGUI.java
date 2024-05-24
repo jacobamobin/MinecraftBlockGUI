@@ -5,14 +5,20 @@ import com.sun.j3d.utils.geometry.Sphere;
 import com.sun.j3d.utils.image.TextureLoader;
 import com.sun.j3d.utils.universe.SimpleUniverse;
 import com.sun.j3d.utils.universe.ViewingPlatform;
+import com.sun.j3d.utils.geometry.Text2D;
 
 import javax.media.j3d.*;
 import javax.swing.*;
 import javax.vecmath.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.io.*;
 
 public class BlockView3dGUI {
+
+    private static TransformGroup objTransformGroup;
+    private static Transform3D transform3D = new Transform3D();
+    private static double zoom = 1.0;
 
     public static void blockView3dGUI() {
         JFrame frame = new JFrame("3D Canvas Example");
@@ -21,34 +27,23 @@ public class BlockView3dGUI {
 
         // Create panels
         JPanel topPanel = new JPanel();
-        JPanel bottomPanel = new JPanel();
-        JPanel rightPanel = new JPanel();
-        JPanel leftPanel = new JPanel();
         JPanel centerPanel = new JPanel(new BorderLayout()); // For 3D content
 
         // Set background colors
         topPanel.setBackground(Color.RED);
-        bottomPanel.setBackground(Color.GREEN);
-        rightPanel.setBackground(Color.BLUE);
-        leftPanel.setBackground(Color.YELLOW);
 
         // Set layout manager (BorderLayout)
         frame.setLayout(new BorderLayout());
 
         // Adjust the sizes of the side panels
-        topPanel.setPreferredSize(new Dimension(1080, 185));
-        bottomPanel.setPreferredSize(new Dimension(1080, 185));
-        rightPanel.setPreferredSize(new Dimension(315, 500));
-        leftPanel.setPreferredSize(new Dimension(315, 500));
+        topPanel.setPreferredSize(new Dimension(1080, 100));
+
 
         // Set size for center panel
-        centerPanel.setPreferredSize(new Dimension(450, 350));
+        centerPanel.setPreferredSize(new Dimension(1080, 620));
 
         // Add panels to the frame
         frame.add(topPanel, BorderLayout.NORTH);
-        frame.add(bottomPanel, BorderLayout.SOUTH);
-        frame.add(rightPanel, BorderLayout.EAST);
-        frame.add(leftPanel, BorderLayout.WEST);
         frame.add(centerPanel, BorderLayout.CENTER);
 
         try {
@@ -71,11 +66,22 @@ public class BlockView3dGUI {
             BranchGroup scene = load3DModel(preprocessedFilename);
             if (scene != null) {
                 // Set up scaling and position
-                TransformGroup objTransform = new TransformGroup();
+                objTransformGroup = new TransformGroup();
+                objTransformGroup.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+                objTransformGroup.setCapability(TransformGroup.ALLOW_TRANSFORM_READ);
                 Transform3D scaleTransform = new Transform3D();
                 scaleTransform.setScale(1); // Adjust scale as needed
-                objTransform.setTransform(scaleTransform);
-                objTransform.addChild(scene);
+                objTransformGroup.setTransform(scaleTransform);
+                objTransformGroup.addChild(scene);
+
+                // Add a piece of text to the scene
+                Text2D text2D = new Text2D("Hello, 3D World!", new Color3f(Color.WHITE), "Helvetica", 36, Font.BOLD);
+                TransformGroup textTransformGroup = new TransformGroup();
+                Transform3D textTransform = new Transform3D();
+                textTransform.setTranslation(new Vector3f(0.0f, 2.0f, 0.0f)); // Adjust the position as needed
+                textTransformGroup.setTransform(textTransform);
+                textTransformGroup.addChild(text2D);
+                objTransformGroup.addChild(textTransformGroup);
 
                 // Set up viewing transform
                 ViewingPlatform viewingPlatform = universe.getViewingPlatform();
@@ -85,10 +91,48 @@ public class BlockView3dGUI {
                 viewMatrix.invert();
                 viewTransform.setTransform(viewMatrix);
 
-                // Add orbit behavior
-                OrbitBehavior orbit = new OrbitBehavior(canvas3D, OrbitBehavior.REVERSE_ALL);
-                orbit.setSchedulingBounds(new BoundingSphere(new Point3d(), 1000.0));
-                viewingPlatform.setViewPlatformBehavior(orbit);
+                // Add mouse listeners for rotating the block and text
+                canvas3D.addMouseMotionListener(new MouseMotionAdapter() {
+                    private int lastX, lastY;
+
+                    @Override
+                    public void mouseDragged(MouseEvent e) {
+                        int x = e.getX();
+                        int y = e.getY();
+                        int dx = x - lastX;
+                        int dy = y - lastY;
+
+                        Transform3D rotationX = new Transform3D();
+                        rotationX.rotX(Math.toRadians(dy) / 5.0);
+
+                        Transform3D rotationY = new Transform3D();
+                        rotationY.rotY(Math.toRadians(dx) / -5.0);
+
+                        transform3D.mul(rotationX);
+                        transform3D.mul(rotationY);
+
+                        transform3D.setScale(zoom);
+                        objTransformGroup.setTransform(transform3D);
+
+                        lastX = x;
+                        lastY = y;
+                    }
+
+                    @Override
+                    public void mouseMoved(MouseEvent e) {
+                        lastX = e.getX();
+                        lastY = e.getY();
+                    }
+                });
+
+                // Add mouse listener for zooming
+                canvas3D.addMouseWheelListener(e -> {
+                    int rotation = e.getWheelRotation();
+                    zoom *= (rotation > 0) ? 1.1 : 0.9;
+
+                    transform3D.setScale(zoom);
+                    objTransformGroup.setTransform(transform3D);
+                });
 
                 // Create a white directional light
                 Color3f lightColor = new Color3f(1.0f, 1.0f, 1.0f); // White light
@@ -96,8 +140,7 @@ public class BlockView3dGUI {
                 DirectionalLight light = new DirectionalLight(lightColor, lightDirection);
                 light.setInfluencingBounds(new BoundingSphere(new Point3d(0, 0, 0), 100));
 
-
-// Create a plane for the floor
+                // Create a plane for the floor
                 Appearance floorApp = new Appearance();
                 floorApp.setMaterial(new Material());
                 floorApp.setColoringAttributes(new ColoringAttributes(0.3f, 0.3f, 0.3f, ColoringAttributes.NICEST));
@@ -108,13 +151,12 @@ public class BlockView3dGUI {
                 floorGeometry.setCoordinate(3, new Point3f(-10.0f, -2.0f, -10.0f));
                 Shape3D floor = new Shape3D(floorGeometry, floorApp);
 
-// Add the background and floor to the scene
-
+                // Add the background and floor to the scene
                 BranchGroup root = new BranchGroup();
                 root.addChild(light);
                 root.addChild(floor);
+                root.addChild(objTransformGroup);
 
-                root.addChild(objTransform);
                 root.compile();
                 universe.addBranchGraph(root);
             } else {
