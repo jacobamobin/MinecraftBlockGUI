@@ -26,24 +26,15 @@ public class BlockView3dGUI {
         frame.setSize(1080, 720);
 
         // Create panels
-        JPanel topPanel = new JPanel();
         JPanel centerPanel = new JPanel(new BorderLayout()); // For 3D content
-
-        // Set background colors
-        topPanel.setBackground(Color.RED);
 
         // Set layout manager (BorderLayout)
         frame.setLayout(new BorderLayout());
-
-        // Adjust the sizes of the side panels
-        topPanel.setPreferredSize(new Dimension(1080, 100));
-
 
         // Set size for center panel
         centerPanel.setPreferredSize(new Dimension(1080, 620));
 
         // Add panels to the frame
-        frame.add(topPanel, BorderLayout.NORTH);
         frame.add(centerPanel, BorderLayout.CENTER);
 
         try {
@@ -73,15 +64,6 @@ public class BlockView3dGUI {
                 scaleTransform.setScale(1); // Adjust scale as needed
                 objTransformGroup.setTransform(scaleTransform);
                 objTransformGroup.addChild(scene);
-
-                // Add a piece of text to the scene
-                Text2D text2D = new Text2D("Hello, 3D World!", new Color3f(Color.WHITE), "Helvetica", 36, Font.BOLD);
-                TransformGroup textTransformGroup = new TransformGroup();
-                Transform3D textTransform = new Transform3D();
-                textTransform.setTranslation(new Vector3f(0.0f, 2.0f, 0.0f)); // Adjust the position as needed
-                textTransformGroup.setTransform(textTransform);
-                textTransformGroup.addChild(text2D);
-                objTransformGroup.addChild(textTransformGroup);
 
                 // Set up viewing transform
                 ViewingPlatform viewingPlatform = universe.getViewingPlatform();
