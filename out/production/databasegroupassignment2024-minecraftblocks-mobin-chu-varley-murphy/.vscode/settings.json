@@ -1,0 +1,11 @@
+{
+    "java.project.sourcePaths": [
+        "."
+    ],
+    "java.project.referencedLibraries": [
+        "c:\\Users\\jacob\\Downloads\\fbx-importer-win-x64\\FbxImporter\\JFbxViewer.jar",
+        "c:\\Users\\jacob\\Downloads\\j3dcore.jar",
+        "c:\\Users\\jacob\\Downloads\\j3dutils.jar",
+        "c:\\Users\\jacob\\Downloads\\vecmath.jar"
+    ]
+}
