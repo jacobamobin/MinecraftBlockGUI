@@ -306,25 +306,25 @@ public class BlockListGUI {
             } else if (isWithinButtonRange(x, y, 544, 819, 50, 100)) { 
                 sortType = "Name";
                 isDropDownOpen = false;
-            /*  } else if (isWithinButtonRange(x, y, 544, 819, 200, 250)) {
+              } else if (isWithinButtonRange(x, y, 544, 819, 100, 150)) {
                 sortType = "Stackable";
-                isDropDownOpen = false;*/
-            } else if (isWithinButtonRange(x, y, 544, 819, 100, 150)) {
-                sortType = "Dimension";
                 isDropDownOpen = false;
             } else if (isWithinButtonRange(x, y, 544, 819, 150, 200)) {
+                sortType = "Dimension";
+                isDropDownOpen = false;
+            } else if (isWithinButtonRange(x, y, 544, 819, 200, 250)) {
                 sortType = "Hardness";
                 isDropDownOpen = false;
-            } else if (isWithinButtonRange(x, y, 544, 819,200, 250)) {
+            } else if (isWithinButtonRange(x, y, 544, 819,250, 300)) {
                 sortType = "BlastRes";
                 isDropDownOpen = false;
-            } else if (isWithinButtonRange(x, y, 544, 819, 250, 300)) {
+            } else if (isWithinButtonRange(x, y, 544, 819, 300, 350)) {
                 sortType = "Renewable";
                 isDropDownOpen = false;
-            } else if (isWithinButtonRange(x, y, 544, 819, 300, 350)) {
+            } else if (isWithinButtonRange(x, y, 544, 819, 350, 400)) {
                 sortType = "Luminous";
                 isDropDownOpen = false;
-            } else if (isWithinButtonRange(x, y, 544, 819, 350, 400)) {
+            } else if (isWithinButtonRange(x, y, 544, 819, 450, 500)) {
                 sortType = "Fire";
                 isDropDownOpen = false;
             } else {
