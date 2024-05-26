@@ -93,7 +93,6 @@ public class BlockListGUI {
                             buttonFilePathOFF = "ViewPannelAssets\\Z-AON.png";
                         }
                         break;
-                        /* 
                     case "Stackable":
                         buttonFilePath = "ViewPannelAssets\\Stack.png";
                         if (firstButton) {
@@ -103,7 +102,7 @@ public class BlockListGUI {
                             buttonFilePathON = "ViewPannelAssets\\StackedOFF.png";
                             buttonFilePathOFF = "ViewPannelAssets\\NotON.png";
                         }
-                        break;*/
+                        break;
                     case "Dimension":
                         buttonFilePath = "ViewPannelAssets\\Dimension.png";
                         if (firstButton) {
@@ -180,7 +179,7 @@ public class BlockListGUI {
                 }
 
                 if (isDropDownOpen) {
-                    String sortOption[] = {"Name", "Dimension", "Hardness", "BlastRes", "Renewable", "Luminous", "Fire"};
+                    String sortOption[] = {"Name", "Stackable", "Dimension", "Hardness", "BlastRes", "Renewable", "Luminous", "Fire"};
                     int dropdownY = 50;
                     for (String option : sortOption) {
                         BufferedImage sortMethod = loadImage("ViewPannelAssets\\" + option + ".png");
