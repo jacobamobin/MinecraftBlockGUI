@@ -193,6 +193,7 @@ public class BlockView3dGUI {
         addOverlayRect(root); // add layer for 3d cubes and text.
         addSpecificOverlayCubes(root,  0.13f); // add sidebar cube icons
         addOverlayRectFar(root);
+        addOverlayRectTop(root);
         // add sidebar LEFT text
     }
 
@@ -208,8 +209,8 @@ public class BlockView3dGUI {
 
         // Create the geometry for the rectangle
         QuadArray overlayGeometry = new QuadArray(4, QuadArray.COORDINATES);
-        overlayGeometry.setCoordinate(0, new Point3f(-0.95f, -0.5f, 0f));
-        overlayGeometry.setCoordinate(1, new Point3f(-0.3f, -0.5f, 0f));
+        overlayGeometry.setCoordinate(0, new Point3f(-0.95f, -0.6f, 0f));
+        overlayGeometry.setCoordinate(1, new Point3f(-0.3f, -0.6f, 0f));
         overlayGeometry.setCoordinate(2, new Point3f(-0.3f, 0.4f, 0f));
         overlayGeometry.setCoordinate(3, new Point3f(-0.95f, 0.4f, 0f));
 
@@ -220,6 +221,37 @@ public class BlockView3dGUI {
         TransformGroup overlayTransformGroup = new TransformGroup();
         Transform3D transform = new Transform3D();
         transform.setTranslation(new Vector3f(0.0f, 0.0f, 0f)); // Position the rectangle
+        overlayTransformGroup.setTransform(transform);
+
+        // Add the rectangle to the transform group and the root
+        overlayTransformGroup.addChild(overlay);
+        root.addChild(overlayTransformGroup);
+    }
+
+    public static void addOverlayRectTop(BranchGroup root) {
+        // Create an appearance with semi-transparent grey color
+        Appearance overlayAppearance = new Appearance();
+        ColoringAttributes coloringAttributes = new ColoringAttributes();
+        coloringAttributes.setColor(new Color3f(0.5f, 0.5f, 0.5f));
+        overlayAppearance.setColoringAttributes(coloringAttributes);
+
+        TransparencyAttributes transparencyAttributes = new TransparencyAttributes(TransparencyAttributes.BLENDED, 0.5f);
+        overlayAppearance.setTransparencyAttributes(transparencyAttributes);
+
+        // Create the geometry for the rectangle
+        QuadArray overlayGeometry = new QuadArray(4, QuadArray.COORDINATES);
+        overlayGeometry.setCoordinate(0, new Point3f(-5f, -4f, 0f));
+        overlayGeometry.setCoordinate(1, new Point3f(-5f, -4f, 0f));
+        overlayGeometry.setCoordinate(2, new Point3f(5f, 4f, 0f));
+        overlayGeometry.setCoordinate(3, new Point3f(5f, 4f, 0f));
+
+        // Create the shape with the appearance
+        Shape3D overlay = new Shape3D(overlayGeometry, overlayAppearance);
+
+        // Create a transform group for positioning the rectangle
+        TransformGroup overlayTransformGroup = new TransformGroup();
+        Transform3D transform = new Transform3D();
+        transform.setTranslation(new Vector3f(0.0f, 0.0f, 2f)); // Position the rectangle
         overlayTransformGroup.setTransform(transform);
 
         // Add the rectangle to the transform group and the root
@@ -309,7 +341,7 @@ public class BlockView3dGUI {
 
     // New method to add specific overlay cubes
     private static void addSpecificOverlayCubes(BranchGroup root, float spacing) {
-        String[] name = {"TNT", "Bedrock", "Leaves", "Lava", "Dimension", };
+        String[] name = {"TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone"};
         TransformGroup overlayTransformGroup = new TransformGroup();
         for (int i = 0; i < name.length; i++) {
             TransformGroup cubeTransformGroup = createSpecificOverlayCube(name[i]);
