@@ -191,11 +191,43 @@ public class BlockView3dGUI {
 
     private static void addOverlay(BranchGroup root) {
         addOverlayRect(root); // add layer for 3d cubes and text.
-        addSpecificOverlayCubes(root,  0.15f); // add sidebar cube icons
+        addSpecificOverlayCubes(root,  0.13f); // add sidebar cube icons
+        addOverlayRectFar(root);
         // add sidebar LEFT text
     }
 
     public static void addOverlayRect(BranchGroup root) {
+        // Create an appearance with semi-transparent grey color
+        Appearance overlayAppearance = new Appearance();
+        ColoringAttributes coloringAttributes = new ColoringAttributes();
+        coloringAttributes.setColor(new Color3f(0.5f, 0.5f, 0.5f));
+        overlayAppearance.setColoringAttributes(coloringAttributes);
+
+        TransparencyAttributes transparencyAttributes = new TransparencyAttributes(TransparencyAttributes.BLENDED, 0.3f);
+        overlayAppearance.setTransparencyAttributes(transparencyAttributes);
+
+        // Create the geometry for the rectangle
+        QuadArray overlayGeometry = new QuadArray(4, QuadArray.COORDINATES);
+        overlayGeometry.setCoordinate(0, new Point3f(-0.95f, -0.5f, 0f));
+        overlayGeometry.setCoordinate(1, new Point3f(-0.3f, -0.5f, 0f));
+        overlayGeometry.setCoordinate(2, new Point3f(-0.3f, 0.4f, 0f));
+        overlayGeometry.setCoordinate(3, new Point3f(-0.95f, 0.4f, 0f));
+
+        // Create the shape with the appearance
+        Shape3D overlay = new Shape3D(overlayGeometry, overlayAppearance);
+
+        // Create a transform group for positioning the rectangle
+        TransformGroup overlayTransformGroup = new TransformGroup();
+        Transform3D transform = new Transform3D();
+        transform.setTranslation(new Vector3f(0.0f, 0.0f, 0f)); // Position the rectangle
+        overlayTransformGroup.setTransform(transform);
+
+        // Add the rectangle to the transform group and the root
+        overlayTransformGroup.addChild(overlay);
+        root.addChild(overlayTransformGroup);
+    }
+
+    public static void addOverlayRectFar(BranchGroup root) {
         // Create an appearance with semi-transparent grey color
         Appearance overlayAppearance = new Appearance();
         ColoringAttributes coloringAttributes = new ColoringAttributes();
@@ -207,10 +239,10 @@ public class BlockView3dGUI {
 
         // Create the geometry for the rectangle
         QuadArray overlayGeometry = new QuadArray(4, QuadArray.COORDINATES);
-        overlayGeometry.setCoordinate(0, new Point3f(-0.95f, -0.5f, 0f));
-        overlayGeometry.setCoordinate(1, new Point3f(-0.3f, -0.5f, 0f));
-        overlayGeometry.setCoordinate(2, new Point3f(-0.3f, 0.4f, 0f));
-        overlayGeometry.setCoordinate(3, new Point3f(-0.95f, 0.4f, 0f));
+        overlayGeometry.setCoordinate(0, new Point3f(-10.0f, -10f, -2.0f)); // Bottom-left
+        overlayGeometry.setCoordinate(1, new Point3f(10.0f, -10f, -2.0f));  // Bottom-right
+        overlayGeometry.setCoordinate(2, new Point3f(10.0f, 10f, -2.0f));   // Top-right
+        overlayGeometry.setCoordinate(3, new Point3f(-10.0f, 10f, -2.0f));  // Top-left
 
         // Create the shape with the appearance
         Shape3D overlay = new Shape3D(overlayGeometry, overlayAppearance);
@@ -261,12 +293,14 @@ public class BlockView3dGUI {
     }
 
     private static void addGridBackgroundCubes(BranchGroup root, int rows, int cols, float spacing) {
+        String[] avalableTextures = {"Grass", "TNT", "Lava", "Bedrock", "Leaves", "Grass", "TNT", "Lava", "Bedrock", "Leaves", "Grass", "TNT", "Lava", "Bedrock", "Leaves", "Grass", "TNT", "Lava", "Bedrock", "Leaves", "Grass", "TNT", "Lava", "Bedrock", "Leaves", "Grass", "TNT", "Lava", "Bedrock", "Leaves", "Grass", "TNT", "Lava", "Bedrock", "Leaves", "Grass", "TNT", "Lava", "Bedrock", "Leaves", "Grass", "TNT", "Lava", "Bedrock", "Leaves", "Grass", "TNT", "Lava", "Bedrock", "Leaves", "Grass", "TNT", "Lava", "Bedrock", "Leaves", "Grass", "TNT", "Lava", "Bedrock", "Leaves"};
+
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                TransformGroup cubeTransformGroup = createRotatingBackgroundCube();
+                TransformGroup cubeTransformGroup = createRotatingBackgroundCube(avalableTextures[i]); //scrapped becuase it was too much for school pc to handle as is
                 Transform3D transform = new Transform3D();
                 // Position the cubes in a grid pattern
-                transform.setTranslation(new Vector3f(i * spacing - (rows - 1) * spacing / 6 - 1.3f, j * spacing - (cols - 1) * spacing / 6 -1f, -2.5f));
+                transform.setTranslation(new Vector3f(i * spacing - (rows - 1) * spacing / 6 - 1.3f, j * spacing - (cols - 1) * spacing / 6 -1f, -2.7f));
                 cubeTransformGroup.setTransform(transform);
                 root.addChild(cubeTransformGroup);
             }
@@ -275,7 +309,7 @@ public class BlockView3dGUI {
 
     // New method to add specific overlay cubes
     private static void addSpecificOverlayCubes(BranchGroup root, float spacing) {
-        String[] name = {"TNT", "Bedrock", "Leaves", "Lava"};
+        String[] name = {"TNT", "Bedrock", "Leaves", "Lava", "Dimension", };
         TransformGroup overlayTransformGroup = new TransformGroup();
         for (int i = 0; i < name.length; i++) {
             TransformGroup cubeTransformGroup = createSpecificOverlayCube(name[i]);
@@ -305,7 +339,7 @@ public class BlockView3dGUI {
         return transformGroup;
     }
 
-    private static TransformGroup createRotatingBackgroundCube() {
+    private static TransformGroup createRotatingBackgroundCube(String texture) {
         // Create a transform group for the background cube
         TransformGroup transformGroup = new TransformGroup();
         transformGroup.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
@@ -314,7 +348,7 @@ public class BlockView3dGUI {
         Box box = new Box(0.1f, 0.1f, 0.1f, Box.GENERATE_TEXTURE_COORDS, new Appearance());
 
         // Apply textures to each side
-        setTexture(box, "grass");
+        setTexture(box, texture);
 
         // Add the cube to the transform group
         transformGroup.addChild(box);
