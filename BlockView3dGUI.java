@@ -3,6 +3,7 @@ import javax.vecmath.*;
 
 import com.sun.j3d.utils.behaviors.mouse.MouseRotate;
 import com.sun.j3d.utils.geometry.Box;
+import com.sun.j3d.utils.geometry.Text2D;
 import com.sun.j3d.utils.image.TextureLoader;
 import com.sun.j3d.utils.universe.SimpleUniverse;
 
@@ -149,6 +150,22 @@ public class BlockView3dGUI {
         }
     }
 
+    private static void addText3D(BranchGroup root, String text, float x, float y, float z, float fontSize) {
+        // Create a Text2D object with the specified text and font size
+        Text2D text2D = new Text2D(text, new Color3f(1.0f, 1.0f, 1.0f), "Helvetica", (int) (fontSize), Font.PLAIN);
+
+        // Create a Transform3D to position the text
+        Transform3D transform = new Transform3D();
+        transform.setTranslation(new Vector3f(x, y, z));
+
+        // Create a TransformGroup and add the Transform3D to it
+        TransformGroup textTransformGroup = new TransformGroup(transform);
+        textTransformGroup.addChild(text2D);
+
+        // Add the text TransformGroup to the root BranchGroup
+        root.addChild(textTransformGroup);
+    }
+
     private static void addLight(BranchGroup root) {
         Color3f lightColor = new Color3f(1.0f, 1.0f, 1.0f); // White light
         Vector3f lightDirection = new Vector3f(-1.0f, -1.0f, -1.0f); // Directional light from top-left
@@ -194,6 +211,8 @@ public class BlockView3dGUI {
         addSpecificOverlayCubes(root,  0.13f); // add sidebar cube icons
         addOverlayRectFar(root);
         addOverlayRectTop(root);
+        addText3D(root, "Block Name", 0, 0.5f, 0.2f,40 ); //String text, float x, float y, float z, float fontSize
+        addText3D(root, "Hello", -0.75f, 0.3f, 0.2f, 25 ); //String text, float x, float y, float z, float fontSize
         // add sidebar LEFT text
     }
 
@@ -235,15 +254,15 @@ public class BlockView3dGUI {
         coloringAttributes.setColor(new Color3f(0.5f, 0.5f, 0.5f));
         overlayAppearance.setColoringAttributes(coloringAttributes);
 
-        TransparencyAttributes transparencyAttributes = new TransparencyAttributes(TransparencyAttributes.BLENDED, 0.5f);
+        TransparencyAttributes transparencyAttributes = new TransparencyAttributes(TransparencyAttributes.BLENDED, 0.05f);
         overlayAppearance.setTransparencyAttributes(transparencyAttributes);
 
         // Create the geometry for the rectangle
         QuadArray overlayGeometry = new QuadArray(4, QuadArray.COORDINATES);
-        overlayGeometry.setCoordinate(0, new Point3f(-5f, -4f, 0f));
-        overlayGeometry.setCoordinate(1, new Point3f(-5f, -4f, 0f));
-        overlayGeometry.setCoordinate(2, new Point3f(5f, 4f, 0f));
-        overlayGeometry.setCoordinate(3, new Point3f(5f, 4f, 0f));
+        overlayGeometry.setCoordinate(0, new Point3f(-1f, 0.45f, 0f));
+        overlayGeometry.setCoordinate(1, new Point3f(1f, 0.45f, 0f));
+        overlayGeometry.setCoordinate(2, new Point3f(1f, 2f, 0f));
+        overlayGeometry.setCoordinate(3, new Point3f(-1f, 2f, 0f));
 
         // Create the shape with the appearance
         Shape3D overlay = new Shape3D(overlayGeometry, overlayAppearance);
@@ -251,7 +270,7 @@ public class BlockView3dGUI {
         // Create a transform group for positioning the rectangle
         TransformGroup overlayTransformGroup = new TransformGroup();
         Transform3D transform = new Transform3D();
-        transform.setTranslation(new Vector3f(0.0f, 0.0f, 2f)); // Position the rectangle
+        transform.setTranslation(new Vector3f(0.0f, 0.0f, 0.0f)); // Position the rectangle
         overlayTransformGroup.setTransform(transform);
 
         // Add the rectangle to the transform group and the root
@@ -325,7 +344,8 @@ public class BlockView3dGUI {
     }
 
     private static void addGridBackgroundCubes(BranchGroup root, int rows, int cols, float spacing) {
-        String[] avalableTextures = {"Grass", "TNT", "Lava", "Bedrock", "Leaves", "Grass", "TNT", "Lava", "Bedrock", "Leaves", "Grass", "TNT", "Lava", "Bedrock", "Leaves", "Grass", "TNT", "Lava", "Bedrock", "Leaves", "Grass", "TNT", "Lava", "Bedrock", "Leaves", "Grass", "TNT", "Lava", "Bedrock", "Leaves", "Grass", "TNT", "Lava", "Bedrock", "Leaves", "Grass", "TNT", "Lava", "Bedrock", "Leaves", "Grass", "TNT", "Lava", "Bedrock", "Leaves", "Grass", "TNT", "Lava", "Bedrock", "Leaves", "Grass", "TNT", "Lava", "Bedrock", "Leaves", "Grass", "TNT", "Lava", "Bedrock", "Leaves"};
+        String[] avalableTextures = {"Stone","Cherry Log","Dirt","Birch Log","Diorite","Oak Log","Deepslate Tiles","Prismarine","Cobblestone","Piston","Bedrock","Sculk","Sponge","End stone","Obsidian","Polished Andesite","Wool","Concrete","Leaves","Basalt","Granite","Shulker box","Hay bale","Redstone Lamp","Sea lantern","Soul Sand","Calcite","Command block","Lodestone","Magma block","Crafting Table","Juke Box","Note Block","Observer","Block of Diamond","Block of Gold","Block of Emerald","Block of Iron","Iron ore","Diamond ore","Gold ore","Emerald ore","Bricks","Bookshelf","Furnace","Ice","Packed Ice","Redstone ore","Block of Redstone","Acacia plank","Barrel","Cactus","Dark Prismarine","Gilded Blackstone","Fire Coral Block","Grass Block","Jack o'Lantern","Shroomlight","Slime Block","Podzol","Dried Kelp Block","TNT","Pumpkin","Farmland","Gravel","Blast Furnace","Rooted Dirt","Horn Coral Block","Coarse Dirt","Infested Cobblestone","Sand","Sandstone","Smithing Table","Smoker","Coal Ore","Purpur Block","Cracked Stone Brick","Terracotta","Honeycomb Block","Reinforced Deepslate","Smooth Red Sandstone","Brown Mushroom Block","Red Mushroom Block","Stem Mushroom Block","Concrete Powder","Tuff","Target","Nylium","Mud","Mycelium","Muddy Mangrove Roots","Nether Bricks","Mud Bricks","Nether Gold Ore","Nether Wart Block","Warped Wart Block","Waxed Block of Copper","Packed Mud","Pearlescent","Dropper"};
+
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
