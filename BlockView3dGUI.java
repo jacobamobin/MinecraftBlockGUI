@@ -124,7 +124,7 @@ public class BlockView3dGUI {
 
     //Add a grid of background cubes
     private static void addGridBackgroundCubes(BranchGroup root, int rows, int cols, float spacing) {
-        String[] avalableTextures = {
+        String[] avalableTextures2 = {
                 "Acacia plank", "Barrel", "Basalt", "Bedrock", "Birch Log", "Blast Furnace", "Bookshelf", "Brick", "Bricks",
                 "Brown Mushroom Block", "Cactus", "Cherry Log", "Coarse Dirt", "Cobblestone", "Command block", "Concrete", "Concrete Powder", "Crafting Table", "Cracked Stone Brick",
                 "Dark Prismarine", "Diamond ore", "Dirt", "Dispenser", "Door", "Dried Kelp Block", "End stone", "Farmland", "Fire Coral Block", "Furnace", "Ghast",
@@ -136,6 +136,9 @@ public class BlockView3dGUI {
                 "Sponge", "Stare Case", "Stem Mushroom Block", "Stone", "Target", "Terracotta", "TNT", "Tuff", "Warped Wart Block", "Waxed Block of Copper", "Wool"
         };
 
+        String[] avalableTextures = {"TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT",
+                "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT",
+                "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT"};
 
 
         for (int i = 0; i < rows; i++) {
@@ -197,10 +200,11 @@ public class BlockView3dGUI {
         // Load textures for each side
         Texture textureFront = loadAndRotateTexture("object/" + name + "/front.jpg.jpg", 90);
         Texture textureBack = loadAndRotateTexture("object/" + name + "/back.jpg.jpg", 270);
-        Texture textureBottom = new TextureLoader("object/" + name + "/bottom.jpg", null).getTexture(); // No rotation needed
+        Texture textureBottom = new TextureLoader("object/" + name + "/bottom.jpg.jpg", null).getTexture(); // No rotation needed
         Texture textureTop = new TextureLoader("object/" + name + "/top.jpg.jpg", null).getTexture(); // No rotation needed
         Texture textureLeft = loadAndRotateTexture("object/" + name + "/left.jpg.jpg", 90);
         Texture textureRight = loadAndRotateTexture("object/" + name + "/right.jpg.jpg", 90);
+        //System.out.println(name);
 
         Appearance front = new Appearance();
         front.setTexture(textureFront);
@@ -333,23 +337,24 @@ public class BlockView3dGUI {
 
     //The overlay controller that runs the other function, made this way so its easier for CHU
     private static void addOverlay(BranchGroup root) {
-        addOverlayRect(root); // add layer for 3d cubes and text.
         addSpecificOverlayCubes(root,  0.13f); // add sidebar cube icons
         addOverlayRectFar(root);
         addOverlayRectTop(root);
+        addOverlayRect(root); // add layer for 3d cubes and text.
         addText3D(root, "Block Name", 0, 0.5f, 0.2f,40 ); //String text, float x, float y, float z, float fontSize
-        addText3D(root, "Hello", -0.75f, 0.3f, 0.2f, 25 ); //String text, float x, float y, float z, float fontSize
+        addText3D(root, "Hello", -0.75f, 0.28f, 0f, 25 ); //String text, float x, float y, float z, float fontSize
+
         // add sidebar LEFT text
     }
 
     //Add a 3d text to the scene with root x y z and font size (Font size is absouloute and is not modified (note to self by jacob)
     private static void addText3D(BranchGroup root, String text, float x, float y, float z, float fontSize) {
         // Create a Text2D object with the specified text and font size
-        Text2D text2D = new Text2D(text, new Color3f(1.0f, 1.0f, 1.0f), "Helvetica", (int) (fontSize), Font.PLAIN);
+        Text2D text2D = new Text2D(text, new Color3f(0f, 0f, 0f), "Helvetica", (int) (fontSize), Font.PLAIN); //111 is white
 
         // Create a Transform3D to position the text
         Transform3D transform = new Transform3D();
-        transform.setTranslation(new Vector3f(x, y, z));
+        transform.setTranslation(new Vector3f(x, y, z+0.01f));
 
         // Create a TransformGroup and add the Transform3D to it
         TransformGroup textTransformGroup = new TransformGroup(transform);
@@ -382,7 +387,10 @@ public class BlockView3dGUI {
         coloringAttributes.setColor(new Color3f(0.5f, 0.5f, 0.5f));
         overlayAppearance.setColoringAttributes(coloringAttributes);
 
-        TransparencyAttributes transparencyAttributes = new TransparencyAttributes(TransparencyAttributes.BLENDED, 0.3f);
+
+        TransparencyAttributes transparencyAttributes = new TransparencyAttributes();
+        transparencyAttributes.setTransparencyMode(TransparencyAttributes.BLENDED);
+        transparencyAttributes.setTransparency(0.3f); // For example
         overlayAppearance.setTransparencyAttributes(transparencyAttributes);
 
         // Create the geometry for the rectangle
@@ -398,7 +406,7 @@ public class BlockView3dGUI {
         // Create a transform group for positioning the rectangle
         TransformGroup overlayTransformGroup = new TransformGroup();
         Transform3D transform = new Transform3D();
-        transform.setTranslation(new Vector3f(0.0f, 0.0f, 0f)); // Position the rectangle
+        transform.setTranslation(new Vector3f(0.0f, 0.0f, -0.1f)); // Position the rectangle
         overlayTransformGroup.setTransform(transform);
 
         // Add the rectangle to the transform group and the root
