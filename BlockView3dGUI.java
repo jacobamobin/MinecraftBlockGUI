@@ -8,6 +8,9 @@ import com.sun.j3d.utils.image.TextureLoader;
 import com.sun.j3d.utils.universe.SimpleUniverse;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
 import javax.swing.*;
 
 public class BlockView3dGUI {
@@ -88,7 +91,7 @@ public class BlockView3dGUI {
         Box box = new Box(0.25f, 0.25f, 0.25f, Box.GENERATE_TEXTURE_COORDS, new Appearance());
 
         // Apply textures to each side
-        setTexture(box, "TNT");
+        setTexture(box, "Crafting");
 
         // Add the cube to the transform group
         transformGroup.addChild(box);
@@ -98,18 +101,12 @@ public class BlockView3dGUI {
 
     private static void setTexture(Box box, String name) {
         // Load textures for each side
-        TextureLoader loader = new TextureLoader("object/"+name+"/front.jpg", null);
-        Texture textureFront = loader.getTexture();
-        loader = new TextureLoader("object/"+name+"/back.jpg", null);
-        Texture textureBack = loader.getTexture();
-        loader = new TextureLoader("object/"+name+"/top.jpg", null);
-        Texture textureTop = loader.getTexture();
-        loader = new TextureLoader("object/"+name+"/bottom.jpg", null);
-        Texture textureBottom = loader.getTexture();
-        loader = new TextureLoader("object/"+name+"/left.jpg", null);
-        Texture textureLeft = loader.getTexture();
-        loader = new TextureLoader("object/"+name+"/right.jpg", null);
-        Texture textureRight = loader.getTexture();
+        Texture textureFront = loadAndRotateTexture("object/" + name + "/front.jpg", 90);
+        Texture textureBack = loadAndRotateTexture("object/" + name + "/back.jpg", 270);
+        Texture textureTop = new TextureLoader("object/" + name + "/top.jpg", null).getTexture(); // No rotation needed
+        Texture textureBottom = new TextureLoader("object/" + name + "/bottom.jpg", null).getTexture(); // No rotation needed
+        Texture textureLeft = loadAndRotateTexture("object/" + name + "/left.jpg", 90);
+        Texture textureRight = loadAndRotateTexture("object/" + name + "/right.jpg", 90);
 
         Appearance front = new Appearance();
         front.setTexture(textureFront);
@@ -214,6 +211,28 @@ public class BlockView3dGUI {
         addText3D(root, "Block Name", 0, 0.5f, 0.2f,40 ); //String text, float x, float y, float z, float fontSize
         addText3D(root, "Hello", -0.75f, 0.3f, 0.2f, 25 ); //String text, float x, float y, float z, float fontSize
         // add sidebar LEFT text
+    }
+
+    private static BufferedImage rotateImage(BufferedImage originalImage, double angle) {
+        int width = originalImage.getWidth();
+        int height = originalImage.getHeight();
+
+        BufferedImage rotatedImage = new BufferedImage(height, width, originalImage.getType());
+        AffineTransform transform = new AffineTransform();
+        transform.translate((height - width) / 2, (width - height) / 2);
+        transform.rotate(Math.toRadians(angle), width / 2, height / 2);
+
+        AffineTransformOp op = new AffineTransformOp(transform, AffineTransformOp.TYPE_BILINEAR);
+        op.filter(originalImage, rotatedImage);
+
+        return rotatedImage;
+    }
+
+    private static Texture loadAndRotateTexture(String imagePath, double angle) {
+        TextureLoader loader = new TextureLoader(imagePath, null);
+        ImageComponent2D originalImage = loader.getImage();
+        BufferedImage rotatedImage = rotateImage(originalImage.getImage(), angle);
+        return new TextureLoader(rotatedImage, (String) null).getTexture();
     }
 
     public static void addOverlayRect(BranchGroup root) {
@@ -344,7 +363,10 @@ public class BlockView3dGUI {
     }
 
     private static void addGridBackgroundCubes(BranchGroup root, int rows, int cols, float spacing) {
-        String[] avalableTextures = {"Stone","Cherry Log","Dirt","Birch Log","Diorite","Oak Log","Deepslate Tiles","Prismarine","Cobblestone","Piston","Bedrock","Sculk","Sponge","End stone","Obsidian","Polished Andesite","Wool","Concrete","Leaves","Basalt","Granite","Shulker box","Hay bale","Redstone Lamp","Sea lantern","Soul Sand","Calcite","Command block","Lodestone","Magma block","Crafting Table","Juke Box","Note Block","Observer","Block of Diamond","Block of Gold","Block of Emerald","Block of Iron","Iron ore","Diamond ore","Gold ore","Emerald ore","Bricks","Bookshelf","Furnace","Ice","Packed Ice","Redstone ore","Block of Redstone","Acacia plank","Barrel","Cactus","Dark Prismarine","Gilded Blackstone","Fire Coral Block","Grass Block","Jack o'Lantern","Shroomlight","Slime Block","Podzol","Dried Kelp Block","TNT","Pumpkin","Farmland","Gravel","Blast Furnace","Rooted Dirt","Horn Coral Block","Coarse Dirt","Infested Cobblestone","Sand","Sandstone","Smithing Table","Smoker","Coal Ore","Purpur Block","Cracked Stone Brick","Terracotta","Honeycomb Block","Reinforced Deepslate","Smooth Red Sandstone","Brown Mushroom Block","Red Mushroom Block","Stem Mushroom Block","Concrete Powder","Tuff","Target","Nylium","Mud","Mycelium","Muddy Mangrove Roots","Nether Bricks","Mud Bricks","Nether Gold Ore","Nether Wart Block","Warped Wart Block","Waxed Block of Copper","Packed Mud","Pearlescent","Dropper"};
+        String[] avalableTextures = {
+                "TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone"
+        };
+
 
 
         for (int i = 0; i < rows; i++) {
