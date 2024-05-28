@@ -7,13 +7,13 @@ Oak Log,true,Yes (64),2,2,No,true,Overworld,OakLog.wav,006
 Deepslate Tiles,false,Yes (64),6,3.5,No,false,Craftable,DeepslateTiles.wav,007
 Prismarine,true,Yes (64),6,1.5,No,false,Overworld,Prismarine.wav,008
 Cobblestone,true,Yes (64),6,2,No,false,Overworld,Cobblestone.wav,009
-Piston,true,Yes (64),0.5,1.5,No,false,Craftable,Piston.wav,010
+object.Piston,true,Yes (64),0.5,1.5,No,false,Craftable,object.Piston.wav,010
 Bedrock,false,Yes (64),3600000,-1,No,false,Overworld/Nether,Bedrock.wav,011
 Sculk,true,Yes (64),0.2,0.2,No,false,Overworld,Sculk.wav,012
 Sponge,true,Yes (64),0.6,0.6,No,false,Overworld,Sponge.wav,013
 End stone,true,Yes (64),9,3,No,false,End,Endstone.wav,014
 Obsidian,true,Yes (64),1200,50,No,false,End/Overworld,Obsidian.wav,015
-Polished Andesite,true,Yes (64),6,1.5,No,false,Craftable,PolishedAndesite.wav,016
+object.Polished Andesite,true,Yes (64),6,1.5,No,false,Craftable,PolishedAndesite.wav,016
 Wool,true,Yes (64),0.8,0.8,No,true,Overworld/Craftable,Wool.wav,017
 Concrete,true,Yes (64),1.8,1.8,No,false,Overworld,Concrete.wav,018
 Leaves,true,Yes (64),0.2,0.2,No,true,Overworld,Leaves.wav,019
@@ -57,7 +57,7 @@ Grass Block,true,Yes (64),0.6,0.6,No,false,Overworld,GrassBlock.wav,056
 Jack o'Lantern,true,Yes (64),1,1,Yes (15),false,Overworld/Craftable,Jacko'Lantern.wav,057
 Shroomlight,true,Yes (64),1,1,Yes (15),false,Overworld/Craftable,Shroomlight.wav,058
 Slime Block,true,Yes (64),0,0,No,false,Craftable,SlimeBlock.wav,059
-Podzol,true,Yes (64),0.5,0.5,No,false,Overworld,Podzol.wav,060
+object.Podzol,true,Yes (64),0.5,0.5,No,false,Overworld,object.Podzol.wav,060
 Dried Kelp Block,true,Yes (64),2.5,0.5,No,true,Craftable,DriedKelpBlock.wav,061
 TNT,true,Yes (64),0,0,No,true,Craftable,TNT.wav,062
 Pumpkin,true,Yes (64),1,1,No,false,Overworld,Pumpkin.wav,063
@@ -96,5 +96,5 @@ Nether Wart Block,true,Yes (64),1,1,No,false,Nether/Craftable,NetherWartBlock.wa
 Warped Wart Block,true,Yes (64),1,1,No,false,Nether,WarpedWartBlock.wav,096
 Waxed Block of Copper,true,Yes (64),6,3,No,false,Craftable,WaxedCopperBlock.wav,097
 Packed Mud,true,Yes (64),0.5,0.5,Yes,false,Overworld/Craftable,PackedMud.wav,098
-Pearlescent,true,Yes (64),0.3,0.3,Yes (13),false,Overworld/Craftable,Pearlescent.wav,099
+object.Pearlescent,true,Yes (64),0.3,0.3,Yes (13),false,Overworld/Craftable,object.Pearlescent.wav,099
 Dropper,true,Yes (64),3.5,3.5,No,false,Overworld/Craftable,Dropper.wav,100
