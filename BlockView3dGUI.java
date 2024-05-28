@@ -101,12 +101,12 @@ public class BlockView3dGUI {
 
     private static void setTexture(Box box, String name) {
         // Load textures for each side
-        Texture textureFront = loadAndRotateTexture("object/" + name + "/front.jpg", 90);
-        Texture textureBack = loadAndRotateTexture("object/" + name + "/back.jpg", 270);
-        Texture textureTop = new TextureLoader("object/" + name + "/top.jpg", null).getTexture(); // No rotation needed
+        Texture textureFront = loadAndRotateTexture("object/" + name + "/front.jpg.jpg", 90);
+        Texture textureBack = loadAndRotateTexture("object/" + name + "/back.jpg.jpg", 270);
+        Texture textureTop = new TextureLoader("object/" + name + "/top.jpg.jpg", null).getTexture(); // No rotation needed
         Texture textureBottom = new TextureLoader("object/" + name + "/bottom.jpg", null).getTexture(); // No rotation needed
-        Texture textureLeft = loadAndRotateTexture("object/" + name + "/left.jpg", 90);
-        Texture textureRight = loadAndRotateTexture("object/" + name + "/right.jpg", 90);
+        Texture textureLeft = loadAndRotateTexture("object/" + name + "/left.jpg.jpg", 90);
+        Texture textureRight = loadAndRotateTexture("object/" + name + "/right.jpg.jpg", 90);
 
         Appearance front = new Appearance();
         front.setTexture(textureFront);
