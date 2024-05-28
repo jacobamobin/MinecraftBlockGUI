@@ -253,6 +253,8 @@ public class BlockEditGUI {
         canvas3.setPreferredSize(new Dimension(220, 670)); // Adjust width as needed
         canvas3.setBackground(Color.GREEN); // Set background color for demonstration
 
+
+
         // Create a nested panel for Canvas 2 and Canvas 3
         JPanel bottomPanel = new JPanel();
         bottomPanel.setLayout(new BorderLayout());
