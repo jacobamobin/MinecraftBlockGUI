@@ -215,11 +215,9 @@ public class BlockListGUI {
             public void mouseWheelMoved(MouseWheelEvent e) {
                 int scrollAmount = e.getWheelRotation();
                 if (scrollAmount < 0) {
-                    System.out.println("Mouse wheel scrolled up");
                     scrollDist += 20;
 
                 } else if (scrollAmount > 0) {
-                    System.out.println("Mouse wheel scrolled down");
                     scrollDist -= 20;
                 }
             }

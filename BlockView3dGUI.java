@@ -364,7 +364,15 @@ public class BlockView3dGUI {
 
     private static void addGridBackgroundCubes(BranchGroup root, int rows, int cols, float spacing) {
         String[] avalableTextures = {
-                "TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone","TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone"
+                "Acacia plank", "Barrel", "Basalt", "Bedrock", "Birch Log", "Blast Furnace", "Bookshelf", "Brick", "Bricks",
+                "Brown Mushroom Block", "Cactus", "Cherry Log", "Coarse Dirt", "Cobblestone", "Command block", "Concrete", "Concrete Powder", "Crafting Table", "Cracked Stone Brick",
+                "Dark Prismarine", "Diamond ore", "Dirt", "Dispenser", "Door", "Dried Kelp Block", "End stone", "Farmland", "Fire Coral Block", "Furnace", "Ghast",
+                "Gilded Blackstone", "Glowstone", "Gold Block", "Gold ore", "Granite", "Grass Block", "Gravel", "Hay bale", "Honeycomb Block", "Horn Coral Block", "Ice",
+                "Infested Cobblestone", "Iron Block", "Iron ore", "Jack o'Lantern", "Juke Box", "Leaves", "Lodestone", "Magma block", "Mud", "Mud Bricks", "Muddy Mangrove Roots", "Mycelium",
+                "Nether Bricks", "Nether Gold Ore", "Netherrack","Nether Wart Block", "Note Block", "Nylium", "Oak Log", "Observer", "Packed Ice", "Packed Mud", "Pearlescent",
+                "Plank", "Podzol", "Prismarine", "Pumpkin", "Purpur Block", "Quartz Block", "Red Mushroom Block", "Red Sand Block", "Redstone Lamp", "Redstone ore",
+                "Redstone Torch", "Reinforced Deepslate", "Sand", "Sandstone", "Sculk", "Sea Lantern", "Shroomlight", "Slime Block", "Smithing Table", "Smoker", "Soul Sand",
+                "Sponge", "Stare Case", "Stem Mushroom Block", "Stone", "Target", "Terracotta", "TNT", "Tuff", "Warped Wart Block", "Waxed Block of Copper", "Wool"
         };
 
 
