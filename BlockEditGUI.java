@@ -1,3 +1,5 @@
+//The gui in this file is by Jacob Mobin (Top bar and left), The connection to the block class and logic is Lucas Chu,
+//The right gui pannel for editing block properties is by Lucas Chu and Jacob Mobin
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;

@@ -1,3 +1,4 @@
+//This file is by Jacob Mobin
 import javax.media.j3d.*;
 import javax.vecmath.*;
 
@@ -81,6 +82,10 @@ public class BlockView3dGUI {
         }
     }
 
+    /*
+    * CUBE LOGIC METHODS BELOW
+    * Rendering main cube, side panel ovelay cubes and background cubes
+    * */
     private static TransformGroup createTexturedCube() {
         // Create a transform group for the cube
         TransformGroup transformGroup = new TransformGroup();
@@ -99,6 +104,95 @@ public class BlockView3dGUI {
         return transformGroup;
     }
 
+    // New method to create specific overlay cubes with different textures
+    private static TransformGroup createSpecificOverlayCube(String name) {
+        // Create a transform group for the overlay cube
+        TransformGroup transformGroup = new TransformGroup();
+        transformGroup.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+
+        // Create a smaller textured cube for the overlay
+        Box box = new Box(0.05f, 0.05f, 0.05f, Box.GENERATE_TEXTURE_COORDS, new Appearance());
+
+        // Apply different textures to each side
+        setTexture(box, name);
+
+        // Add the cube to the transform group
+        transformGroup.addChild(box);
+
+        return transformGroup;
+    }
+
+    //Add a grid of background cubes
+    private static void addGridBackgroundCubes(BranchGroup root, int rows, int cols, float spacing) {
+        String[] avalableTextures = {
+                "Acacia plank", "Barrel", "Basalt", "Bedrock", "Birch Log", "Blast Furnace", "Bookshelf", "Brick", "Bricks",
+                "Brown Mushroom Block", "Cactus", "Cherry Log", "Coarse Dirt", "Cobblestone", "Command block", "Concrete", "Concrete Powder", "Crafting Table", "Cracked Stone Brick",
+                "Dark Prismarine", "Diamond ore", "Dirt", "Dispenser", "Door", "Dried Kelp Block", "End stone", "Farmland", "Fire Coral Block", "Furnace", "Ghast",
+                "Gilded Blackstone", "Glowstone", "Gold Block", "Gold ore", "Granite", "Grass Block", "Gravel", "Hay bale", "Honeycomb Block", "Horn Coral Block", "Ice",
+                "Infested Cobblestone", "Iron Block", "Iron ore", "Jack o'Lantern", "Juke Box", "Leaves", "Lodestone", "Magma block", "Mud", "Mud Bricks", "Muddy Mangrove Roots", "Mycelium",
+                "Nether Bricks", "Nether Gold Ore", "Netherrack","Nether Wart Block", "Note Block", "Nylium", "Oak Log", "Observer", "Packed Ice", "Packed Mud", "Pearlescent",
+                "Plank", "Podzol", "Prismarine", "Pumpkin", "Purpur Block", "Quartz Block", "Red Mushroom Block", "Red Sand Block", "Redstone Lamp", "Redstone ore",
+                "Redstone Torch", "Reinforced Deepslate", "Sand", "Sandstone", "Sculk", "Sea Lantern", "Shroomlight", "Slime Block", "Smithing Table", "Smoker", "Soul Sand",
+                "Sponge", "Stare Case", "Stem Mushroom Block", "Stone", "Target", "Terracotta", "TNT", "Tuff", "Warped Wart Block", "Waxed Block of Copper", "Wool"
+        };
+
+
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                TransformGroup cubeTransformGroup = createRotatingBackgroundCube(avalableTextures[i]); //scrapped becuase it was too much for school pc to handle as is
+                Transform3D transform = new Transform3D();
+                // Position the cubes in a grid pattern
+                transform.setTranslation(new Vector3f(i * spacing - (rows - 1) * spacing / 6 - 1.3f, j * spacing - (cols - 1) * spacing / 6 -1f, -2.7f));
+                cubeTransformGroup.setTransform(transform);
+                root.addChild(cubeTransformGroup);
+            }
+        }
+    }
+
+    //This method creates the background cubes, these are intended to slowly rotate (If time permits)
+    private static TransformGroup createRotatingBackgroundCube(String texture) {
+        // Create a transform group for the background cube
+        TransformGroup transformGroup = new TransformGroup();
+        transformGroup.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+
+        // Create smaller textured cube
+        Box box = new Box(0.1f, 0.1f, 0.1f, Box.GENERATE_TEXTURE_COORDS, new Appearance());
+
+        // Apply textures to each side
+        setTexture(box, texture);
+
+        // Add the cube to the transform group
+        transformGroup.addChild(box);
+
+        return transformGroup;
+    }
+
+    //This method rotates the front back left and right images to line up with the 3d cube
+    private static BufferedImage rotateImage(BufferedImage originalImage, double angle) {
+        int width = originalImage.getWidth();
+        int height = originalImage.getHeight();
+
+        BufferedImage rotatedImage = new BufferedImage(height, width, originalImage.getType());
+        AffineTransform transform = new AffineTransform();
+        transform.translate((height - width) / 2, (width - height) / 2);
+        transform.rotate(Math.toRadians(angle), width / 2, height / 2);
+
+        AffineTransformOp op = new AffineTransformOp(transform, AffineTransformOp.TYPE_BILINEAR);
+        op.filter(originalImage, rotatedImage);
+
+        return rotatedImage;
+    }
+
+    //This method rotates the front back left and right images to line up with the 3d cube
+    private static Texture loadAndRotateTexture(String imagePath, double angle) {
+        TextureLoader loader = new TextureLoader(imagePath, null);
+        ImageComponent2D originalImage = loader.getImage();
+        BufferedImage rotatedImage = rotateImage(originalImage.getImage(), angle);
+        return new TextureLoader(rotatedImage, (String) null).getTexture();
+    }
+
+    //This method sets the textures on each face of the cube, and uses the rotate image method to fix texture orientation
     private static void setTexture(Box box, String name) {
         // Load textures for each side
         Texture textureFront = loadAndRotateTexture("object/" + name + "/front.jpg.jpg", 90);
@@ -147,22 +241,15 @@ public class BlockView3dGUI {
         }
     }
 
-    private static void addText3D(BranchGroup root, String text, float x, float y, float z, float fontSize) {
-        // Create a Text2D object with the specified text and font size
-        Text2D text2D = new Text2D(text, new Color3f(1.0f, 1.0f, 1.0f), "Helvetica", (int) (fontSize), Font.PLAIN);
 
-        // Create a Transform3D to position the text
-        Transform3D transform = new Transform3D();
-        transform.setTranslation(new Vector3f(x, y, z));
 
-        // Create a TransformGroup and add the Transform3D to it
-        TransformGroup textTransformGroup = new TransformGroup(transform);
-        textTransformGroup.addChild(text2D);
 
-        // Add the text TransformGroup to the root BranchGroup
-        root.addChild(textTransformGroup);
-    }
+    /*
+    * SCENE METHODS
+    * These methods build the actually scene
+    * */
 
+    //use Colors and Vectors to create a directional light with a range of 100f for the scenes lighting
     private static void addLight(BranchGroup root) {
         Color3f lightColor = new Color3f(1.0f, 1.0f, 1.0f); // White light
         Vector3f lightDirection = new Vector3f(-1.0f, -1.0f, -1.0f); // Directional light from top-left
@@ -171,6 +258,7 @@ public class BlockView3dGUI {
         root.addChild(light);
     }
 
+    //Add a floor to the scene using floor and texture co-ordinates
     private static void addFloor(BranchGroup root) {
         // Load the texture image
         TextureLoader loader = new TextureLoader("object/ground.jpg", null);
@@ -203,6 +291,47 @@ public class BlockView3dGUI {
         root.addChild(floor);
     }
 
+    //Add a background wall to the scene using the same logic and texture as the ground method
+    private static void addBackgroundWall(BranchGroup root) {
+        // Load the texture image for the wall
+        TextureLoader loader = new TextureLoader("object/ground.jpg", null);
+        Texture wallTexture = loader.getTexture();
+
+        // Create a textured appearance for the wall
+        Appearance wallApp = new Appearance();
+        wallApp.setTexture(wallTexture);
+
+        // Create texture attributes and set the texture mode to modulate
+        TextureAttributes texAttr = new TextureAttributes();
+        texAttr.setTextureMode(TextureAttributes.MODULATE);
+        wallApp.setTextureAttributes(texAttr);
+
+        // Create the geometry for the wall
+        QuadArray wallGeometry = new QuadArray(4, QuadArray.COORDINATES | QuadArray.TEXTURE_COORDINATE_2);
+        wallGeometry.setCoordinate(0, new Point3f(-10.0f, -1.5f, -15.0f)); // Bottom-left
+        wallGeometry.setCoordinate(1, new Point3f(10.0f, -1.5f, -15.0f));  // Bottom-right
+        wallGeometry.setCoordinate(2, new Point3f(10.0f, 10f, -15.0f));   // Top-right
+        wallGeometry.setCoordinate(3, new Point3f(-10.0f, 10f, -15.0f));  // Top-left
+
+        // Set the texture coordinates for the wall
+        wallGeometry.setTextureCoordinate(0, 0, new TexCoord2f(0.0f, 0.0f));
+        wallGeometry.setTextureCoordinate(0, 1, new TexCoord2f(1.0f, 0.0f));
+        wallGeometry.setTextureCoordinate(0, 2, new TexCoord2f(1.0f, 1.0f));
+        wallGeometry.setTextureCoordinate(0, 3, new TexCoord2f(0.0f, 1.0f));
+
+        // Create the wall shape and set its appearance
+        Shape3D wall = new Shape3D(wallGeometry, wallApp);
+
+        // Add the wall to the root branch group
+        root.addChild(wall);
+    }
+
+    /*
+    * OVERLAY METHODS
+    * methods that controll construction of the overlay
+    * */
+
+    //The overlay controller that runs the other function, made this way so its easier for CHU
     private static void addOverlay(BranchGroup root) {
         addOverlayRect(root); // add layer for 3d cubes and text.
         addSpecificOverlayCubes(root,  0.13f); // add sidebar cube icons
@@ -213,28 +342,39 @@ public class BlockView3dGUI {
         // add sidebar LEFT text
     }
 
-    private static BufferedImage rotateImage(BufferedImage originalImage, double angle) {
-        int width = originalImage.getWidth();
-        int height = originalImage.getHeight();
+    //Add a 3d text to the scene with root x y z and font size (Font size is absouloute and is not modified (note to self by jacob)
+    private static void addText3D(BranchGroup root, String text, float x, float y, float z, float fontSize) {
+        // Create a Text2D object with the specified text and font size
+        Text2D text2D = new Text2D(text, new Color3f(1.0f, 1.0f, 1.0f), "Helvetica", (int) (fontSize), Font.PLAIN);
 
-        BufferedImage rotatedImage = new BufferedImage(height, width, originalImage.getType());
-        AffineTransform transform = new AffineTransform();
-        transform.translate((height - width) / 2, (width - height) / 2);
-        transform.rotate(Math.toRadians(angle), width / 2, height / 2);
+        // Create a Transform3D to position the text
+        Transform3D transform = new Transform3D();
+        transform.setTranslation(new Vector3f(x, y, z));
 
-        AffineTransformOp op = new AffineTransformOp(transform, AffineTransformOp.TYPE_BILINEAR);
-        op.filter(originalImage, rotatedImage);
+        // Create a TransformGroup and add the Transform3D to it
+        TransformGroup textTransformGroup = new TransformGroup(transform);
+        textTransformGroup.addChild(text2D);
 
-        return rotatedImage;
+        // Add the text TransformGroup to the root BranchGroup
+        root.addChild(textTransformGroup);
     }
 
-    private static Texture loadAndRotateTexture(String imagePath, double angle) {
-        TextureLoader loader = new TextureLoader(imagePath, null);
-        ImageComponent2D originalImage = loader.getImage();
-        BufferedImage rotatedImage = rotateImage(originalImage.getImage(), angle);
-        return new TextureLoader(rotatedImage, (String) null).getTexture();
+    // adds specific 3d cubes tot he 2d overlay on the 3d scene
+    private static void addSpecificOverlayCubes(BranchGroup root, float spacing) {
+        String[] name = {"TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone"};
+        TransformGroup overlayTransformGroup = new TransformGroup();
+        for (int i = 0; i < name.length; i++) {
+            TransformGroup cubeTransformGroup = createSpecificOverlayCube(name[i]);
+            Transform3D transform = new Transform3D();
+            transform.setTranslation(new Vector3f(-0.82f, 0.3f - i * spacing, 0.1f)); // Position the cubes vertically
+            cubeTransformGroup.setTransform(transform);
+            overlayTransformGroup.addChild(cubeTransformGroup);
+        }
+        root.addChild(overlayTransformGroup);
     }
 
+    // same logic as the wall and ground methods however has no texture and the blending attributes give it transparecy
+    //same with all methods below this
     public static void addOverlayRect(BranchGroup root) {
         // Create an appearance with semi-transparent grey color
         Appearance overlayAppearance = new Appearance();
@@ -326,116 +466,6 @@ public class BlockView3dGUI {
         // Add the rectangle to the transform group and the root
         overlayTransformGroup.addChild(overlay);
         root.addChild(overlayTransformGroup);
-    }
-
-    private static void addBackgroundWall(BranchGroup root) {
-        // Load the texture image for the wall
-        TextureLoader loader = new TextureLoader("object/ground.jpg", null);
-        Texture wallTexture = loader.getTexture();
-
-        // Create a textured appearance for the wall
-        Appearance wallApp = new Appearance();
-        wallApp.setTexture(wallTexture);
-
-        // Create texture attributes and set the texture mode to modulate
-        TextureAttributes texAttr = new TextureAttributes();
-        texAttr.setTextureMode(TextureAttributes.MODULATE);
-        wallApp.setTextureAttributes(texAttr);
-
-        // Create the geometry for the wall
-        QuadArray wallGeometry = new QuadArray(4, QuadArray.COORDINATES | QuadArray.TEXTURE_COORDINATE_2);
-        wallGeometry.setCoordinate(0, new Point3f(-10.0f, -1.5f, -15.0f)); // Bottom-left
-        wallGeometry.setCoordinate(1, new Point3f(10.0f, -1.5f, -15.0f));  // Bottom-right
-        wallGeometry.setCoordinate(2, new Point3f(10.0f, 10f, -15.0f));   // Top-right
-        wallGeometry.setCoordinate(3, new Point3f(-10.0f, 10f, -15.0f));  // Top-left
-
-        // Set the texture coordinates for the wall
-        wallGeometry.setTextureCoordinate(0, 0, new TexCoord2f(0.0f, 0.0f));
-        wallGeometry.setTextureCoordinate(0, 1, new TexCoord2f(1.0f, 0.0f));
-        wallGeometry.setTextureCoordinate(0, 2, new TexCoord2f(1.0f, 1.0f));
-        wallGeometry.setTextureCoordinate(0, 3, new TexCoord2f(0.0f, 1.0f));
-
-        // Create the wall shape and set its appearance
-        Shape3D wall = new Shape3D(wallGeometry, wallApp);
-
-        // Add the wall to the root branch group
-        root.addChild(wall);
-    }
-
-    private static void addGridBackgroundCubes(BranchGroup root, int rows, int cols, float spacing) {
-        String[] avalableTextures = {
-                "Acacia plank", "Barrel", "Basalt", "Bedrock", "Birch Log", "Blast Furnace", "Bookshelf", "Brick", "Bricks",
-                "Brown Mushroom Block", "Cactus", "Cherry Log", "Coarse Dirt", "Cobblestone", "Command block", "Concrete", "Concrete Powder", "Crafting Table", "Cracked Stone Brick",
-                "Dark Prismarine", "Diamond ore", "Dirt", "Dispenser", "Door", "Dried Kelp Block", "End stone", "Farmland", "Fire Coral Block", "Furnace", "Ghast",
-                "Gilded Blackstone", "Glowstone", "Gold Block", "Gold ore", "Granite", "Grass Block", "Gravel", "Hay bale", "Honeycomb Block", "Horn Coral Block", "Ice",
-                "Infested Cobblestone", "Iron Block", "Iron ore", "Jack o'Lantern", "Juke Box", "Leaves", "Lodestone", "Magma block", "Mud", "Mud Bricks", "Muddy Mangrove Roots", "Mycelium",
-                "Nether Bricks", "Nether Gold Ore", "Netherrack","Nether Wart Block", "Note Block", "Nylium", "Oak Log", "Observer", "Packed Ice", "Packed Mud", "Pearlescent",
-                "Plank", "Podzol", "Prismarine", "Pumpkin", "Purpur Block", "Quartz Block", "Red Mushroom Block", "Red Sand Block", "Redstone Lamp", "Redstone ore",
-                "Redstone Torch", "Reinforced Deepslate", "Sand", "Sandstone", "Sculk", "Sea Lantern", "Shroomlight", "Slime Block", "Smithing Table", "Smoker", "Soul Sand",
-                "Sponge", "Stare Case", "Stem Mushroom Block", "Stone", "Target", "Terracotta", "TNT", "Tuff", "Warped Wart Block", "Waxed Block of Copper", "Wool"
-        };
-
-
-
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                TransformGroup cubeTransformGroup = createRotatingBackgroundCube(avalableTextures[i]); //scrapped becuase it was too much for school pc to handle as is
-                Transform3D transform = new Transform3D();
-                // Position the cubes in a grid pattern
-                transform.setTranslation(new Vector3f(i * spacing - (rows - 1) * spacing / 6 - 1.3f, j * spacing - (cols - 1) * spacing / 6 -1f, -2.7f));
-                cubeTransformGroup.setTransform(transform);
-                root.addChild(cubeTransformGroup);
-            }
-        }
-    }
-
-    // New method to add specific overlay cubes
-    private static void addSpecificOverlayCubes(BranchGroup root, float spacing) {
-        String[] name = {"TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone"};
-        TransformGroup overlayTransformGroup = new TransformGroup();
-        for (int i = 0; i < name.length; i++) {
-            TransformGroup cubeTransformGroup = createSpecificOverlayCube(name[i]);
-            Transform3D transform = new Transform3D();
-            transform.setTranslation(new Vector3f(-0.82f, 0.3f - i * spacing, 0.1f)); // Position the cubes vertically
-            cubeTransformGroup.setTransform(transform);
-            overlayTransformGroup.addChild(cubeTransformGroup);
-        }
-        root.addChild(overlayTransformGroup);
-    }
-
-    // New method to create specific overlay cubes with different textures
-    private static TransformGroup createSpecificOverlayCube(String name) {
-        // Create a transform group for the overlay cube
-        TransformGroup transformGroup = new TransformGroup();
-        transformGroup.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
-
-        // Create a smaller textured cube for the overlay
-        Box box = new Box(0.05f, 0.05f, 0.05f, Box.GENERATE_TEXTURE_COORDS, new Appearance());
-
-        // Apply different textures to each side
-        setTexture(box, name);
-
-        // Add the cube to the transform group
-        transformGroup.addChild(box);
-
-        return transformGroup;
-    }
-
-    private static TransformGroup createRotatingBackgroundCube(String texture) {
-        // Create a transform group for the background cube
-        TransformGroup transformGroup = new TransformGroup();
-        transformGroup.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
-
-        // Create smaller textured cube
-        Box box = new Box(0.1f, 0.1f, 0.1f, Box.GENERATE_TEXTURE_COORDS, new Appearance());
-
-        // Apply textures to each side
-        setTexture(box, texture);
-
-        // Add the cube to the transform group
-        transformGroup.addChild(box);
-
-        return transformGroup;
     }
 
 }

@@ -1,3 +1,4 @@
+//The gui in this file is by Jacob Mobin, The Background is by Lucas Chu
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
