@@ -8,8 +8,10 @@ import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
 
 public class BlockListGUI {
 
@@ -20,14 +22,14 @@ public class BlockListGUI {
     protected static int mouseX;
     private static int scrollDist = 0;
     private static Map<String, BufferedImage> imageCache = new HashMap<>();
-    
-    public static void blockListGUI() {
+    private static ArrayList<Block> blocks;
 
+    public static void blockListGUI() {
+        
         JFrame newFrame = new JFrame("View Blocks");
         newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         newFrame.setSize(Main.FRAME_WIDTH, Main.FRAME_HEIGHT);
         newFrame.setResizable(false);
-
         JPanel blankCanvasPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {

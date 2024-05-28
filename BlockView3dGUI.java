@@ -96,7 +96,7 @@ public class BlockView3dGUI {
         Box box = new Box(0.25f, 0.25f, 0.25f, Box.GENERATE_TEXTURE_COORDS, new Appearance());
 
         // Apply textures to each side
-        setTexture(box, "Crafting");
+        setTexture(box, "Crafting Table");
 
         // Add the cube to the transform group
         transformGroup.addChild(box);
@@ -124,32 +124,126 @@ public class BlockView3dGUI {
 
     //Add a grid of background cubes
     private static void addGridBackgroundCubes(BranchGroup root, int rows, int cols, float spacing) {
-        String[] avalableTextures2 = {
-                "Acacia plank", "Barrel", "Basalt", "Bedrock", "Birch Log", "Blast Furnace", "Bookshelf", "Brick", "Bricks",
-                "Brown Mushroom Block", "Cactus", "Cherry Log", "Coarse Dirt", "Cobblestone", "Command block", "Concrete", "Concrete Powder", "Crafting Table", "Cracked Stone Brick",
-                "Dark Prismarine", "Diamond ore", "Dirt", "Dispenser", "Door", "Dried Kelp Block", "End stone", "Farmland", "Fire Coral Block", "Furnace", "Ghast",
-                "Gilded Blackstone", "Glowstone", "Gold Block", "Gold ore", "Granite", "Grass Block", "Gravel", "Hay bale", "Honeycomb Block", "Horn Coral Block", "Ice",
-                "Infested Cobblestone", "Iron Block", "Iron ore", "Jack o'Lantern", "Juke Box", "Leaves", "Lodestone", "Magma block", "Mud", "Mud Bricks", "Muddy Mangrove Roots", "Mycelium",
-                "Nether Bricks", "Nether Gold Ore", "Netherrack","Nether Wart Block", "Note Block", "Nylium", "Oak Log", "Observer", "Packed Ice", "Packed Mud", "Pearlescent",
-                "Plank", "Podzol", "Prismarine", "Pumpkin", "Purpur Block", "Quartz Block", "Red Mushroom Block", "Red Sand Block", "Redstone Lamp", "Redstone ore",
-                "Redstone Torch", "Reinforced Deepslate", "Sand", "Sandstone", "Sculk", "Sea Lantern", "Shroomlight", "Slime Block", "Smithing Table", "Smoker", "Soul Sand",
-                "Sponge", "Stare Case", "Stem Mushroom Block", "Stone", "Target", "Terracotta", "TNT", "Tuff", "Warped Wart Block", "Waxed Block of Copper", "Wool"
+        String[] avalableTextures = {
+                "Stone",
+                        "Cherry Log",
+                        "Dirt",
+                        "Birch Log",
+                        "Diorite",
+                        "Oak Log",
+                        "Deepslate Tiles",
+                        "Prismarine",
+                        "Cobblestone",
+                        "Piston",
+                        "Bedrock",
+                        "Sculk",
+                        "Sponge",
+                        "End stone",
+                        "Obsidian",
+                        "Polished Andesite",
+                        "Wool",
+                        "Concrete",
+                        "Leaves",
+                        "Basalt",
+                        "Granite",
+                        "Shulker box",
+                        "Hay bale",
+                        "Redstone Lamp",
+                        "Sea lantern",
+                        "Soul Sand",
+                        "Calcite",
+                        "Command block",
+                        "Lodestone",
+                        "Magma block",
+                        "Crafting Table",
+                        "Juke Box",
+                        "Note Block",
+                        "Observer",
+                        "Block of Diamond",
+                        "Block of Gold",
+                        "Block of Emerald",
+                        "Block of Iron",
+                        "Iron ore",
+                        "Diamond ore",
+                        "Gold ore",
+                        "Emerald ore",
+                        "Bricks",
+                        "Bookshelf",
+                        "Furnace",
+                        "Ice",
+                        "Packed Ice",
+                        "Redstone ore",
+                        "Block of Redstone",
+                        "Acacia plank",
+                        "Barrel",
+                        "Cactus",
+                        "Dark Prismarine",
+                        "Gilded Blackstone",
+                        "Fire Coral Block",
+                        "Grass Block",
+                        "Jack o'Lantern",
+                        "Shroomlight",
+                        "Slime Block",
+                        "Podzol",
+                        "Dried Kelp Block",
+                        "TNT",
+                        "Pumpkin",
+                        "Farmland",
+                        "Gravel",
+                        "Blast Furnace",
+                        "Rooted Dirt",
+                        "Horn Coral Block",
+                        "Coarse Dirt",
+                        "Infested Cobblestone",
+                        "Sand",
+                        "Sandstone",
+                        "Smithing Table",
+                        "Smoker",
+                        "Coal Ore",
+                        "Purpur Block",
+                        "Cracked Stone Brick",
+                        "Terracotta",
+                        "Honeycomb Block",
+                        "Reinforced Deepslate",
+                        "Smooth Red Sandstone",
+                        "Brown Mushroom Block",
+                        "Red Mushroom Block",
+                        "Stem Mushroom Block",
+                        "Concrete Powder",
+                        "Tuff",
+                        "Target",
+                        "Nylium",
+                        "Mud",
+                        "Mycelium",
+                        "Muddy Mangrove Roots",
+                        "Nether Bricks",
+                        "Mud Bricks",
+                        "Nether Gold Ore",
+                        "Nether Wart Block",
+                        "Warped Wart Block",
+                        "Waxed Block of Copper",
+                        "Packed Mud",
+                        "Pearlescent",
+                        "Dropper"
         };
 
-        String[] avalableTextures = {"TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT",
+        String[] avalableTextures2 = {"TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT",
                 "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT",
                 "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT", "TNT"};
 
-
+        int x = 0;
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                TransformGroup cubeTransformGroup = createRotatingBackgroundCube(avalableTextures[i]); //scrapped becuase it was too much for school pc to handle as is
+                System.out.println(avalableTextures[x]);
+                TransformGroup cubeTransformGroup = createRotatingBackgroundCube(avalableTextures[x]); //scrapped becuase it was too much for school pc to handle as is
                 Transform3D transform = new Transform3D();
                 // Position the cubes in a grid pattern
                 transform.setTranslation(new Vector3f(i * spacing - (rows - 1) * spacing / 6 - 1.3f, j * spacing - (cols - 1) * spacing / 6 -1f, -2.7f));
                 cubeTransformGroup.setTransform(transform);
                 root.addChild(cubeTransformGroup);
+                x++;
             }
+
         }
     }
 
@@ -366,7 +460,7 @@ public class BlockView3dGUI {
 
     // adds specific 3d cubes tot he 2d overlay on the 3d scene
     private static void addSpecificOverlayCubes(BranchGroup root, float spacing) {
-        String[] name = {"TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting", "Glowstone"};
+        String[] name = {"TNT", "Bedrock", "Leaves", "Lava", "Dimension", "Crafting Table", "Glowstone"};
         TransformGroup overlayTransformGroup = new TransformGroup();
         for (int i = 0; i < name.length; i++) {
             TransformGroup cubeTransformGroup = createSpecificOverlayCube(name[i]);
