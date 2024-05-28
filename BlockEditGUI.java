@@ -283,7 +283,9 @@ public class BlockEditGUI {
     private static void handleClickEventSort(int x, int y) {
         if (isWithinButtonRange(x, y, 544, 819, 0, 50)) {
             if (sortType == "Name") {
-                sortType = "Dimension";
+                sortType = "Stack";
+            } else if (sortType == "Stack") {
+                    sortType = "Dimension";
             } else if (sortType == "Dimension") {
                 sortType = "Hardness";
             } else if (sortType == "Hardness") {
