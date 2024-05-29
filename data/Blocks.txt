@@ -1,100 +1,100 @@
-Stone,true,Yes (64),6,1.5,No,false,Overworld,Stone.wav,001
-Cherry Log,true,Yes (64),2,2,No,true,Overworld,CherryLog.wav,002
-Dirt,true,Yes (64),0.5,0.5,No,false,Overworld,Dirt.wav,003
-Birch Log,true,Yes (64),2,2,No,true,Overworld,Birch Log.wav,004
-Diorite,true,Yes (64),6,1.5,No,false,Overworld,Diorite.wav,005
-Oak Log,true,Yes (64),2,2,No,true,Overworld,OakLog.wav,006
-Deepslate Tiles,false,Yes (64),6,3.5,No,false,Craftable,DeepslateTiles.wav,007
-Prismarine,true,Yes (64),6,1.5,No,false,Overworld,Prismarine.wav,008
-Cobblestone,true,Yes (64),6,2,No,false,Overworld,Cobblestone.wav,009
-object.Piston,true,Yes (64),0.5,1.5,No,false,Craftable,object.Piston.wav,010
-Bedrock,false,Yes (64),3600000,-1,No,false,Overworld/Nether,Bedrock.wav,011
-Sculk,true,Yes (64),0.2,0.2,No,false,Overworld,Sculk.wav,012
-Sponge,true,Yes (64),0.6,0.6,No,false,Overworld,Sponge.wav,013
-End stone,true,Yes (64),9,3,No,false,End,Endstone.wav,014
-Obsidian,true,Yes (64),1200,50,No,false,End/Overworld,Obsidian.wav,015
-object.Polished Andesite,true,Yes (64),6,1.5,No,false,Craftable,PolishedAndesite.wav,016
-Wool,true,Yes (64),0.8,0.8,No,true,Overworld/Craftable,Wool.wav,017
-Concrete,true,Yes (64),1.8,1.8,No,false,Overworld,Concrete.wav,018
-Leaves,true,Yes (64),0.2,0.2,No,true,Overworld,Leaves.wav,019
-Basalt,true,Yes (64),4.2,1.25,No,false,Overworld,Basalt.wav,020
-Granite,true,Yes (64),6,1.5,No,false,Overworld,Granite.wav,021
-Shulker box,true,Yes (64),2,2,No,false,End,Shulkerbox.wav,022
-Hay bale,true,Yes (64),0.5,0.5,No,true,Overworld,Haybale.wav,023
-Redstone Lamp,true,Yes (64),0.3,0.3,Yes,false,Craftable,RedstoneLamp.wav,024
-Sea lantern,true,Yes (64),0.3,0.3,Yes,false,Overworld/Craftable,Sealantern.wav,025
-Soul Sand,true,Yes (64),0.5,0.5,No,false,Nether,SoulSand.wav,026
-Calcite,true,Yes (64),0.75,0.75,No,false,Overworld,Calcite.wav,027
-Command block,false,Yes (64),3600000,-1,No,false,Dev console,Commandblock.wav,028
-Lodestone,false,Yes (64),6,1.5,No,false,Craftable,Lodestone.wav,029
-Magma block,true,Yes (64),0.5,0.5,Yes,false,Nether,Magmablock.wav,030
-Crafting Table,true,Yes (64),2.5,2.5,No,false,Craftable,CraftingTable.wav,031
-Juke Box,true,Yes (64),0.8,0.8,No,false,Craftable,JukeBox.wav,032
-Note Block,true,Yes (64),0.4,0.4,No,false,Craftable,NoteBlock.wav,033
-Observer,true,Yes (64),3,3,No,false,Craftable,Observer.wav,034
-Block of Diamond,false,Yes (64),6,5,No,false,Craftable,DiamondBlock.wav,035
-Block of Gold,false,Yes (64),6,5,No,false,Craftable,GoldBlock.wav,036
-Block of Emerald,false,Yes (64),6,5,No,false,Craftable,EmeraldBlock.wav,037
-Block of Iron,false,Yes (64),6,5,No,false,Craftable,IronBlock.wav,038
-Iron ore,false,Yes (64),3,3,No,false,Overworld,IronOre.wav,039
-Diamond ore,false,Yes (64),3,3,No,false,Overworld,DiamondOre.wav,040
-Gold ore,false,Yes (64),3,3,No,false,Overworld,GoldOre.wav,041
-Emerald ore,false,Yes (64),3,3,No,false,Overworld,EmeraldOre.wav,042
-Bricks,true,Yes (64),6,2,No,false,Craftable,Bricks.wav,043
-Bookshelf,true,Yes (64),1.5,1.5,No,false,Overworld/Craftable,Bookshelf.wav,044
-Furnace,true,Yes (64),3.5,3.5,Yes (13) (When Active),false,Overworld/Craftable,Furnace.wav,045
-Ice,true,Yes (64),0.5,0.5,No,false,Overworld,Ice.wav,046
-Packed Ice,true,Yes (64),0.5,0.5,No,false,Overworld,PackedIce.wav,047
-Redstone ore,false,Yes (64),3,3,Yes (9) (When Active),false,Overworld,RedstoneOre,048
-Block of Redstone ,true,Yes (64),6,5,No,false,Craftable,RedstoneBlock.wav,049
-Acacia plank,true,Yes (64),3,2,No,true,End,Acaciaplank.wav,050
-Barrel,true,Yes (64),2.5,2.5,No,false,Craftable,Barrel.wav,051
-Cactus,true,Yes (64),0.4,0.4,No,false,Overworld,Cactus.wav,052
-Dark Prismarine,false,Yes (64),6,1.5,No,false,Overworld/Craftable,DarkPrismarine.wav,053
-Gilded Blackstone,false,Yes (64),6,1.5,No,false,Nether/Craftable,GildedBlackstone.wav,054
-Fire Coral Block,true,Yes (64),6,1.5,No,false,Overworld,FireCoralBlock.wav,055
-Grass Block,true,Yes (64),0.6,0.6,No,false,Overworld,GrassBlock.wav,056
-Jack o'Lantern,true,Yes (64),1,1,Yes (15),false,Overworld/Craftable,Jacko'Lantern.wav,057
-Shroomlight,true,Yes (64),1,1,Yes (15),false,Overworld/Craftable,Shroomlight.wav,058
-Slime Block,true,Yes (64),0,0,No,false,Craftable,SlimeBlock.wav,059
-object.Podzol,true,Yes (64),0.5,0.5,No,false,Overworld,object.Podzol.wav,060
-Dried Kelp Block,true,Yes (64),2.5,0.5,No,true,Craftable,DriedKelpBlock.wav,061
-TNT,true,Yes (64),0,0,No,true,Craftable,TNT.wav,062
-Pumpkin,true,Yes (64),1,1,No,false,Overworld,Pumpkin.wav,063
-Farmland,true,Yes (64),0.6,0.6,No,false,Overworld,Farmland.wav,064
-Gravel,true,Yes (64),0.6,0.6,No,false,Overworld,Gravel.wav,065
-Blast Furnace,true,Yes (64),3.5,3.5,Yes (13) (When Active),false,Overworld/Craftable,BlastFurnace.wav,066
-Rooted Dirt,true,Yes (64),0.5,0.5,No,false,Overworld,RootedDirt.wav,067
-Horn Coral Block,true,Yes (64),6,1.5,No,false,Overworld,HornCoralBlock.wav,068
-Coarse Dirt,true,Yes (64),0.5,0.5,Yes,false,Overworld,CoarseDirt.wav,069
-Infested Cobblestone,true,Yes (64),1,1,No,false,Overworld,InfestedCobblestone.wav,070
-Sand,true,Yes (64),0.5,0.5,No,false,Overworld,Sand.wav,071
-Sandstone,true,Yes (64),0.8,0.8,No,false,Overworld,Sandstone.wav,072
-Smithing Table,true,Yes (64),2.5,2.5,No,false,Overworld/Craftable,SmithingTable.wav,073
-Smoker,true,Yes (64),3.5,3.5,Yes (13) (When Active),false,Overworld/Craftable,Smoker.wav,074
-Coal Ore,false,Yes (64),3,3,No,false,Overworld,CoalOre.wav,075
-Purpur Block,true,Yes (64),6,1.5,No,false,End,PurpurBlock.wav,076
-Cracked Stone Brick,true,Yes (64),6,1.5,No,false,Overworld,CrackedStoneBrick.wav,077
-Terracotta,true,Yes (64),4.2,1.25,No,false,Overworld,Terracotta.wav,078
-Honeycomb Block,true,Yes (64),0.6,0.6,No,false,Overworld,HoneycombBlock.wav,079
-Reinforced Deepslate,false,Yes (64),1200,55,No,false,Dev console,ReinforcedDeepslate.wav,080
-Smooth Red Sandstone,true,Yes (64),6,2,No,false,Craftable,SmoothRedSandstone.wav,081
-Brown Mushroom Block,true,Yes (64),0.2,0.2,No,false,Overworld,BrownMushroomBlock.wav,082
-Red Mushroom Block,true,Yes (64),0.2,0.2,No,false,Overworld,RedMushroomBlock.wav,083
-Stem Mushroom Block,true,Yes (64),0.2,0.2,No,false,Overworld,StemMushroomBlock.wav,084
-Concrete Powder,true,Yes (64),0.5,0.5,Yes,false,Overworld,ConcretePowder.wav,085
-Tuff,true,Yes (64),6,1.5,No,false,Overworld,Tuff.wav,086
-Target,true,Yes (64),0.5,0.5,Yes,true,Overworld/Craftable,Target.wav,087
-Nylium,true,Yes (64),0.4,0.4,No,false,Craftable,Nylium.wav,088
-Mud,true,Yes (64),0.5,0.5,Yes,false,Overworld/Craftable,Mud.wav,089
-Mycelium,true,Yes (64),0.6,0.6,No,false,Overworld,Mycelium.wav,090
-Muddy Mangrove Roots,true,Yes (64),0.7,0.7,No,false,Overworld,MuddyMangroveRoots.wav,091
-Nether Bricks,true,Yes (64),6,2,No,false,Nether,NetherBricks.wav,092
-Mud Bricks,true,Yes (64),3,1.5,No,false,Overworld/Craftable,MudBricks.wav,093
-Nether Gold Ore,true,Yes (64),3,3,No,false,Nether,NetherGoldOre.wav,094
-Nether Wart Block,true,Yes (64),1,1,No,false,Nether/Craftable,NetherWartBlock.wav,095
-Warped Wart Block,true,Yes (64),1,1,No,false,Nether,WarpedWartBlock.wav,096
-Waxed Block of Copper,true,Yes (64),6,3,No,false,Craftable,WaxedCopperBlock.wav,097
-Packed Mud,true,Yes (64),0.5,0.5,Yes,false,Overworld/Craftable,PackedMud.wav,098
-object.Pearlescent,true,Yes (64),0.3,0.3,Yes (13),false,Overworld/Craftable,object.Pearlescent.wav,099
-Dropper,true,Yes (64),3.5,3.5,No,false,Overworld/Craftable,Dropper.wav,100
+Stone,true,Yes (64),6,1.5,0,false,Overworld,Stone.wav,001
+Cherry Log,true,Yes (64),2,2,0,true,Overworld,CherryLog.wav,002
+Dirt,true,Yes (64),0.5,0.5,0,false,Overworld,Dirt.wav,003
+Birch Log,true,Yes (64),2,2,0,true,Overworld,Birch Log.wav,004
+Diorite,true,Yes (64),6,1.5,0,false,Overworld,Diorite.wav,005
+Oak Log,true,Yes (64),2,2,0,true,Overworld,OakLog.wav,006
+Deepslate Tiles,false,Yes (64),6,3.5,0,false,Craftable,DeepslateTiles.wav,007
+Prismarine,true,Yes (64),6,1.5,0,false,Overworld,Prismarine.wav,008
+Cobblestone,true,Yes (64),6,2,0,false,Overworld,Cobblestone.wav,009
+Piston,true,Yes (64),0.5,1.5,0,false,Craftable,Piston.wav,010
+Bedrock,false,Yes (64),3600000,-1,0,false,Overworld/Nether,Bedrock.wav,011
+Sculk,true,Yes (64),0.2,0.2,0,false,Overworld,Sculk.wav,012
+Sponge,true,Yes (64),0.6,0.6,0,false,Overworld,Sponge.wav,013
+End stone,true,Yes (64),9,3,0,false,End,Endstone.wav,014
+Obsidian,true,Yes (64),1200,50,0,false,End/Overworld,Obsidian.wav,015
+Polished Andesite,true,Yes (64),6,1.5,0,false,Craftable,PolishedAndesite.wav,016
+Wool,true,Yes (64),0.8,0.8,0,true,Overworld/Craftable,Wool.wav,017
+Concrete,true,Yes (64),1.8,1.8,0,false,Overworld,Concrete.wav,018
+Leaves,true,Yes (64),0.2,0.2,0,true,Overworld,Leaves.wav,019
+Basalt,true,Yes (64),4.2,1.25,0,false,Overworld,Basalt.wav,020
+Granite,true,Yes (64),6,1.5,0,false,Overworld,Granite.wav,021
+Shulker box,true,Yes (64),2,2,0,false,End,Shulkerbox.wav,022
+Hay bale,true,Yes (64),0.5,0.5,0,true,Overworld,Haybale.wav,023
+Redstone Lamp,true,Yes (64),0.3,0.3,15,false,Craftable,RedstoneLamp.wav,024
+Sea lantern,true,Yes (64),0.3,0.3,15,false,Overworld/Craftable,Sealantern.wav,025
+Soul Sand,true,Yes (64),0.5,0.5,0,false,Nether,SoulSand.wav,026
+Calcite,true,Yes (64),0.75,0.75,0,false,Overworld,Calcite.wav,027
+Command block,false,Yes (64),3600000,-1,0,false,Dev console,Commandblock.wav,028
+Lodestone,false,Yes (64),6,1.5,0,false,Craftable,Lodestone.wav,029
+Magma block,true,Yes (64),0.5,0.5,9,false,Nether,Magmablock.wav,030
+Crafting Table,true,Yes (64),2.5,2.5,0,false,Craftable,CraftingTable.wav,031
+Juke Box,true,Yes (64),0.8,0.8,0,false,Craftable,JukeBox.wav,032
+Note Block,true,Yes (64),0.4,0.4,0,false,Craftable,NoteBlock.wav,033
+Observer,true,Yes (64),3,3,0,false,Craftable,Observer.wav,034
+Block of Diamond,false,Yes (64),6,5,0,false,Craftable,DiamondBlock.wav,035
+Block of Gold,false,Yes (64),6,5,0,false,Craftable,GoldBlock.wav,036
+Block of Emerald,false,Yes (64),6,5,0,false,Craftable,EmeraldBlock.wav,037
+Block of Iron,false,Yes (64),6,5,0,false,Craftable,IronBlock.wav,038
+Iron ore,false,Yes (64),3,3,0,false,Overworld,IronOre.wav,039
+Diamond ore,false,Yes (64),3,3,0,false,Overworld,DiamondOre.wav,040
+Gold ore,false,Yes (64),3,3,0,false,Overworld,GoldOre.wav,041
+Emerald ore,false,Yes (64),3,3,0,false,Overworld,EmeraldOre.wav,042
+Bricks,true,Yes (64),6,2,0,false,Craftable,Bricks.wav,043
+Bookshelf,true,Yes (64),1.5,1.5,0,false,Overworld/Craftable,Bookshelf.wav,044
+Furnace,true,Yes (64),3.5,3.5,13,false,Overworld/Craftable,Furnace.wav,045
+Ice,true,Yes (64),0.5,0.5,0,false,Overworld,Ice.wav,046
+Packed Ice,true,Yes (64),0.5,0.5,0,false,Overworld,PackedIce.wav,047
+Redstone ore,false,Yes (64),3,3,9,false,Overworld,RedstoneOre,048
+Block of Redstone ,true,Yes (64),6,5,0,false,Craftable,RedstoneBlock.wav,049
+Acacia plank,true,Yes (64),3,2,0,true,End,Acaciaplank.wav,050
+Barrel,true,Yes (64),2.5,2.5,0,false,Craftable,Barrel.wav,051
+Cactus,true,Yes (64),0.4,0.4,0,false,Overworld,Cactus.wav,052
+Dark Prismarine,false,Yes (64),6,1.5,0,false,Overworld/Craftable,DarkPrismarine.wav,053
+Gilded Blackstone,false,Yes (64),6,1.5,0,false,Nether/Craftable,GildedBlackstone.wav,054
+Fire Coral Block,true,Yes (64),6,1.5,0,false,Overworld,FireCoralBlock.wav,055
+Grass Block,true,Yes (64),0.6,0.6,0,false,Overworld,GrassBlock.wav,056
+Jack o'Lantern,true,Yes (64),1,1,15,false,Overworld/Craftable,Jacko'Lantern.wav,057
+Shroomlight,true,Yes (64),1,1,15,false,Overworld/Craftable,Shroomlight.wav,058
+Slime Block,true,Yes (64),0,0,0,false,Craftable,SlimeBlock.wav,059
+Podzol,true,Yes (64),0.5,0.5,0,false,Overworld,Podzol.wav,060
+Dried Kelp Block,true,Yes (64),2.5,0.5,0,true,Craftable,DriedKelpBlock.wav,061
+TNT,true,Yes (64),0,0,0,true,Craftable,TNT.wav,062
+Pumpkin,true,Yes (64),1,1,0,false,Overworld,Pumpkin.wav,063
+Farmland,true,Yes (64),0.6,0.6,0,false,Overworld,Farmland.wav,064
+Gravel,true,Yes (64),0.6,0.6,0,false,Overworld,Gravel.wav,065
+Blast Furnace,true,Yes (64),3.5,3.5,13,false,Overworld/Craftable,BlastFurnace.wav,066
+Rooted Dirt,true,Yes (64),0.5,0.5,0,false,Overworld,RootedDirt.wav,067
+Horn Coral Block,true,Yes (64),6,1.5,0,false,Overworld,HornCoralBlock.wav,068
+Coarse Dirt,true,Yes (64),0.5,0.5,0,false,Overworld,CoarseDirt.wav,069
+Infested Cobblestone,true,Yes (64),1,1,0,false,Overworld,InfestedCobblestone.wav,070
+Sand,true,Yes (64),0.5,0.5,0,false,Overworld,Sand.wav,071
+Sandstone,true,Yes (64),0.8,0.8,0,false,Overworld,Sandstone.wav,072
+Smithing Table,true,Yes (64),2.5,2.5,0,false,Overworld/Craftable,SmithingTable.wav,073
+Smoker,true,Yes (64),3.5,3.5,13,false,Overworld/Craftable,Smoker.wav,074
+Coal Ore,false,Yes (64),3,3,0,false,Overworld,CoalOre.wav,075
+Purpur Block,true,Yes (64),6,1.5,0,false,End,PurpurBlock.wav,076
+Cracked Stone Brick,true,Yes (64),6,1.5,0,false,Overworld,CrackedStoneBrick.wav,077
+Terracotta,true,Yes (64),4.2,1.25,0,false,Overworld,Terracotta.wav,078
+Honeycomb Block,true,Yes (64),0.6,0.6,0,false,Overworld,HoneycombBlock.wav,079
+Reinforced Deepslate,false,Yes (64),1200,55,0,false,Dev console,ReinforcedDeepslate.wav,080
+Smooth Red Sandstone,true,Yes (64),6,2,0,false,Craftable,SmoothRedSandstone.wav,081
+Brown Mushroom Block,true,Yes (64),0.2,0.2,0,false,Overworld,BrownMushroomBlock.wav,082
+Red Mushroom Block,true,Yes (64),0.2,0.2,0,false,Overworld,RedMushroomBlock.wav,083
+Stem Mushroom Block,true,Yes (64),0.2,0.2,0,false,Overworld,StemMushroomBlock.wav,084
+Concrete Powder,true,Yes (64),0.5,0.5,0,false,Overworld,ConcretePowder.wav,085
+Tuff,true,Yes (64),6,1.5,0,false,Overworld,Tuff.wav,086
+Target,true,Yes (64),0.5,0.5,0,true,Overworld/Craftable,Target.wav,087
+Nylium,true,Yes (64),0.4,0.4,0,false,Craftable,Nylium.wav,088
+Mud,true,Yes (64),0.5,0.5,0,false,Overworld/Craftable,Mud.wav,089
+Mycelium,true,Yes (64),0.6,0.6,0,false,Overworld,Mycelium.wav,090
+Muddy Mangrove Roots,true,Yes (64),0.7,0.7,0,false,Overworld,MuddyMangroveRoots.wav,091
+Nether Bricks,true,Yes (64),6,2,0,false,Nether,NetherBricks.wav,092
+Mud Bricks,true,Yes (64),3,1.5,0,false,Overworld/Craftable,MudBricks.wav,093
+Nether Gold Ore,true,Yes (64),3,3,0,false,Nether,NetherGoldOre.wav,094
+Nether Wart Block,true,Yes (64),1,1,0,false,Nether/Craftable,NetherWartBlock.wav,095
+Warped Wart Block,true,Yes (64),1,1,0,false,Nether,WarpedWartBlock.wav,096
+Waxed Block of Copper,true,Yes (64),6,3,0,false,Craftable,WaxedCopperBlock.wav,097
+Packed Mud,true,Yes (64),0.5,0.5,0,false,Overworld/Craftable,PackedMud.wav,098
+Pearlescent,true,Yes (64),0.3,0.3,13,false,Overworld/Craftable,Pearlescent.wav,099
+Dropper,true,Yes (64),3.5,3.5,0,false,Overworld/Craftable,Dropper.wav,100
