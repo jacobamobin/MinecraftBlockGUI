@@ -435,8 +435,14 @@ public class BlockView3dGUI {
         addOverlayRectFar(root);
         addOverlayRectTop(root);
         addOverlayRect(root); // add layer for 3d cubes and text.
-        addText3D(root, "Block Name", 0, 0.5f, 0.2f,40 ); //String text, float x, float y, float z, float fontSize
-        addText3D(root, "Hello", -0.75f, 0.28f, 0f, 25 ); //String text, float x, float y, float z, float fontSize
+        addText3D(root, "Block Name", -0.9f, 0.42f, 0.2f,40 ); //String text, float x, float y, float z, float fontSize
+        addText3D(root, "BlastRes: ", -0.75f, 0.25f, 0f, 25 );
+        addText3D(root, "Hardness: ", -0.75f, 0.12f, 0f, 25 );
+        addText3D(root, "Renewable: ", -0.75f, 0.25f, 0f, 25 );
+        addText3D(root, "Flammable: ", -0.75f, 0.25f, 0f, 25 );
+        addText3D(root, "Dimension: ", -0.75f, 0.25f, 0f, 25 );
+        addText3D(root, "Craftable: ", -0.75f, 0.25f, 0f, 25 );
+        addText3D(root, "Luminious: ", -0.75f, 0.25f, 0f, 25 );
 
         // add sidebar LEFT text
     }
@@ -444,7 +450,7 @@ public class BlockView3dGUI {
     //Add a 3d text to the scene with root x y z and font size (Font size is absouloute and is not modified (note to self by jacob)
     private static void addText3D(BranchGroup root, String text, float x, float y, float z, float fontSize) {
         // Create a Text2D object with the specified text and font size
-        Text2D text2D = new Text2D(text, new Color3f(0f, 0f, 0f), "Helvetica", (int) (fontSize), Font.PLAIN); //111 is white
+        Text2D text2D = new Text2D(text, new Color3f(0f, 0f, 0f), "Arial", (int) (fontSize), Font.PLAIN); //111 is white
 
         // Create a Transform3D to position the text
         Transform3D transform = new Transform3D();
@@ -481,9 +487,8 @@ public class BlockView3dGUI {
         coloringAttributes.setColor(new Color3f(0.5f, 0.5f, 0.5f));
         overlayAppearance.setColoringAttributes(coloringAttributes);
 
-
         TransparencyAttributes transparencyAttributes = new TransparencyAttributes();
-        transparencyAttributes.setTransparencyMode(TransparencyAttributes.BLENDED);
+        transparencyAttributes.setTransparencyMode(TransparencyAttributes.NONE);
         transparencyAttributes.setTransparency(0.3f); // For example
         overlayAppearance.setTransparencyAttributes(transparencyAttributes);
 
@@ -515,13 +520,13 @@ public class BlockView3dGUI {
         coloringAttributes.setColor(new Color3f(0.5f, 0.5f, 0.5f));
         overlayAppearance.setColoringAttributes(coloringAttributes);
 
-        TransparencyAttributes transparencyAttributes = new TransparencyAttributes(TransparencyAttributes.BLENDED, 0.05f);
+        TransparencyAttributes transparencyAttributes = new TransparencyAttributes(TransparencyAttributes.NONE, 0.05f);
         overlayAppearance.setTransparencyAttributes(transparencyAttributes);
 
         // Create the geometry for the rectangle
         QuadArray overlayGeometry = new QuadArray(4, QuadArray.COORDINATES);
-        overlayGeometry.setCoordinate(0, new Point3f(-1f, 0.45f, 0f));
-        overlayGeometry.setCoordinate(1, new Point3f(1f, 0.45f, 0f));
+        overlayGeometry.setCoordinate(0, new Point3f(-1f, 0.47f, 0f));
+        overlayGeometry.setCoordinate(1, new Point3f(1f, 0.47f, 0f));
         overlayGeometry.setCoordinate(2, new Point3f(1f, 2f, 0f));
         overlayGeometry.setCoordinate(3, new Point3f(-1f, 2f, 0f));
 
