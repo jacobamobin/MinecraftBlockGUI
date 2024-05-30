@@ -98,7 +98,7 @@ public class BlockListGUI {
                             buttonFilePathOFF = "ViewPannelAssets\\Z-AON.png";
                         }
                         break;
-                    case "Stackable":
+                    case "Stackability":
                         buttonFilePath = "ViewPannelAssets\\Stack.png";
                         if (firstButton) {
                             buttonFilePathON = "ViewPannelAssets\\StackedON.png";
@@ -138,7 +138,7 @@ public class BlockListGUI {
                             buttonFilePathOFF = "ViewPannelAssets\\LeastON.png";
                         }
                         break;
-                    case "Renewable":
+                    case "Renewability":
                         buttonFilePath = "ViewPannelAssets\\Renewable.png";
                         if (firstButton) {
                             buttonFilePathON = "ViewPannelAssets\\TrueON.png";
@@ -158,7 +158,7 @@ public class BlockListGUI {
                             buttonFilePathOFF = "ViewPannelAssets\\FalseON.png";
                         }
                         break;
-                    case "Fire":
+                    case "Flammable":
                         buttonFilePath = "ViewPannelAssets\\Fire.png";
                         if (firstButton) {
                             buttonFilePathON = "ViewPannelAssets\\TrueON.png";
@@ -184,7 +184,7 @@ public class BlockListGUI {
                 }
 
                 if (isDropDownOpen) {
-                    String sortOption[] = {"Name", "Stack", "Dimension", "Hardness", "BlastRes", "Renewable", "Luminous", "Fire"};
+                    String sortOption[] = {"Name", "Stack", "Dimension", "Hardness", "BlastRes", "Renewability", "Luminous", "Flammable"};
                     int dropdownY = 50;
                     for (String option : sortOption) {
                         BufferedImage sortMethod = loadImage("ViewPannelAssets\\" + option + ".png");
@@ -293,7 +293,7 @@ public class BlockListGUI {
                 isDropDownOpen = false;
                 performSortAction("Name");
             } else if (isWithinButtonRange(x, y, 544, 819, 100, 150)) {
-                sortType = "Stackable";
+                sortType = "Stackability";
                 isDropDownOpen = false;
                 performSortAction("Stackability");
             } else if (isWithinButtonRange(x, y, 544, 819, 150, 200)) {
@@ -309,7 +309,7 @@ public class BlockListGUI {
                 isDropDownOpen = false;
                 performSortAction("BlastRes");
             } else if (isWithinButtonRange(x, y, 544, 819, 300, 350)) {
-                sortType = "Renewable";
+                sortType = "Renewability";
                 isDropDownOpen = false;
                 performSortAction("Renewability");
             } else if (isWithinButtonRange(x, y, 544, 819, 350, 400)) {
@@ -317,7 +317,7 @@ public class BlockListGUI {
                 isDropDownOpen = false;
                 performSortAction("Luminous");
             } else if (isWithinButtonRange(x, y, 544, 819, 400, 450)) {
-                sortType = "Fire";
+                sortType = "Flammable";
                 isDropDownOpen = false;
                 performSortAction("Flammable");
             } else {
