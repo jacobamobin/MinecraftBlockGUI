@@ -287,9 +287,15 @@ public class BlockListGUI {
 
 
             for (int i = 0; i < blocksArray.length; i++) {
+                parserAndReadin parser = new parserAndReadin();
+                ArrayList<Block> blocks = parser.readInData("data/Blocks.txt");
                 if(isWithinButtonRange(mouseX, mouseY, 5, 950, (scrollDist) + (i * 100) + 50, (scrollDist) + (i * 100) + 150) && !isDropDownOpen) {
-                    new Block block = blocksArray[i];
-                    SwingUtilities.invokeLater(BlockView3dGUI::blockView3dGUI(block));
+                    System.out.println(blocksArray[i]);
+                    Block block = parser.getBlockByName(blocks, blocksArray[i]);
+                    SwingUtilities.invokeLater(() -> {
+                        BlockView3dGUI view = new BlockView3dGUI();
+                        view.blockView3dGUI(block);
+                    });
                 }
             }
 
