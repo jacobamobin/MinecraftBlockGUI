@@ -40,7 +40,7 @@ public class Main {
                     String stackability = data[2];
                     double blastres = Double.parseDouble(data[3]);
                     double hardness = Double.parseDouble(data[4]);
-                    String luminous = data[5];
+                    double luminous = Double.parseDouble(data[5]);
                     boolean flammable = Boolean.parseBoolean(data[6]);
                     String dimension = data[7];
                     String SFX = data[8];

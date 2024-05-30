@@ -184,7 +184,7 @@ public class BlockListGUI {
                 }
 
                 if (isDropDownOpen) {
-                    String sortOption[] = {"Name", "Stack", "Dimension", "Hardness", "BlastRes", "Renewability", "Luminous", "Flammable"};
+                    String sortOption[] = {"Name", "Stack", "Dimension", "Hardness", "BlastRes", "Renewable", "Luminous", "Fire"};
                     int dropdownY = 50;
                     for (String option : sortOption) {
                         BufferedImage sortMethod = loadImage("ViewPannelAssets\\" + option + ".png");
