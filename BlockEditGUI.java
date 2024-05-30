@@ -242,11 +242,15 @@ public class BlockEditGUI {
             public void mouseWheelMoved(MouseWheelEvent e) {
                 int scrollAmount = e.getWheelRotation();
                 if (scrollAmount < 0) {
-                    scrollDist += 20;
+                    if(scrollDist > 0) {
 
+                    } else {
+                        scrollDist += 20;
+                    }
                 } else if (scrollAmount > 0) {
                     scrollDist -= 20;
                 }
+                canvas2.repaint();
             }
         });
 
