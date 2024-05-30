@@ -3,6 +3,8 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -84,6 +86,7 @@ public class MainMenuGUI {
             }
         });
 
+
         // Add the canvas panel to the frame
         frame.getContentPane().add(canvasPanel);
 
@@ -92,11 +95,14 @@ public class MainMenuGUI {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
+
         // Set up a timer to update and repaint the canvas at a fixed interval
         Timer timer = new Timer(1000 / FRAME_RATE, e -> {
             canvasPanel.repaint(); // Repaint the canvas every frame
         });
         timer.start(); // Start the timer
+
+
     }
 
     private static void handleClickEvent(int x, int y) {

@@ -4,6 +4,8 @@ import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -30,7 +32,8 @@ public class BlockListGUI {
         ArrayList<Block> blocks = parser.readInData("data/Blocks.txt");
         blocksArray = sorter.sortBlockParameter("name", "asc"); // Initial sorting
         JFrame newFrame = new JFrame("View Blocks");
-        newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        newFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Change default close operation
+
         newFrame.setSize(Main.FRAME_WIDTH, Main.FRAME_HEIGHT);
         newFrame.setResizable(false);
 
@@ -42,10 +45,16 @@ public class BlockListGUI {
                 BufferedImage backgroundImage = loadImage("ViewPannelAssets\\Background.png");
                 if (backgroundImage != null) {
                     g.drawImage(backgroundImage, 0, -2000 + 50 + (scrollDist) / 4, 1080, 10000, this);
-                }                
+                }
+
+                BufferedImage overlay = loadImage("ViewPannelAssets\\Sidebar.png");
+                if (overlay != null) {
+                    g.drawImage(overlay, 0, 0, getWidth(), getHeight(), this);
+                }
 
                 Font font = new Font("Arial", Font.PLAIN, 60);
                 int numberOfObjects = 0;
+                int sizeOfFrontPng = 0;
 
                 for (int i = 0; i < blocksArray.length; i++) {
                     if (isWithinButtonRange(mouseX, mouseY, 5, 950, (scrollDist) + (i * 100) + 50, (scrollDist) + (i * 100) + 150) && !isDropDownOpen) {
@@ -53,7 +62,8 @@ public class BlockListGUI {
                         if (highlighted != null) {
                             g.drawImage(highlighted, 0 - 5, (scrollDist) + (i * 100) - 5, getWidth() + 10, getHeight() + 10, this);
                             g.setColor(Color.WHITE);
-                            font = new Font("Arial", Font.PLAIN, 70);
+                            font = new Font("Arial", Font.PLAIN, 60);
+                            sizeOfFrontPng = 70;
                         }
 
                     } else {
@@ -61,16 +71,35 @@ public class BlockListGUI {
                         if (unselected != null) {
                             g.drawImage(unselected, 0, (scrollDist) + (i * 100), getWidth(), getHeight(), this);
                             g.setColor(Color.LIGHT_GRAY);
-                            font = new Font("Arial", Font.PLAIN, 60);
+                            font = new Font("Arial", Font.PLAIN, 50);
+                            sizeOfFrontPng = 60;
                         }
                     }
 
                     g.setFont(font);
                     int y = (scrollDist) + (i * 100) + 100 + 20; // Adjust Y position based on loop iteration
                     String text = String.valueOf(i + 1);
-                    g.drawString(text, 30, y);
+                    g.drawString(text, 990, y);
                     text = blocksArray[i];
-                    g.drawString(text, 150, y);
+                    g.drawString(text, 110, y);
+                    parserAndReadin parser = new parserAndReadin();
+                    ArrayList<Block> blocks = parser.readInData("data/Blocks.txt");
+                    Block block = parser.getBlockByName(blocks, blocksArray[i]);
+                    font = new Font("Arial", Font.PLAIN, 20); //font for details
+                    g.setFont(font);
+                    String flammableInfo = ""; //get flammable info first
+                    if (block.getFlammable())
+                        flammableInfo = "This block also catches fire.";
+                    else
+                        flammableInfo = "This block is not flammable.";
+                    g.drawString("It spawns in the " + block.getDimension() + ". Stackability: " + block.getStackability() +"." , 450, y-40);
+                    g.drawString("Hardness: " + block.getHardness() + ". Blast Resistance: " + block.getBlastres() + "." , 450, y+25-40);
+                    g.drawString("Is Renewable: " + block.getRenewability() + ". " + flammableInfo, 450, y+50-40); //bild da strings
+
+                    BufferedImage blockFront = loadImage("object\\" + block.getName() + "\\" + "front.jpg.jpg"); // add front png of block to block
+                    if (blockFront != null) {
+                        g.drawImage(blockFront, 30, y-50, sizeOfFrontPng, sizeOfFrontPng, this);
+                    }
 
                     numberOfObjects += 1;
                 }
@@ -139,7 +168,7 @@ public class BlockListGUI {
                         }
                         break;
                     case "Renewability":
-                        buttonFilePath = "ViewPannelAssets\\Renewable.png";
+                        buttonFilePath = "ViewPannelAssets\\Renewability.png";
                         if (firstButton) {
                             buttonFilePathON = "ViewPannelAssets\\TrueON.png";
                             buttonFilePathOFF = "ViewPannelAssets\\FalseOFF.png";
@@ -184,7 +213,7 @@ public class BlockListGUI {
                 }
 
                 if (isDropDownOpen) {
-                    String sortOption[] = {"Name", "Stack", "Dimension", "Hardness", "BlastRes", "Renewable", "Luminous", "Fire"}; //IGNORE CHU
+                    String sortOption[] = {"Name", "Stack", "Dimension", "Hardness", "BlastRes", "Renewability", "Luminous", "Flammable"}; //IGNORE CHU
                     int dropdownY = 50;
                     for (String option : sortOption) {
                         BufferedImage sortMethod = loadImage("ViewPannelAssets\\" + option + ".png");
@@ -193,6 +222,11 @@ public class BlockListGUI {
                         }
                         dropdownY += 50;
                     }
+                }
+
+                BufferedImage tooltip = loadImage("ViewPannelAssets\\Tooltip.png");
+                if (tooltip != null) {
+                    g.drawImage(tooltip, 0, 0, 1080, 720, this);
                 }
             }
         };
@@ -229,6 +263,15 @@ public class BlockListGUI {
                     scrollDist -= 20;
                 }
                 blankCanvasPanel.repaint();
+            }
+        });
+
+        newFrame.addWindowListener(new WindowAdapter() { //when the window closes dont close everything, just go back to the main menu
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // Action to perform when the window is closing
+                SwingUtilities.invokeLater(MainMenuGUI::mainMenu); // Opens the main menu again
+                newFrame.dispose(); // Dispose of the current frame
             }
         });
         

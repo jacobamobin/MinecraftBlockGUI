@@ -22,7 +22,7 @@ public class BlockView3dGUI {
         block2 = block;
 
         JFrame frame = new JFrame("3D Canvas Example");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(1080, 720);
 
         // Create panels
@@ -97,7 +97,7 @@ public class BlockView3dGUI {
         transformGroup.setCapability(TransformGroup.ALLOW_TRANSFORM_READ);
 
         // Create textured cube
-        Box box = new Box(0.25f, 0.25f, 0.25f, Box.GENERATE_TEXTURE_COORDS, new Appearance());
+        Box box = new Box(0.3f, 0.3f, 0.3f, Box.GENERATE_TEXTURE_COORDS, new Appearance());
 
         // Apply textures to each side
         setTexture(box, block2.getName());
