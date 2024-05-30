@@ -8,7 +8,7 @@ Deepslate Tiles,false,Yes (64),6,3.5,0,false,Craftable,DeepslateTiles.wav,007
 Prismarine,true,Yes (64),6,1.5,0,false,Overworld,Prismarine.wav,008
 Cobblestone,true,Yes (64),6,2,0,false,Overworld,Cobblestone.wav,009
 Piston,true,Yes (64),0.5,1.5,0,false,Craftable,Piston.wav,010
-Bedrock,false,Yes (64),3600000,5,0,false,Overworld/Nether,Bedrock.wav,011
+Bedrock,false,Yes (64),3600000,500000,0,false,Overworld/Nether,Bedrock.wav,011
 Sculk,true,Yes (64),0.2,0.2,0,false,Overworld,Sculk.wav,012
 Sponge,true,Yes (64),0.6,0.6,0,false,Overworld,Sponge.wav,013
 End stone,true,Yes (64),9,3,0,false,End,Endstone.wav,014
@@ -25,7 +25,7 @@ Redstone Lamp,true,Yes (64),0.3,0.3,15,false,Craftable,RedstoneLamp.wav,024
 Sea lantern,true,Yes (64),0.3,0.3,15,false,Overworld/Craftable,Sealantern.wav,025
 Soul Sand,true,Yes (64),0.5,0.5,0,false,Nether,SoulSand.wav,026
 Calcite,true,Yes (64),0.75,0.75,0,false,Overworld,Calcite.wav,027
-Command block,false,Yes (64),3600000,5,0,false,Dev console,Commandblock.wav,028
+Command block,false,Yes (64),3600000,500000,0,false,Dev console,Commandblock.wav,028
 Lodestone,false,Yes (64),6,1.5,0,false,Craftable,Lodestone.wav,029
 Magma block,true,Yes (64),0.5,0.5,9,false,Nether,Magmablock.wav,030
 Crafting Table,true,Yes (64),2.5,2.5,0,false,Craftable,CraftingTable.wav,031
