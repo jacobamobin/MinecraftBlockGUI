@@ -98,6 +98,11 @@ public class BlockView3dGUI {
         // Apply textures to each side
         setTexture(box, "Crafting Table");
 
+        Transform3D translation = new Transform3D();
+        Vector3f vector = new Vector3f(0.5f, 0.0f, 0.0f);
+        translation.setTranslation(vector);
+
+
         // Add the cube to the transform group
         transformGroup.addChild(box);
 

@@ -25,7 +25,7 @@ public class BlockListGUI {
     private static ArrayList<Block> blocks;
 
     public static void blockListGUI() {
-        
+
         JFrame newFrame = new JFrame("View Blocks");
         newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         newFrame.setSize(Main.FRAME_WIDTH, Main.FRAME_HEIGHT);
@@ -119,21 +119,21 @@ public class BlockListGUI {
                     case "Hardness":
                         buttonFilePath = "ViewPannelAssets\\Hardness.png";
                         if (firstButton) {
-                            buttonFilePathON = "ViewPannelAssets\\HardestON.png";
-                            buttonFilePathOFF = "ViewPannelAssets\\SoftestOFF.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\HardestON.png";
+                            buttonFilePathON = "ViewPannelAssets\\SoftestOFF.png";
                         } else {
-                            buttonFilePathON = "ViewPannelAssets\\HardestOFF.png";
-                            buttonFilePathOFF = "ViewPannelAssets\\SoftestON.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\HardestOFF.png";
+                            buttonFilePathON = "ViewPannelAssets\\SoftestON.png";
                         }
                         break;
                     case "BlastRes":
                         buttonFilePath = "ViewPannelAssets\\BlastRes.png";
                         if (firstButton) {
-                            buttonFilePathON = "ViewPannelAssets\\MostON.png";
-                            buttonFilePathOFF = "ViewPannelAssets\\LeastOFF.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\MostON.png";
+                            buttonFilePathON = "ViewPannelAssets\\LeastOFF.png";
                         } else {
-                            buttonFilePathON = "ViewPannelAssets\\MostOFF.png";
-                            buttonFilePathOFF = "ViewPannelAssets\\LeastON.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\MostOFF.png";
+                            buttonFilePathON = "ViewPannelAssets\\LeastON.png";
                         }
                         break;
                     case "Renewable":
@@ -149,11 +149,11 @@ public class BlockListGUI {
                     case "Luminous":
                         buttonFilePath = "ViewPannelAssets\\Luminous.png";
                         if (firstButton) {
-                            buttonFilePathON = "ViewPannelAssets\\TrueON.png";
-                            buttonFilePathOFF = "ViewPannelAssets\\FalseOFF.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\TrueON.png";
+                            buttonFilePathON = "ViewPannelAssets\\FalseOFF.png";
                         } else {
-                            buttonFilePathON = "ViewPannelAssets\\TrueOFF.png";
-                            buttonFilePathOFF = "ViewPannelAssets\\FalseON.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\TrueOFF.png";
+                            buttonFilePathON = "ViewPannelAssets\\FalseON.png";
                         }
                         break;
                     case "Fire":
