@@ -98,16 +98,18 @@ public class BlockView3dGUI {
         // Apply textures to each side
         setTexture(box, "Crafting Table");
 
-        Transform3D translation = new Transform3D();
-        Vector3f vector = new Vector3f(0.5f, 0.0f, 0.0f);
-        translation.setTranslation(vector);
+        // Apply rotation
+        Transform3D rotation = new Transform3D();
+        rotation.rotZ(Math.PI / 2); // 90 degrees rotation around x-axis
+        TransformGroup rotationGroup = new TransformGroup(rotation);
+        rotationGroup.addChild(box);
 
-
-        // Add the cube to the transform group
-        transformGroup.addChild(box);
+        // Add the rotated cube to the transform group
+        transformGroup.addChild(rotationGroup);
 
         return transformGroup;
     }
+
 
     // New method to create specific overlay cubes with different textures
     private static TransformGroup createSpecificOverlayCube(String name) {
@@ -264,8 +266,14 @@ public class BlockView3dGUI {
         // Apply textures to each side
         setTexture(box, texture);
 
-        // Add the cube to the transform group
-        transformGroup.addChild(box);
+        // Create a rotation interpolator
+        Transform3D rotation = new Transform3D();
+        rotation.rotZ(Math.PI / 2); // 90 degrees rotation around x-axis
+        TransformGroup rotationGroup = new TransformGroup(rotation);
+        rotationGroup.addChild(box);
+
+        // Add the rotated cube to the transform group
+        transformGroup.addChild(rotationGroup);
 
         return transformGroup;
     }
@@ -441,13 +449,13 @@ public class BlockView3dGUI {
         addOverlayRectTop(root);
         addOverlayRect(root); // add layer for 3d cubes and text.
         addText3D(root, "Block Name", -0.9f, 0.42f, 0.2f,40 ); //String text, float x, float y, float z, float fontSize
-        addText3D(root, "BlastRes: ", -0.75f, 0.25f, 0f, 25 );
-        addText3D(root, "Hardness: ", -0.75f, 0.12f, 0f, 25 );
-        addText3D(root, "Renewable: ", -0.75f, 0.25f, 0f, 25 );
-        addText3D(root, "Flammable: ", -0.75f, 0.25f, 0f, 25 );
-        addText3D(root, "Dimension: ", -0.75f, 0.25f, 0f, 25 );
-        addText3D(root, "Craftable: ", -0.75f, 0.25f, 0f, 25 );
-        addText3D(root, "Luminious: ", -0.75f, 0.25f, 0f, 25 );
+        addText3D(root, "BlastRes: ", -0.75f, 0.27f, 0f, 15 );
+        addText3D(root, "Hardness: ", -0.75f, 0.14f, 0f, 15 );
+        addText3D(root, "Renewable: ", -0.75f, 0.01f, 0f, 15 );
+        addText3D(root, "Flammable: ", -0.75f, -0.12f, 0f, 15 );
+        addText3D(root, "Dimension: ", -0.75f, -0.25f, 0f, 15 );
+        addText3D(root, "Craftable: ", -0.75f, -0.38f, 0f, 15 );
+        addText3D(root, "Luminious: ", -0.75f, -0.51f, 0f, 15 );
 
         // add sidebar LEFT text
     }
@@ -477,6 +485,14 @@ public class BlockView3dGUI {
             TransformGroup cubeTransformGroup = createSpecificOverlayCube(name[i]);
             Transform3D transform = new Transform3D();
             transform.setTranslation(new Vector3f(-0.82f, 0.3f - i * spacing, 0.1f)); // Position the cubes vertically
+
+            // Create a new Transform3D for rotation
+            Transform3D rotation = new Transform3D();
+            rotation.rotZ(Math.PI / 2); // 90 degrees rotation around x-axis
+
+            // Combine the rotation and translation transforms
+            transform.mul(rotation);
+
             cubeTransformGroup.setTransform(transform);
             overlayTransformGroup.addChild(cubeTransformGroup);
         }
