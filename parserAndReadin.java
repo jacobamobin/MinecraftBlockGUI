@@ -45,14 +45,23 @@ public class parserAndReadin {
             }
         }
     }
+    
     //Remove entry function
     public void removeEntry(ArrayList<Block> blocks, String blockName) {
         blocks.removeIf(block -> block.getName().equals(blockName));
     }
+    
     //Add entry function
-    public void addEntry(ArrayList<Block> blocks, Block newBlock) {
+    public boolean addEntry(ArrayList<Block> blocks, Block newBlock) {
+        for (Block block : blocks) {
+            if (block.getName().equals(newBlock.getName())) {
+                return false; // Block with the same name already exists
+            }
+        }
         blocks.add(newBlock);
+        return true; // Block added successfully
     }
+    
     // Gets and sends a list of a certain given parameter.
     public Object getBlockParameterList(ArrayList<Block> blocks, String parameterType) {
         Object[] parameterList = new Object[blocks.size()];
@@ -101,4 +110,13 @@ public class parserAndReadin {
             return null;
         }
     }
+    
+    public Block getBlockByName(ArrayList<Block> blocks, String blockName) {
+        for (Block block : blocks) {
+            if (block.getName().equalsIgnoreCase(blockName)) {
+                return block;
+            }
+        }
+        return null;
+    }   
 }
