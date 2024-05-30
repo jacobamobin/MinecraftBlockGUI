@@ -184,7 +184,7 @@ public class BlockListGUI {
                 }
 
                 if (isDropDownOpen) {
-                    String sortOption[] = {"Name", "Stack", "Dimension", "Hardness", "BlastRes", "Renewable", "Luminous", "Fire"};
+                    String sortOption[] = {"Name", "Stack", "Dimension", "Hardness", "BlastRes", "Renewable", "Luminous", "Fire"}; //IGNORE CHU
                     int dropdownY = 50;
                     for (String option : sortOption) {
                         BufferedImage sortMethod = loadImage("ViewPannelAssets\\" + option + ".png");
@@ -220,7 +220,11 @@ public class BlockListGUI {
             public void mouseWheelMoved(MouseWheelEvent e) {
                 int scrollAmount = e.getWheelRotation();
                 if (scrollAmount < 0) {
-                    scrollDist += 20;
+                    if(scrollDist > 0) {
+
+                    } else {
+                        scrollDist += 20;
+                    }
                 } else if (scrollAmount > 0) {
                     scrollDist -= 20;
                 }
@@ -292,26 +296,32 @@ public class BlockListGUI {
                 sortType = "Name";
                 isDropDownOpen = false;
                 performSortAction("Name");
+                scrollDist = 0;
             } else if (isWithinButtonRange(x, y, 544, 819, 100, 150)) {
                 sortType = "Stackability";
                 isDropDownOpen = false;
                 performSortAction("Stackability");
+                scrollDist = 0;
             } else if (isWithinButtonRange(x, y, 544, 819, 150, 200)) {
                 sortType = "Dimension";
                 isDropDownOpen = false;
                 performSortAction("Dimension");
+                scrollDist = 0;
             } else if (isWithinButtonRange(x, y, 544, 819, 200, 250)) {
                 sortType = "Hardness";
                 isDropDownOpen = false;
                 performSortAction("Hardness");
+                scrollDist = 0;
             } else if (isWithinButtonRange(x, y, 544, 819, 250, 300)) {
                 sortType = "BlastRes";
                 isDropDownOpen = false;
                 performSortAction("BlastRes");
+                scrollDist = 0;
             } else if (isWithinButtonRange(x, y, 544, 819, 300, 350)) {
                 sortType = "Renewability";
                 isDropDownOpen = false;
                 performSortAction("Renewability");
+                scrollDist = 0;
             } else if (isWithinButtonRange(x, y, 544, 819, 350, 400)) {
                 sortType = "Luminous";
                 isDropDownOpen = false;
@@ -320,8 +330,10 @@ public class BlockListGUI {
                 sortType = "Flammable";
                 isDropDownOpen = false;
                 performSortAction("Flammable");
+                scrollDist = 0;
             } else {
                 isDropDownOpen = false;
+                scrollDist = 0;
             }
         }
         blankCanvasPanel.repaint();
