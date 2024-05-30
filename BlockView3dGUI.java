@@ -17,7 +17,6 @@ import javax.swing.*;
 public class BlockView3dGUI {
 
     public static void blockView3dGUI(Block block) {
-        //Block block = new Block("null", true, "True", 0.2, 0.2, 0.2, true, "String", "String", "String");
 
         JFrame frame = new JFrame("3D Canvas Example");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

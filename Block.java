@@ -38,9 +38,9 @@ class Block {
         else
             flammableInfo = "This block is not flammable.";
         
-        return name + ". \nIt spawns in the " + dimension +".\n" + "Stackability: " + stackable + "\nHardness: " + hardness
-                    + "\nBlast Resistance: " + blastRes + "\nIs Renewable: "
-                    + renewable + "\n" + flammableInfo + "\n\n";
+        return "It spawns in the " + dimension +".  " + "Stackability: " + stackable + "  Hardness: " + hardness
+                    + "\nBlast Resistance: " + blastRes + "  Is Renewable: "
+                    + renewable + ". " + flammableInfo;
                      }
     //Accessor and Mutator methods (IDK how to put this anywhere else. This'll have to do)
     public String getName() 
