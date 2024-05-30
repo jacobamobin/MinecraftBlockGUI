@@ -1,4 +1,3 @@
-//The gui in this file is by Jacob Mobin, The connection to the block class and logic is Lucas Chu
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
@@ -8,29 +7,34 @@ import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
+import java.util.ArrayList;
 
 public class BlockListGUI {
 
     private static boolean isDropDownOpen = false;
+    private static String sortOrder = "asc";
     private static boolean firstButton = true;
     private static String sortType = "Name";
     protected static int mouseY;
     protected static int mouseX;
     private static int scrollDist = 0;
     private static Map<String, BufferedImage> imageCache = new HashMap<>();
-    private static ArrayList<Block> blocks;
-
+    private static String[] blocksArray;
+    private static JPanel blankCanvasPanel;
+     
     public static void blockListGUI() {
-
+        parserAndReadin parser = new parserAndReadin();
+        performSortingMethods sorter = new performSortingMethods();
+        ArrayList<Block> blocks = parser.readInData("data/Blocks.txt");
+        blocksArray = sorter.sortBlockParameter("name", "asc"); // Initial sorting
         JFrame newFrame = new JFrame("View Blocks");
         newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         newFrame.setSize(Main.FRAME_WIDTH, Main.FRAME_HEIGHT);
         newFrame.setResizable(false);
-        JPanel blankCanvasPanel = new JPanel() {
+
+        blankCanvasPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -38,13 +42,12 @@ public class BlockListGUI {
                 BufferedImage backgroundImage = loadImage("ViewPannelAssets\\Background.png");
                 if (backgroundImage != null) {
                     g.drawImage(backgroundImage, 0, -2000 + 50 + (scrollDist) / 4, 1080, 10000, this);
-                }
+                }                
 
-                String testArray[] = {"Grass", "Dirt", "Wood", "Sand", "Grass", "Dirt", "Wood", "Sand", "Grass", "Dirt", "Wood", "Sand"};
                 Font font = new Font("Arial", Font.PLAIN, 60);
                 int numberOfObjects = 0;
 
-                for (int i = 0; i < testArray.length; i++) {
+                for (int i = 0; i < blocksArray.length; i++) {
                     if (isWithinButtonRange(mouseX, mouseY, 5, 950, (scrollDist) + (i * 100) + 50, (scrollDist) + (i * 100) + 150) && !isDropDownOpen) {
                         BufferedImage highlighted = loadImage("ViewPannelAssets\\BackGroundOfBlockSelected.png");
                         if (highlighted != null) {
@@ -66,7 +69,7 @@ public class BlockListGUI {
                     int y = (scrollDist) + (i * 100) + 100 + 20; // Adjust Y position based on loop iteration
                     String text = String.valueOf(i + 1);
                     g.drawString(text, 30, y);
-                    text = testArray[i];
+                    text = blocksArray[i];
                     g.drawString(text, 150, y);
 
                     numberOfObjects += 1;
@@ -81,7 +84,6 @@ public class BlockListGUI {
                     g.drawImage(quantityBG, 0, 0, getWidth(), getHeight(), this);
                 }
 
-                // Draw Sort Type
                 String buttonFilePath = ""; // File path for dropdown button
                 String buttonFilePathON = ""; // File path for top
                 String buttonFilePathOFF = ""; // File path for bottom
@@ -119,21 +121,21 @@ public class BlockListGUI {
                     case "Hardness":
                         buttonFilePath = "ViewPannelAssets\\Hardness.png";
                         if (firstButton) {
-                            buttonFilePathOFF = "ViewPannelAssets\\HardestON.png";
-                            buttonFilePathON = "ViewPannelAssets\\SoftestOFF.png";
+                            buttonFilePathON = "ViewPannelAssets\\HardestON.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\SoftestOFF.png";
                         } else {
-                            buttonFilePathOFF = "ViewPannelAssets\\HardestOFF.png";
-                            buttonFilePathON = "ViewPannelAssets\\SoftestON.png";
+                            buttonFilePathON = "ViewPannelAssets\\HardestOFF.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\SoftestON.png";
                         }
                         break;
                     case "BlastRes":
                         buttonFilePath = "ViewPannelAssets\\BlastRes.png";
                         if (firstButton) {
-                            buttonFilePathOFF = "ViewPannelAssets\\MostON.png";
-                            buttonFilePathON = "ViewPannelAssets\\LeastOFF.png";
+                            buttonFilePathON = "ViewPannelAssets\\MostON.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\LeastOFF.png";
                         } else {
-                            buttonFilePathOFF = "ViewPannelAssets\\MostOFF.png";
-                            buttonFilePathON = "ViewPannelAssets\\LeastON.png";
+                            buttonFilePathON = "ViewPannelAssets\\MostOFF.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\LeastON.png";
                         }
                         break;
                     case "Renewable":
@@ -149,11 +151,11 @@ public class BlockListGUI {
                     case "Luminous":
                         buttonFilePath = "ViewPannelAssets\\Luminous.png";
                         if (firstButton) {
-                            buttonFilePathOFF = "ViewPannelAssets\\TrueON.png";
-                            buttonFilePathON = "ViewPannelAssets\\FalseOFF.png";
+                            buttonFilePathON = "ViewPannelAssets\\TrueON.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\FalseOFF.png";
                         } else {
-                            buttonFilePathOFF = "ViewPannelAssets\\TrueOFF.png";
-                            buttonFilePathON = "ViewPannelAssets\\FalseON.png";
+                            buttonFilePathON = "ViewPannelAssets\\TrueOFF.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\FalseON.png";
                         }
                         break;
                     case "Fire":
@@ -219,10 +221,10 @@ public class BlockListGUI {
                 int scrollAmount = e.getWheelRotation();
                 if (scrollAmount < 0) {
                     scrollDist += 20;
-
                 } else if (scrollAmount > 0) {
                     scrollDist -= 20;
                 }
+                blankCanvasPanel.repaint();
             }
         });
         
@@ -234,7 +236,6 @@ public class BlockListGUI {
         timer.start();
     }
 
-    
     private static BufferedImage loadImage(String filename) {
         if (imageCache.containsKey(filename)) {
             return imageCache.get(filename);
@@ -254,7 +255,6 @@ public class BlockListGUI {
         return mouseX > buttonX && mouseX < buttonWidth && mouseY > buttonY && mouseY < buttonHeight;
     }
 
-    // Define a class to represent each sorting type with its associated file paths
     static class SortType {
         String type;
         String buttonFilePath;
@@ -270,66 +270,78 @@ public class BlockListGUI {
     }
 
     private static void handleClickEventSort(int x, int y) {
-        if(isDropDownOpen == false) {
-            if(isWithinButtonRange(x, y, 544, 819, 0, 50)) {
+        if (!isDropDownOpen) {
+            if (isWithinButtonRange(x, y, 544, 819, 0, 50)) {
                 isDropDownOpen = true;
-                /* 
-                if(sortType == "Name") {
-                    sortType = "Dimension";
-                } else if (sortType == "Dimension") {
-                    sortType = "Hardness";
-                } else if (sortType == "Hardness") {
-                    sortType = "BlastRes";
-                } else if (sortType == "BlastRes") {
-                    sortType = "Luminous";
-                } else if (sortType == "Luminous") {
-                    sortType = "Renewable";
-                } else if (sortType == "Renewable") {
-                    sortType = "Fire";
-                } else if (sortType == "Fire") {
-                    sortType = "Name";
-                } else {
-                    sortType = "Name";
-                } */
-                    
-            } else if(isWithinButtonRange(x, y, 820, 950, 0, 50)) {
+            } else if (isWithinButtonRange(x, y, 820, 950, 0, 50)) {
                 firstButton = true;
+                performSortAction(sortType);
             } else if (isWithinButtonRange(x, y, 950, 1080, 0, 50)) {
                 firstButton = false;
+                performSortAction(sortType);
             }
-            // add logic for block selection
-        } else if (isDropDownOpen == true) {
-            if(isWithinButtonRange(x, y, 820, 950, 0, 50)) {
+            handleBlockSelection(x, y);
+        } else {
+            if (isWithinButtonRange(x, y, 820, 950, 0, 50)) {
                 firstButton = true;
+                performSortAction(sortType);
             } else if (isWithinButtonRange(x, y, 950, 1080, 0, 50)) {
                 firstButton = false;
+                performSortAction(sortType);
             } else if (isWithinButtonRange(x, y, 544, 819, 50, 100)) { 
                 sortType = "Name";
                 isDropDownOpen = false;
-              } else if (isWithinButtonRange(x, y, 544, 819, 100, 150)) {
+                performSortAction("Name");
+            } else if (isWithinButtonRange(x, y, 544, 819, 100, 150)) {
                 sortType = "Stackable";
                 isDropDownOpen = false;
+                performSortAction("Stackability");
             } else if (isWithinButtonRange(x, y, 544, 819, 150, 200)) {
                 sortType = "Dimension";
                 isDropDownOpen = false;
+                performSortAction("Dimension");
             } else if (isWithinButtonRange(x, y, 544, 819, 200, 250)) {
                 sortType = "Hardness";
                 isDropDownOpen = false;
-            } else if (isWithinButtonRange(x, y, 544, 819,250, 300)) {
+                performSortAction("Hardness");
+            } else if (isWithinButtonRange(x, y, 544, 819, 250, 300)) {
                 sortType = "BlastRes";
                 isDropDownOpen = false;
+                performSortAction("BlastRes");
             } else if (isWithinButtonRange(x, y, 544, 819, 300, 350)) {
                 sortType = "Renewable";
                 isDropDownOpen = false;
+                performSortAction("Renewability");
             } else if (isWithinButtonRange(x, y, 544, 819, 350, 400)) {
                 sortType = "Luminous";
                 isDropDownOpen = false;
-            } else if (isWithinButtonRange(x, y, 544, 819, 450, 500)) {
+                performSortAction("Luminous");
+            } else if (isWithinButtonRange(x, y, 544, 819, 400, 450)) {
                 sortType = "Fire";
                 isDropDownOpen = false;
+                performSortAction("Flammable");
             } else {
                 isDropDownOpen = false;
             }
         }
+        blankCanvasPanel.repaint();
+    }
+
+    // Add the action to perform when a sort type is selected
+    private static void performSortAction(String sortType) {
+        performSortingMethods sorter = new performSortingMethods();
+        if (firstButton == false) {
+            sortOrder = "desc";
+        } else {
+            sortOrder = "asc";
+        }
+        blocksArray = sorter.sortBlockParameter(sortType, sortOrder);
+    }
+    
+    // Add logic for handling selection
+    private static void handleBlockSelection(int x, int y) {
+        // Add logic for handling selection
+        System.out.println("selection at: " + x + ", " + y);
+        // Determine the block based on x, y coordinates and handle accordingly
     }
 }
