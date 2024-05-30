@@ -16,7 +16,9 @@ import javax.swing.*;
 
 public class BlockView3dGUI {
 
-    public static void blockView3dGUI() {
+    public static void blockView3dGUI(Block block) {
+        //Block block = new Block("null", true, "True", 0.2, 0.2, 0.2, true, "String", "String", "String");
+
         JFrame frame = new JFrame("3D Canvas Example");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1080, 720);
@@ -448,7 +450,7 @@ public class BlockView3dGUI {
         addOverlayRectFar(root);
         addOverlayRectTop(root);
         addOverlayRect(root); // add layer for 3d cubes and text.
-        addText3D(root, "Block Name", -0.9f, 0.42f, 0.2f,40 ); //String text, float x, float y, float z, float fontSize
+        addText3D(root, "String", -0.9f, 0.42f, 0.2f,40 ); //String text, float x, float y, float z, float fontSize
         addText3D(root, "BlastRes: ", -0.75f, 0.27f, 0f, 15 );
         addText3D(root, "Hardness: ", -0.75f, 0.14f, 0f, 15 );
         addText3D(root, "Renewable: ", -0.75f, 0.01f, 0f, 15 );

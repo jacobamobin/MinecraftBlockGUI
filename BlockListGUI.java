@@ -284,7 +284,15 @@ public class BlockListGUI {
                 firstButton = false;
                 performSortAction(sortType);
             }
-            handleBlockSelection(x, y);
+
+
+            for (int i = 0; i < blocksArray.length; i++) {
+                if(isWithinButtonRange(mouseX, mouseY, 5, 950, (scrollDist) + (i * 100) + 50, (scrollDist) + (i * 100) + 150) && !isDropDownOpen) {
+                    System.out.println(blocksArray[i]);
+                    SwingUtilities.invokeLater(BlockView3dGUI::blockView3dGUI(blocksArray[i]));
+                }
+            }
+
         } else {
             if (isWithinButtonRange(x, y, 820, 950, 0, 50)) {
                 firstButton = true;
