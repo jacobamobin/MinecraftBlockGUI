@@ -52,7 +52,7 @@ class Block {
         this.name = name;
     }
 
-    public boolean isRenewability() 
+    public boolean getRenewability() 
     {
         return renewable;
     }
@@ -92,17 +92,17 @@ class Block {
         this.hardness = hardness;
     }
 
-    public String getLuminous() 
+    public double getLuminous() 
     {
         return luminous;
     }
 
-    public void setLuminous(String luminous) 
+    public void setLuminous(double luminous) 
     {
         this.luminous = luminous;
     }
 
-    public boolean isFlammable() {
+    public boolean getFlammable() {
         return flammable;
     }
 
