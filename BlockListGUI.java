@@ -288,8 +288,8 @@ public class BlockListGUI {
 
             for (int i = 0; i < blocksArray.length; i++) {
                 if(isWithinButtonRange(mouseX, mouseY, 5, 950, (scrollDist) + (i * 100) + 50, (scrollDist) + (i * 100) + 150) && !isDropDownOpen) {
-                    System.out.println(blocksArray[i]);
-                    SwingUtilities.invokeLater(BlockView3dGUI::blockView3dGUI(blocksArray[i]));
+                    new Block block = blocksArray[i];
+                    SwingUtilities.invokeLater(BlockView3dGUI::blockView3dGUI(block));
                 }
             }
 
