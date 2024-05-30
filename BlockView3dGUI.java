@@ -16,7 +16,10 @@ import javax.swing.*;
 
 public class BlockView3dGUI {
 
+    private static Block block2;
+
     public static void blockView3dGUI(Block block) {
+        block2 = block;
 
         JFrame frame = new JFrame("3D Canvas Example");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -97,7 +100,7 @@ public class BlockView3dGUI {
         Box box = new Box(0.25f, 0.25f, 0.25f, Box.GENERATE_TEXTURE_COORDS, new Appearance());
 
         // Apply textures to each side
-        setTexture(box, "Crafting Table");
+        setTexture(box, block2.getName());
 
         // Apply rotation
         Transform3D rotation = new Transform3D();
@@ -449,14 +452,14 @@ public class BlockView3dGUI {
         addOverlayRectFar(root);
         addOverlayRectTop(root);
         addOverlayRect(root); // add layer for 3d cubes and text.
-        addText3D(root, "String", -0.9f, 0.42f, 0.2f,40 ); //String text, float x, float y, float z, float fontSize
-        addText3D(root, "BlastRes: ", -0.75f, 0.27f, 0f, 15 );
-        addText3D(root, "Hardness: ", -0.75f, 0.14f, 0f, 15 );
-        addText3D(root, "Renewable: ", -0.75f, 0.01f, 0f, 15 );
-        addText3D(root, "Flammable: ", -0.75f, -0.12f, 0f, 15 );
-        addText3D(root, "Dimension: ", -0.75f, -0.25f, 0f, 15 );
-        addText3D(root, "Craftable: ", -0.75f, -0.38f, 0f, 15 );
-        addText3D(root, "Luminious: ", -0.75f, -0.51f, 0f, 15 );
+        addText3D(root, block2.getName(), -0.9f, 0.42f, 0.2f,40 ); //String text, float x, float y, float z, float fontSize
+        addText3D(root, "BlastRes: " + block2.getBlastres(), -0.75f, 0.27f, 0f, 15 );
+        addText3D(root, "Hardness: " + block2.getHardness(), -0.75f, 0.14f, 0f, 15 );
+        addText3D(root, "Renewable: " + block2.getRenewability(), -0.75f, 0.01f, 0f, 15 );
+        addText3D(root, "Flammable: " + block2.getFlammable(), -0.75f, -0.12f, 0f, 15 );
+        addText3D(root, "Dimension: " + block2.getDimension(), -0.75f, -0.25f, 0f, 15 );
+        addText3D(root, "Craftable: " + " Yes", -0.75f, -0.38f, 0f, 15 );
+        addText3D(root, "Luminious: " + block2.getLuminous(), -0.75f, -0.51f, 0f, 15 );
 
         // add sidebar LEFT text
     }
