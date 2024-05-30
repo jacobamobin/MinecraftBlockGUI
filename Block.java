@@ -10,19 +10,20 @@ class Block {
     String stackable; // How stackable this block is in your inventory
     double blastRes; // In-game blast resistance
     double hardness; // The in-game hardness of the block
-    String luminous; // If this block gives off light
+    double luminous; // If this block gives off light
     boolean flammable; // If the block is flammable from natural fire
     String dimension; // Primary Dimension of the block
     String texture; // texture file path that we will put on the block model
     String sfx; // SFX path
 
     // Creating a block
-    public Block(String name, boolean renewable, String stackable, double blastRes, double hardness, String luminous,boolean flammable, String dimension, String texture, String sfx) {
+    public Block(String name, boolean renewable, String stackable, double blastRes, double hardness, double luminous,boolean flammable, String dimension, String texture, String sfx) 
+    {
         this.name = name;
+        this.renewable = renewable;
         this.stackable = stackable;
         this.hardness = hardness;
         this.blastRes = blastRes;
-        this.renewable = renewable;
         this.luminous = luminous;
         this.flammable = flammable;
         this.dimension = dimension;
