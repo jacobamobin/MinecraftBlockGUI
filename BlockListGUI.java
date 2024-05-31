@@ -62,7 +62,7 @@ public class BlockListGUI {
                         if (highlighted != null) {
                             g.drawImage(highlighted, 0 - 5, (scrollDist) + (i * 100) - 5, getWidth() + 10, getHeight() + 10, this);
                             g.setColor(Color.WHITE);
-                            font = new Font("Arial", Font.PLAIN, 60);
+                            font = new Font("Arial", Font.PLAIN, 50);
                             sizeOfFrontPng = 70;
                         }
 
@@ -71,7 +71,7 @@ public class BlockListGUI {
                         if (unselected != null) {
                             g.drawImage(unselected, 0, (scrollDist) + (i * 100), getWidth(), getHeight(), this);
                             g.setColor(Color.LIGHT_GRAY);
-                            font = new Font("Arial", Font.PLAIN, 50);
+                            font = new Font("Arial", Font.PLAIN, 40);
                             sizeOfFrontPng = 60;
                         }
                     }
@@ -287,11 +287,30 @@ public class BlockListGUI {
         if (imageCache.containsKey(filename)) {
             return imageCache.get(filename);
         } else {
+            File file = new File(filename);
+            System.out.println("Attempting to load image from: " + file.getAbsolutePath());
+
+            if (!file.exists()) {
+                System.err.println("Error: File does not exist at path: " + file.getAbsolutePath());
+                return null;
+            }
+
+            if (!file.canRead()) {
+                System.err.println("Error: Cannot read file at path: " + file.getAbsolutePath());
+                return null;
+            }
+
             try {
-                BufferedImage image = ImageIO.read(new File(filename));
-                imageCache.put(filename, image);
-                return image;
+                BufferedImage image = ImageIO.read(file);
+                if (image != null) {
+                    imageCache.put(filename, image);
+                    return image;
+                } else {
+                    System.err.println("Error: File format not supported or file is corrupt: " + file.getAbsolutePath());
+                    return null;
+                }
             } catch (IOException e) {
+                System.err.println("IOException while reading the image file: " + file.getAbsolutePath());
                 e.printStackTrace();
                 return null;
             }

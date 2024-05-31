@@ -46,7 +46,7 @@ Furnace,true,Yes (64),3.5,3.5,13,false,Overworld,true,Furnace.wav
 Ice,true,Yes (64),0.5,0.5,0,false,Overworld,false,Ice.wav
 Packed Ice,true,Yes (64),0.5,0.5,0,false,Overworld,true,PackedIce.wav
 Redstone ore,false,Yes (64),3,3,9,false,Overworld,false,RedstoneOre
-Block of Redstone ,true,Yes (64),6,5,0,false,N/A,true,RedstoneBlock.wav
+Block of Redstone,true,Yes (64),6,5,0,false,N/A,true,RedstoneBlock.wav
 Acacia plank,true,Yes (64),3,2,0,true,End,true,Acaciaplank.wav
 Barrel,true,Yes (64),2.5,2.5,0,false,N/A,true,Barrel.wav
 Cactus,true,Yes (64),0.4,0.4,0,false,Overworld,false,Cactus.wav
