@@ -1,4 +1,5 @@
 //This file is by Jacob Mobin
+import javax.imageio.ImageIO;
 import javax.media.j3d.*;
 import javax.vecmath.*;
 
@@ -12,11 +13,16 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.*;
 
 public class BlockView3dGUI {
 
     private static Block block2;
+    private static Map<String, BufferedImage> imageCache = new HashMap<>();
 
     public static void blockView3dGUI(Block block) {
         block2 = block;
@@ -460,6 +466,7 @@ public class BlockView3dGUI {
         addText3D(root, "Dimension: " + block2.getDimension(), -0.75f, -0.25f, 0f, 15 );
         addText3D(root, "Craftable: " + " Yes", -0.75f, -0.38f, 0f, 15 );
         addText3D(root, "Luminious: " + block2.getLuminous(), -0.75f, -0.51f, 0f, 15 );
+        addCraftingRecipe(root, block2.getName());
 
         // add sidebar LEFT text
     }
@@ -479,6 +486,44 @@ public class BlockView3dGUI {
 
         // Add the text TransformGroup to the root BranchGroup
         root.addChild(textTransformGroup);
+    }
+
+    private static void addCraftingRecipe(BranchGroup root, String name) {
+        // Load the texture image for the wall
+        TextureLoader loader = new TextureLoader("object/NotCraftable.jpg", null); //just in case shit fucks itself
+        BufferedImage unselected = loadImage("object/Recipes/" + block2.getName() + "/" + block2.getName() + ".jpg");
+        if (unselected != null) {
+            loader = new TextureLoader("object/Recipes/" + block2.getName() + "/" + block2.getName() + ".jpg", null);
+        }
+        Texture wallTexture = loader.getTexture();
+
+        // Create a textured appearance for the wall
+        Appearance wallApp = new Appearance();
+        wallApp.setTexture(wallTexture);
+
+        // Create texture attributes and set the texture mode to modulate
+        TextureAttributes texAttr = new TextureAttributes();
+        texAttr.setTextureMode(TextureAttributes.MODULATE);
+        wallApp.setTextureAttributes(texAttr);
+
+        // Create the geometry for the wall
+        QuadArray wallGeometry = new QuadArray(4, QuadArray.COORDINATES | QuadArray.TEXTURE_COORDINATE_2);
+        wallGeometry.setCoordinate(0, new Point3f(-0.5f, -0.5f, 0f)); // Bottom-left
+        wallGeometry.setCoordinate(1, new Point3f(0.5f, -0.5f, 0f));  // Bottom-right
+        wallGeometry.setCoordinate(2, new Point3f(0.5f, 0.5f, 0f));   // Top-right
+        wallGeometry.setCoordinate(3, new Point3f(-0.5f, 0.5f, 0f));  // Top-left
+
+        // Set the texture coordinates for the wall
+        wallGeometry.setTextureCoordinate(0, 0, new TexCoord2f(0.0f, 0.0f));
+        wallGeometry.setTextureCoordinate(0, 1, new TexCoord2f(1.0f, 0.0f));
+        wallGeometry.setTextureCoordinate(0, 2, new TexCoord2f(1.0f, 1.0f));
+        wallGeometry.setTextureCoordinate(0, 3, new TexCoord2f(0.0f, 1.0f));
+
+        // Create the wall shape and set its appearance
+        Shape3D wall = new Shape3D(wallGeometry, wallApp);
+
+        // Add the wall to the root branch group
+        root.addChild(wall);
     }
 
     // adds specific 3d cubes tot he 2d overlay on the 3d scene
@@ -598,6 +643,21 @@ public class BlockView3dGUI {
         // Add the rectangle to the transform group and the root
         overlayTransformGroup.addChild(overlay);
         root.addChild(overlayTransformGroup);
+    }
+
+    private static BufferedImage loadImage(String filename) {
+        if (imageCache.containsKey(filename)) {
+            return imageCache.get(filename);
+        } else {
+            try {
+                BufferedImage image = ImageIO.read(new File(filename));
+                imageCache.put(filename, image);
+                return image;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
     }
 
 }

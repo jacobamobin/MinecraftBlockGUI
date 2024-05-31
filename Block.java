@@ -43,19 +43,6 @@ class Block {
                 + renewable + ". " + flammableInfo;
     }
 
-    public String toStringA() {
-        String flammableInfo = "";
-        if (flammable)
-            flammableInfo = "This block also catches fire.";
-        else
-            flammableInfo = "This block is not flammable.";
-
-        return "It spawns in the " + dimension +".  " + "Stackability: " + stackable + "  Hardness: " + hardness
-                + "\nBlast Resistance: " + blastRes + "  Is Renewable: "
-                + renewable + ". " + flammableInfo;
-    }
-
-
     //Accessor and Mutator methods (IDK how to put this anywhere else. This'll have to do)
     public String getName() 
     {
