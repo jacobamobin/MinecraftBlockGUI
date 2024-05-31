@@ -490,7 +490,7 @@ public class BlockView3dGUI {
 
     private static void addCraftingRecipe(BranchGroup root, String name) {
         // Load the texture image for the wall
-        TextureLoader loader = new TextureLoader("object/NotCraftable.jpg", null); //just in case shit fucks itself
+        TextureLoader loader = new TextureLoader("object/Notcraftable.jpg", null); //just in case shit fucks itself
         BufferedImage unselected = loadImage("object/Recipes/" + block2.getName() + "/" + block2.getName() + ".jpg");
         if (unselected != null) {
             loader = new TextureLoader("object/Recipes/" + block2.getName() + "/" + block2.getName() + ".jpg", null);
@@ -508,10 +508,10 @@ public class BlockView3dGUI {
 
         // Create the geometry for the wall
         QuadArray wallGeometry = new QuadArray(4, QuadArray.COORDINATES | QuadArray.TEXTURE_COORDINATE_2);
-        wallGeometry.setCoordinate(0, new Point3f(-0.5f, -0.5f, 0f)); // Bottom-left
-        wallGeometry.setCoordinate(1, new Point3f(0.5f, -0.5f, 0f));  // Bottom-right
-        wallGeometry.setCoordinate(2, new Point3f(0.5f, 0.5f, 0f));   // Top-right
-        wallGeometry.setCoordinate(3, new Point3f(-0.5f, 0.5f, 0f));  // Top-left
+        wallGeometry.setCoordinate(0, new Point3f(0.4f, -0.4f, 0f)); // Bottom-left
+        wallGeometry.setCoordinate(1, new Point3f(1f, -0.4f, 0f));  // Bottom-right
+        wallGeometry.setCoordinate(2, new Point3f(1f, 0.2f, 0f));   // Top-right
+        wallGeometry.setCoordinate(3, new Point3f(0.4f, 0.2f, 0f));  // Top-left
 
         // Set the texture coordinates for the wall
         wallGeometry.setTextureCoordinate(0, 0, new TexCoord2f(0.0f, 0.0f));
