@@ -17,12 +17,13 @@ public class MainMenuGUI {
     private static final int FRAME_HEIGHT = 720;
     private static final int FRAME_RATE = 60; // Frames per second (adjust as needed)
 
+    //which button is hovered over
     private static boolean isOverlayTopSelected = false;
     private static boolean isOverlayMiddleSelected = false;
     private static boolean isOverlayBottomSelected = false;
 
     private static JPanel canvasPanel;
-    private static Map<String, BufferedImage> imageCache = new HashMap<>();
+    private static Map<String, BufferedImage> imageCache = new HashMap<>(); //optimising buffered images so compuyter dosent lag
 
     public static void mainMenu() {
         // Create and set up the window
@@ -34,11 +35,11 @@ public class MainMenuGUI {
         // Create a JPanel to hold the canvas for drawing
         canvasPanel = new JPanel() {
             @Override
-            protected void paintComponent(Graphics g) {
+            protected void paintComponent(Graphics g) { //new paint component
                 super.paintComponent(g);
 
                 // Load background image
-                BufferedImage backgroundImage = loadImage("MenuAssets\\TempBg.png");
+                BufferedImage backgroundImage = loadImage("MenuAssets\\TempBg.png"); //load bg
                 if (backgroundImage != null) {
                     g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
                 }
@@ -105,7 +106,7 @@ public class MainMenuGUI {
 
     }
 
-    private static void handleClickEvent(int x, int y) {
+    private static void handleClickEvent(int x, int y) { //handle which button is clicked on mouseevent
         if (isOverlayTopSelected = isWithinButtonRange(x, y, 665, 909, 244, 310)) {
             SwingUtilities.invokeLater(BlockListGUI::blockListGUI);
         } else if (isOverlayMiddleSelected = isWithinButtonRange(x, y, 665, 909, 329, 393)) {
@@ -115,17 +116,17 @@ public class MainMenuGUI {
         }
     }
 
-    private static void updateOverlaySelection(int mouseX, int mouseY) {
+    private static void updateOverlaySelection(int mouseX, int mouseY) { //update which button is hovered over
         isOverlayTopSelected = isWithinButtonRange(mouseX, mouseY, 665, 909, 244, 310);
         isOverlayMiddleSelected = isWithinButtonRange(mouseX, mouseY, 665, 909, 329, 393);
         isOverlayBottomSelected = isWithinButtonRange(mouseX, mouseY, 665, 909, 409, 476);
     }
 
-    private static boolean isWithinButtonRange(int x, int y, int minX, int maxX, int minY, int maxY) {
+    private static boolean isWithinButtonRange(int x, int y, int minX, int maxX, int minY, int maxY) { // is within a range
         return (x >= minX && x <= maxX && y >= minY && y <= maxY);
     }
 
-    private static BufferedImage loadImage(String filename) {
+    private static BufferedImage loadImage(String filename) { //optimised buffered image reader
         if (imageCache.containsKey(filename)) {
             return imageCache.get(filename);
         } else {
