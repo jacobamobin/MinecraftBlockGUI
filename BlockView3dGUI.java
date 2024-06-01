@@ -645,7 +645,7 @@ public class BlockView3dGUI {
         root.addChild(overlayTransformGroup);
     }
 
-    private static BufferedImage loadImage(String filename) {
+    private static BufferedImage loadImage(String filename) { //optimised buffered image loader
         if (imageCache.containsKey(filename)) {
             return imageCache.get(filename);
         } else {

@@ -432,7 +432,7 @@ public class BlockListGUI {
     }
 
     // Add the action to perform when a sort type is selected
-    private static void performSortAction(String sortType) { 
+    private static void performSortAction(String sortType) {
         performSortingMethods sorter = new performSortingMethods();
         if (firstButton == false) {
             sortOrder = "desc";
