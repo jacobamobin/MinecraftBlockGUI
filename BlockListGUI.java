@@ -15,76 +15,91 @@ import java.util.ArrayList;
 
 public class BlockListGUI {
 
-    private static boolean isDropDownOpen = false;
-    private static String sortOrder = "asc";
-    private static boolean firstButton = true;
-    private static String sortType = "Name";
-    protected static int mouseY;
-    protected static int mouseX;
-    private static int scrollDist = 0;
-    private static Map<String, BufferedImage> imageCache = new HashMap<>();
-    private static String[] blocksArray;
-    private static JPanel blankCanvasPanel;
-     
+    //FIELDS
+    private static boolean isDropDownOpen = false; //if the drop down is open
+    private static String sortOrder = "asc"; //which order we want to show at the top of gui
+    private static boolean firstButton = true; // if the first button of the true/false on the gui is pressed
+    private static String sortType = "Name"; //what we are sorting by
+    protected static int mouseY; // the mouse cursors y position, this is to handle hovering and clicking on the gui
+    protected static int mouseX; // the mouse cursors x position, this is to handle hovering and clicking on the gui
+    private static int scrollDist = 0; // the distance scrolled down by the mousewheel, this allows the list to scroll and dynamically render on the canvas
+    private static Map<String, BufferedImage> imageCache = new HashMap<>(); //this optimises the images we are rendering through buffered images, so it dosent have to create a new object each time
+    private static String[] blocksArray; // this is an array of all the block names, from the blocks.txt file
+    private static JPanel blankCanvasPanel; // i dont know why this is here but shit breaks if its gone
+
+    //THE GUI
     public static void blockListGUI() {
-        parserAndReadin parser = new parserAndReadin();
-        performSortingMethods sorter = new performSortingMethods();
-        ArrayList<Block> blocks = parser.readInData("data/Blocks.txt");
-        blocksArray = sorter.sortBlockParameter("name", "asc"); // Initial sorting
+
+        parserAndReadin parser = new parserAndReadin(); // initiallize new parser
+        performSortingMethods sorter = new performSortingMethods(); // initialize new sortingmethods
+        ArrayList<Block> blocks = parser.readInData("data/Blocks.txt"); // read in our blocks data file
+        blocksArray = sorter.sortBlockParameter("name", "asc"); // Initial sorting when gui open
+
+        //CREATE THE JFRAME
         JFrame newFrame = new JFrame("View Blocks");
-        newFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Change default close operation
+        newFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Change default close operation so it dosen exit program entirely
 
-        newFrame.setSize(Main.FRAME_WIDTH, Main.FRAME_HEIGHT);
-        newFrame.setResizable(false);
+        newFrame.setSize(Main.FRAME_WIDTH, Main.FRAME_HEIGHT); //get dimensions of 1080x720 from main.java
+        newFrame.setResizable(false); //dont allow the canvas to be resizes
 
+        //CREATE A BLANK JPANNEL
         blankCanvasPanel = new JPanel() {
             @Override
-            protected void paintComponent(Graphics g) {
+            protected void paintComponent(Graphics g) { //use paint component to draw
                 super.paintComponent(g);
 
+                //BACKGROUND WITH SCROLL OFFSET
                 BufferedImage backgroundImage = loadImage("ViewPannelAssets\\Background.png");
                 if (backgroundImage != null) {
                     g.drawImage(backgroundImage, 0, -2000 + 50 + (scrollDist) / 4, 1080, 10000, this);
                 }
 
+                //LOAD THE SIDEBAR ON THE RIGHT SIDE OF THE SCREEN
                 BufferedImage overlay = loadImage("ViewPannelAssets\\Sidebar.png");
                 if (overlay != null) {
                     g.drawImage(overlay, 0, 0, getWidth(), getHeight(), this);
                 }
 
-                Font font = new Font("Arial", Font.PLAIN, 60);
-                int numberOfObjects = 0;
-                int sizeOfFrontPng = 0;
+                //CREATE A NEW FONT
+                Font font = new Font("Arial", Font.PLAIN, 60); //create a new font for later
+                int numberOfObjects = 0; //unused, would display number of rendered objects in the top bar
+                int sizeOfFrontPng = 0; //side of block image (it gets larger when hovered)
 
-                for (int i = 0; i < blocksArray.length; i++) {
-                    if (isWithinButtonRange(mouseX, mouseY, 5, 950, (scrollDist) + (i * 100) + 50, (scrollDist) + (i * 100) + 150) && !isDropDownOpen) {
-                        BufferedImage highlighted = loadImage("ViewPannelAssets\\BackGroundOfBlockSelected.png");
+                //LOAD THE BLOCK LIST (SORTED)
+                for (int i = 0; i < blocksArray.length; i++) { //iterate through all blocks in the sorted list
+                    if (isWithinButtonRange(mouseX, mouseY, 5, 950, (scrollDist) + (i * 100) + 50, (scrollDist) + (i * 100) + 150) && !isDropDownOpen) { //if hovered and drop down isnt open
+                        BufferedImage highlighted = loadImage("ViewPannelAssets\\BackGroundOfBlockSelected.png"); //draw selected
                         if (highlighted != null) {
-                            g.drawImage(highlighted, 0 - 5, (scrollDist) + (i * 100) - 5, getWidth() + 10, getHeight() + 10, this);
-                            g.setColor(Color.WHITE);
-                            font = new Font("Arial", Font.PLAIN, 50);
-                            sizeOfFrontPng = 70;
+                            g.drawImage(highlighted, 0 - 5, (scrollDist) + (i * 100) - 5, getWidth() + 10, getHeight() + 10, this); //draw background
+                            g.setColor(Color.WHITE); //set the color of the text for later, and change the size
+                            font = new Font("Arial", Font.PLAIN, 50); //text when hovered is a bit bigger then not
+                            sizeOfFrontPng = 70; //change side of block image
                         }
 
                     } else {
-                        BufferedImage unselected = loadImage("ViewPannelAssets\\BackGroundOfBlockUnselected.png");
+                        BufferedImage unselected = loadImage("ViewPannelAssets\\BackGroundOfBlockUnselected.png"); //draw unselected
                         if (unselected != null) {
-                            g.drawImage(unselected, 0, (scrollDist) + (i * 100), getWidth(), getHeight(), this);
-                            g.setColor(Color.LIGHT_GRAY);
-                            font = new Font("Arial", Font.PLAIN, 40);
-                            sizeOfFrontPng = 60;
+                            g.drawImage(unselected, 0, (scrollDist) + (i * 100), getWidth(), getHeight(), this); //draw background of object (unselected)
+                            g.setColor(Color.LIGHT_GRAY); //set the color of the text for later, and change the size
+                            font = new Font("Arial", Font.PLAIN, 40); //text when not hovered is a bit smaller then hovered
+                            sizeOfFrontPng = 60; //change side of block image
                         }
                     }
 
-                    g.setFont(font);
-                    int y = (scrollDist) + (i * 100) + 100 + 20; // Adjust Y position based on loop iteration
-                    String text = String.valueOf(i + 1);
-                    g.drawString(text, 990, y);
-                    text = blocksArray[i];
-                    g.drawString(text, 110, y);
+                    //DRAW THE TEXT FOR OBJECTS
+                    g.setFont(font); // finish setting the done
+                    int y = (scrollDist) + (i * 100) + 100 + 20; // Adjust Y position based on loop iteration (for drwaing name and desc)
+                    String text = String.valueOf(i + 1); //get the index of the block
+                    g.drawString(text, 990, y); // draw the index of block on right side
+                    text = blocksArray[i]; //get name of block
+                    g.drawString(text, 110, y); //draw the name of each block
+
+                    //RUN PARSER AGAIN (why idk)
                     parserAndReadin parser = new parserAndReadin();
                     ArrayList<Block> blocks = parser.readInData("data/Blocks.txt");
                     Block block = parser.getBlockByName(blocks, blocksArray[i]);
+
+                    //DRAW DESCRIPTION
                     font = new Font("Arial", Font.PLAIN, 20); //font for details
                     g.setFont(font);
                     String flammableInfo = ""; //get flammable info first
@@ -101,14 +116,14 @@ public class BlockListGUI {
                         g.drawImage(blockFront, 30, y-50, sizeOfFrontPng, sizeOfFrontPng, this);
                     }
 
-                    numberOfObjects += 1;
+                    numberOfObjects += 1; //unused for now
                 }
 
-                BufferedImage textBar = loadImage("ViewPannelAssets\\TopTypeBar.png");
+                BufferedImage textBar = loadImage("ViewPannelAssets\\TopTypeBar.png"); // add a demo typing bar before we add the actually one (if time permits)
                 if (textBar != null) {
                     g.drawImage(textBar, 0, 0, getWidth(), getHeight(), this);
                 }
-                BufferedImage quantityBG = loadImage("ViewPannelAssets\\Spacer.png");
+                BufferedImage quantityBG = loadImage("ViewPannelAssets\\Spacer.png"); // add spacer to top bar
                 if (quantityBG != null) {
                     g.drawImage(quantityBG, 0, 0, getWidth(), getHeight(), this);
                 }
@@ -116,7 +131,7 @@ public class BlockListGUI {
                 String buttonFilePath = ""; // File path for dropdown button
                 String buttonFilePathON = ""; // File path for top
                 String buttonFilePathOFF = ""; // File path for bottom
-                switch (sortType) {
+                switch (sortType) { // case statement to get file paths of sort method buttons
                     case "Name":
                         buttonFilePath = "ViewPannelAssets\\Name.png";
                         if (firstButton) {
@@ -215,7 +230,7 @@ public class BlockListGUI {
                 if (isDropDownOpen) {
                     String sortOption[] = {"Name", "Stack", "Dimension", "Hardness", "BlastRes", "Renewability", "Luminous", "Flammable"}; //IGNORE CHU
                     int dropdownY = 50;
-                    for (String option : sortOption) {
+                    for (String option : sortOption) { //when drop down open, load all the buttons
                         BufferedImage sortMethod = loadImage("ViewPannelAssets\\" + option + ".png");
                         if (sortMethod != null) {
                             g.drawImage(sortMethod, 544, dropdownY, 276, 50, this);
@@ -224,7 +239,7 @@ public class BlockListGUI {
                     }
                 }
 
-                BufferedImage tooltip = loadImage("ViewPannelAssets\\Tooltip.png");
+                BufferedImage tooltip = loadImage("ViewPannelAssets\\Tooltip.png"); //load the tooltip at the bottom of the screen
                 if (tooltip != null) {
                     g.drawImage(tooltip, 0, 0, 1080, 720, this);
                 }
@@ -251,7 +266,7 @@ public class BlockListGUI {
 
         blankCanvasPanel.addMouseWheelListener(new MouseWheelListener() {
             @Override
-            public void mouseWheelMoved(MouseWheelEvent e) {
+            public void mouseWheelMoved(MouseWheelEvent e) { // when scrolling update the background and object list
                 int scrollAmount = e.getWheelRotation();
                 if (scrollAmount < 0) {
                     if(scrollDist > 0) {
@@ -279,11 +294,11 @@ public class BlockListGUI {
         newFrame.pack();
         newFrame.setVisible(true);
         
-        Timer timer = new Timer(Main.FRAME_RATE, e -> blankCanvasPanel.repaint());
+        Timer timer = new Timer(Main.FRAME_RATE, e -> blankCanvasPanel.repaint()); //update the screen at 60fps
         timer.start();
     }
 
-    private static BufferedImage loadImage(String filename) {
+    private static BufferedImage loadImage(String filename) { //load image with debugging (thanks chu)
         if (imageCache.containsKey(filename)) {
             return imageCache.get(filename);
         } else {
@@ -319,9 +334,9 @@ public class BlockListGUI {
 
     private static boolean isWithinButtonRange(int mouseX, int mouseY, int buttonX, int buttonWidth, int buttonY, int buttonHeight) {
         return mouseX > buttonX && mouseX < buttonWidth && mouseY > buttonY && mouseY < buttonHeight;
-    }
+    } //if the mouse cursor is in a button range
 
-    static class SortType {
+    static class SortType { //handles sort button stuff
         String type;
         String buttonFilePath;
         String buttonFilePathON;
@@ -335,7 +350,7 @@ public class BlockListGUI {
         }
     }
 
-    private static void handleClickEventSort(int x, int y) {
+    private static void handleClickEventSort(int x, int y) { //handle click event for the sorting methods
         if (!isDropDownOpen) {
             if (isWithinButtonRange(x, y, 544, 819, 0, 50)) {
                 isDropDownOpen = true;
@@ -348,20 +363,21 @@ public class BlockListGUI {
             }
 
 
-            for (int i = 0; i < blocksArray.length; i++) {
+            for (int i = 0; i < blocksArray.length; i++) { // iterate through all the blocks and figure which one user has clicked on
                 parserAndReadin parser = new parserAndReadin();
                 ArrayList<Block> blocks = parser.readInData("data/Blocks.txt");
+                // if hovered over the block in iteration
                 if(isWithinButtonRange(mouseX, mouseY, 5, 950, (scrollDist) + (i * 100) + 50, (scrollDist) + (i * 100) + 150) && !isDropDownOpen) {
                     System.out.println(blocksArray[i]);
-                    Block block = parser.getBlockByName(blocks, blocksArray[i]);
-                    SwingUtilities.invokeLater(() -> {
+                    Block block = parser.getBlockByName(blocks, blocksArray[i]); //get the name of block then
+                    SwingUtilities.invokeLater(() -> { //run the 3d gui for that block
                         BlockView3dGUI view = new BlockView3dGUI();
                         view.blockView3dGUI(block);
                     });
                 }
             }
 
-        } else {
+        } else { // else if the dropdown is open, allow user to click on the other sort methods
             if (isWithinButtonRange(x, y, 820, 950, 0, 50)) {
                 firstButton = true;
                 performSortAction(sortType);
@@ -416,7 +432,7 @@ public class BlockListGUI {
     }
 
     // Add the action to perform when a sort type is selected
-    private static void performSortAction(String sortType) {
+    private static void performSortAction(String sortType) { 
         performSortingMethods sorter = new performSortingMethods();
         if (firstButton == false) {
             sortOrder = "desc";
