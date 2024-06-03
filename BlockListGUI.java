@@ -51,7 +51,7 @@ public class BlockListGUI {
                 //BACKGROUND WITH SCROLL OFFSET
                 BufferedImage backgroundImage = loadImage("ViewPannelAssets\\Background.png");
                 if (backgroundImage != null) {
-                    g.drawImage(backgroundImage, 0, -2000 + 50 + (scrollDist) / 4, 1080, 10000, this);
+                    g.drawImage(backgroundImage, 0, -2000 + 50 + (scrollDist) / 5, 1080, 5000, this);
                 }
 
                 //LOAD THE SIDEBAR ON THE RIGHT SIDE OF THE SCREEN
