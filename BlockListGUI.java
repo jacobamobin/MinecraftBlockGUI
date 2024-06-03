@@ -56,7 +56,7 @@ public class BlockListGUI {
                 }
                 BufferedImage backgroundDarken = loadImage("ViewPannelAssets/Darken.png"); //darken the background by putting a shitty overlay onto it
                 if (backgroundDarken != null) {
-                    g.drawImage(backgroundDarken, 0, -2000 + 50 + (scrollDist) / 4, 1080, 720, this);
+                    g.drawImage(backgroundDarken, 0, 0, 1080, 720, this);
                 }
 
                 //LOAD THE SIDEBAR ON THE RIGHT SIDE OF THE SCREEN
