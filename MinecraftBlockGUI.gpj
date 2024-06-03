@@ -1,0 +1,275 @@
+!2037;s
+J
+SAU0JGRASP_MAIN_BOUNDS=%<CONTROL_SHELL_BOUNDS>\012PATH+=%<JGRASP_PATHS>%;\012PATH=+%;%<JGRASP_C_PATHS>\012CYGWIN=nodosfilewarning\012GCC_COLORS=\012-Run\012ADD_EXE_PATH==Y\012
+SCU0JGRASP_MAIN_BOUNDS=%<CONTROL_SHELL_BOUNDS>\012PATH+=%<JGRASP_PATHS>%;\012PATH=+%;%<JGRASP_C_PATHS>\012CYGWIN=nodosfilewarning\012GCC_COLORS=\012-Run\012ADD_EXE_PATH==Y\012
+S+U0JGRASP_MAIN_BOUNDS=%<CONTROL_SHELL_BOUNDS>\012PATH+=%<JGRASP_PATHS>%;\012PATH=+%;%<JGRASP_C_PATHS>\012CYGWIN=nodosfilewarning\012GCC_COLORS=\012-Run\012ADD_EXE_PATH==Y\012
+SJU0JGRASP_MAIN_BOUNDS=%<CONTROL_SHELL_BOUNDS>\012CLASSPATH=+%;%<EXTENSION_CLASSPATHS>\012CLASSPATH+=%<JGRASP_CLASSPATHS>%;\012CLASSPATH+=.%;\012CLASSPATH+=%<TARGET_CLASSPATHS>%;\012Compile +Document\012CLASSPATH+=%<SRC_CLASSPATHS>%;\012All\012PATH+=%<JAVA_BIN_DIR>%;\012PATH+=%<JGRASP_PATHS>%;\012Debug\012CLASSPATH=+%;%<INJECTION_CLASSPATHS>\012Compile\012NOT_FOUND_MESSAGE==Make sure you have the full Java SE, not just the JRE, installed.\\nJava is available from https://www.oracle.com/java/technologies .\012Document\012CLASSPATH=+%;%<TOOL_CLASSPATHS>\012
+SKU0CLASSPATH=+%;%<EXTENSION_CLASSPATHS>\012CLASSPATH+=%<JGRASP_CLASSPATHS>%;\012CLASSPATH+=.%;\012CLASSPATH+=%<TARGET_CLASSPATHS>%;\012Compile +Document\012CLASSPATH+=%<SRC_CLASSPATHS>%;\012All\012PATH+=%<JAVA_BIN_DIR>%;\012PATH+=%<JGRASP_PATHS>%;
+SXU0
+SOU0JGRASP_MAIN_BOUNDS=%<CONTROL_SHELL_BOUNDS>\012PATH+=%<JGRASP_PATHS>%;\012PATH=+%;%<JGRASP_C_PATHS>\012CYGWIN=nodosfilewarning\012GCC_COLORS=\012-Run\012ADD_EXE_PATH==Y\012
+SyU0JGRASP_MAIN_BOUNDS=%<CONTROL_SHELL_BOUNDS>\012PATH+=%<PYTHON_PATH>%;\012PATH+=%<JGRASP_PATHS>%;\012CYGWIN=nodosfilewarning\012GCC_COLORS=
+SPU0
+s#i0C:\\Users\\jacob\\Downloads\\Java3D 1.5.2\\Java3D 1.5.2
+s#k0C:\\Users\\jacob\\Downloads\\Java3D 1.5.2\\Java3D 1.5.2\\j3dcore.jar\000\012C:\\Users\\jacob\\Downloads\\Java3D 1.5.2\\Java3D 1.5.2\\j3dutils.jar\000\012C:\\Users\\jacob\\Downloads\\Java3D 1.5.2\\Java3D 1.5.2\\vecmath.jar\000
+s#j0C:\\Users\\jacob\\Downloads\\Java3D 1.5.2\\Java3D 1.5.2\\j3dcore.jar
+s#l0
+!132;u
+a0	b7	c126	f%\011%u%u%u%uDownloads%sMinecraftBlockGUI.jar	g%\011MinecraftBlockGUI.zip	hManifest-Version\0111.0\011Main-Class\011Main!35;a
+a%\011MinecraftBlockGUI_doc	b	c1	d0!3244;g
+%\011object%sSlime Block%s
+%\011object%sBedrock%s
+%\011object%sBlock of Diamond%s
+%\011object%sGravel%s
+%\011object%sOak Log%s
+%\011object%sSand%s
+%\011object%sSmithing Table%s
+%\011object%sBarrel%s
+%\011object%sdirt%s
+%\011object%sBlock of Redstone%s
+%\011object%sJack o'Lantern%s
+%\011BlockEditGUI.java
+%\011object%sWaxed Block of Copper%s
+%\011object%sMuddy Mangrove Roots%s
+%\011object%sPurpur Block%s
+%\011object%sObserver%s
+%\011object%sHoneycomb Block%s
+%\011MenuAssets%s
+%\011object%sBlock of Gold%s
+%\011object%sCactus%s
+%\011ViewPannelAssets%s
+%\011object%sConcrete%s
+%\011object%sHorn Coral Block%s
+%\011object%sDropper%s
+%\011object%sRecipes%s
+%\011MainMenuGUI.java
+%\011object%sAcacia plank%s
+%\011object%sJuke Box%s
+%\011object%sDried Kelp Block%s
+%\011data%s
+%\011object%sNylium%s
+%\011object%sShroomlight%s
+%\011object%sDark Prismarine%s
+%\011object%sTarget%s
+%\011object%sLeaves%s
+%\011object%sFarmland%s
+%\011object%sWool%s
+%\011object%sFurnace%s
+%\011MergeSort.java
+%\011object%sgrass%s
+%\011object%sMud%s
+%\011object%sBricks%s
+%\011object%sSoul Sand%s
+%\011SelectionSort.java
+%\011performSortingMethods.java
+%\011META-INF%s
+%\011object%sRed Mushroom Block%s
+%\011object%sSmooth Red Sandstone%s
+%\011Main.java
+%\011object%sIce%s
+%\011Music%s
+%\011object%sBookshelf%s
+%\011object%sInfested Cobblestone%s
+%\011object%sSandstone%s
+%\011object%sBlast Furnace%s
+%\011object%sIron ore%s
+%\011object%sGrass Block%s
+%\011object%sPodzol%s
+%\011object%sCobblestone%s
+%\011object%sRooted Dirt%s
+%\011object%sBasalt%s
+%\011object%sGlowstone%s
+%\011object%sSea lantern%s
+%\011object%sTuff%s
+%\011parserAndReadin.java
+%\011object%sBirch Log%s
+%\011object%sEmerald ore%s
+%\011object%sSponge%s
+%\011BlockListGUI.java
+%\011object%sPrismarine%s
+%\011object%sEnd stone%s
+%\011object%sCherry Log%s
+%\011object%sBlock of Iron%s
+%\011object%sNether Gold Ore%s
+%\011object%sPearlescent%s
+%\011BubbleSort.java
+%\011object%sPolished Andesite%s
+%\011object%sNether Bricks%s
+%\011object%sLava%s
+%\011object%sCracked Stone Brick%s
+%\011object%sCrafting Table%s
+%\011object%sPiston%s
+%\011BlockView3dGUI.java
+%\011object%sMycelium%s
+%\011object%sRedstone ore%s
+%\011object%sConcrete Powder%s
+%\011object%sDeepslate Tiles%s
+%\011object%sReinforced Deepslate%s
+%\011object%sNether Wart Block%s
+%\011.vscode%s
+%\011object%sWarped Wart Block%s
+%\011object%sFire Coral Block%s
+%\011object%sSculk%s
+%\011InsertionSort.java
+%\011object%sMagma block%s
+%\011object%sRedstone Lamp%s
+%\011Block.java
+%\011object%sTerracotta%s
+%\011object%sTNT%s
+%\011object%sCalcite%s
+%\011object%sCoal Ore%s
+%\011MinecraftBlockGUI.gpj
+%\011object%sObsidian%s
+%\011object%sPacked Mud%s
+%\011object%sCommand block%s
+%\011object%sLodestone%s
+%\011object%sHay bale%s
+%\011object%sDiamond ore%s
+%\011object%sBrown Mushroom Block%s
+%\011blockFamilial.java
+%\011object%sNote Block%s
+%\011object%sSmoker%s
+%\011object%sCoarse Dirt%s
+%\011object%sPumpkin%s
+%\011object%sPacked Ice%s
+%\011object%sBlock of Emerald%s
+%\011object%sGranite%s
+%\011.idea%s
+%\011object%sStem Mushroom Block%s
+%\011object%sDimension%s
+%\011object%sGold ore%s
+%\011object%sDiorite%s
+%\011object%sShulker box%s
+%\011object%sMud Bricks%s
+%\011object%sStone%s
+%\011object%s
+%\011object%sGilded Blackstone%s
+%\011out%s
+!3244;f
+%\011object%sSlime Block%s
+%\011object%sBedrock%s
+%\011object%sBlock of Diamond%s
+%\011object%sGravel%s
+%\011object%sOak Log%s
+%\011object%sSand%s
+%\011object%sSmithing Table%s
+%\011object%sBarrel%s
+%\011object%sdirt%s
+%\011object%sBlock of Redstone%s
+%\011object%sJack o'Lantern%s
+%\011BlockEditGUI.java
+%\011object%sWaxed Block of Copper%s
+%\011object%sMuddy Mangrove Roots%s
+%\011object%sPurpur Block%s
+%\011object%sObserver%s
+%\011object%sHoneycomb Block%s
+%\011MenuAssets%s
+%\011object%sBlock of Gold%s
+%\011object%sCactus%s
+%\011ViewPannelAssets%s
+%\011object%sConcrete%s
+%\011object%sHorn Coral Block%s
+%\011object%sDropper%s
+%\011object%sRecipes%s
+%\011MainMenuGUI.java
+%\011object%sAcacia plank%s
+%\011object%sJuke Box%s
+%\011object%sDried Kelp Block%s
+%\011data%s
+%\011object%sNylium%s
+%\011object%sShroomlight%s
+%\011object%sDark Prismarine%s
+%\011object%sTarget%s
+%\011object%sLeaves%s
+%\011object%sFarmland%s
+%\011object%sWool%s
+%\011object%sFurnace%s
+%\011MergeSort.java
+%\011object%sgrass%s
+%\011object%sMud%s
+%\011object%sBricks%s
+%\011object%sSoul Sand%s
+%\011SelectionSort.java
+%\011performSortingMethods.java
+%\011META-INF%s
+%\011object%sRed Mushroom Block%s
+%\011object%sSmooth Red Sandstone%s
+%\011Main.java
+%\011object%sIce%s
+%\011Music%s
+%\011object%sBookshelf%s
+%\011object%sInfested Cobblestone%s
+%\011object%sSandstone%s
+%\011object%sBlast Furnace%s
+%\011object%sIron ore%s
+%\011object%sGrass Block%s
+%\011object%sPodzol%s
+%\011object%sCobblestone%s
+%\011object%sRooted Dirt%s
+%\011object%sBasalt%s
+%\011object%sGlowstone%s
+%\011object%sSea lantern%s
+%\011object%sTuff%s
+%\011parserAndReadin.java
+%\011object%sBirch Log%s
+%\011object%sEmerald ore%s
+%\011object%sSponge%s
+%\011BlockListGUI.java
+%\011object%sPrismarine%s
+%\011object%sEnd stone%s
+%\011object%sCherry Log%s
+%\011object%sBlock of Iron%s
+%\011object%sNether Gold Ore%s
+%\011object%sPearlescent%s
+%\011BubbleSort.java
+%\011object%sPolished Andesite%s
+%\011object%sNether Bricks%s
+%\011object%sLava%s
+%\011object%sCracked Stone Brick%s
+%\011object%sCrafting Table%s
+%\011object%sPiston%s
+%\011BlockView3dGUI.java
+%\011object%sMycelium%s
+%\011object%sRedstone ore%s
+%\011object%sConcrete Powder%s
+%\011object%sDeepslate Tiles%s
+%\011object%sReinforced Deepslate%s
+%\011object%sNether Wart Block%s
+%\011.vscode%s
+%\011object%sWarped Wart Block%s
+%\011object%sFire Coral Block%s
+%\011object%sSculk%s
+%\011InsertionSort.java
+%\011object%sMagma block%s
+%\011object%sRedstone Lamp%s
+%\011Block.java
+%\011object%sTerracotta%s
+%\011object%sTNT%s
+%\011object%sCalcite%s
+%\011object%sCoal Ore%s
+%\011MinecraftBlockGUI.gpj
+%\011object%sObsidian%s
+%\011object%sPacked Mud%s
+%\011object%sCommand block%s
+%\011object%sLodestone%s
+%\011object%sHay bale%s
+%\011object%sDiamond ore%s
+%\011object%sBrown Mushroom Block%s
+%\011blockFamilial.java
+%\011object%sNote Block%s
+%\011object%sSmoker%s
+%\011object%sCoarse Dirt%s
+%\011object%sPumpkin%s
+%\011object%sPacked Ice%s
+%\011object%sBlock of Emerald%s
+%\011object%sGranite%s
+%\011.idea%s
+%\011object%sStem Mushroom Block%s
+%\011object%sDimension%s
+%\011object%sGold ore%s
+%\011object%sDiorite%s
+%\011object%sShulker box%s
+%\011object%sMud Bricks%s
+%\011object%sStone%s
+%\011object%s
+%\011object%sGilded Blackstone%s
+%\011out%s

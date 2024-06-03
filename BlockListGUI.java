@@ -26,6 +26,7 @@ public class BlockListGUI {
     private static Map<String, BufferedImage> imageCache = new HashMap<>(); //this optimises the images we are rendering through buffered images, so it dosent have to create a new object each time
     private static String[] blocksArray; // this is an array of all the block names, from the blocks.txt file
     private static JPanel blankCanvasPanel; // i dont know why this is here but shit breaks if its gone
+    private static String backgroundType = "ViewPannelAssets/Background.png";
 
     //THE GUI
     public static void blockListGUI() {
@@ -49,9 +50,13 @@ public class BlockListGUI {
                 super.paintComponent(g);
 
                 //BACKGROUND WITH SCROLL OFFSET
-                BufferedImage backgroundImage = loadImage("ViewPannelAssets\\Background.png");
+                BufferedImage backgroundImage = loadImage(backgroundType);
                 if (backgroundImage != null) {
                     g.drawImage(backgroundImage, 0, -2000 + 50 + (scrollDist) / 4, 1080, 10000, this);
+                }
+                BufferedImage backgroundDarken = loadImage("ViewPannelAssets/Darken.png"); //darken the background by putting a shitty overlay onto it
+                if (backgroundDarken != null) {
+                    g.drawImage(backgroundDarken, 0, -2000 + 50 + (scrollDist) / 4, 1080, 720, this);
                 }
 
                 //LOAD THE SIDEBAR ON THE RIGHT SIDE OF THE SCREEN
@@ -65,8 +70,16 @@ public class BlockListGUI {
                 int numberOfObjects = 0; //unused, would display number of rendered objects in the top bar
                 int sizeOfFrontPng = 0; //side of block image (it gets larger when hovered)
 
+                //RUN PARSER AGAIN (why idk)
+                parserAndReadin parser = new parserAndReadin();
+                ArrayList<Block> blocks = parser.readInData("data/Blocks.txt");
+
+
                 //LOAD THE BLOCK LIST (SORTED)
                 for (int i = 0; i < blocksArray.length; i++) { //iterate through all blocks in the sorted list
+                    int y = (scrollDist) + (i * 100) + 100 + 20; // Adjust Y position based on loop iteration (for drwaing name and desc)
+                    Block block = parser.getBlockByName(blocks, blocksArray[i]);
+
                     if (isWithinButtonRange(mouseX, mouseY, 5, 950, (scrollDist) + (i * 100) + 50, (scrollDist) + (i * 100) + 150) && !isDropDownOpen) { //if hovered and drop down isnt open
                         BufferedImage highlighted = loadImage("ViewPannelAssets\\BackGroundOfBlockSelected.png"); //draw selected
                         if (highlighted != null) {
@@ -74,6 +87,10 @@ public class BlockListGUI {
                             g.setColor(Color.WHITE); //set the color of the text for later, and change the size
                             font = new Font("Arial", Font.PLAIN, 50); //text when hovered is a bit bigger then not
                             sizeOfFrontPng = 70; //change side of block image
+                        }
+                        BufferedImage blockFront = loadImage("object\\" + block.getName() + "\\" + "front.jpg.jpg"); // add front png of block to block
+                        if (blockFront != null) {
+                            g.drawImage(blockFront, 25, y-60, sizeOfFrontPng, sizeOfFrontPng, this);
                         }
 
                     } else {
@@ -84,20 +101,19 @@ public class BlockListGUI {
                             font = new Font("Arial", Font.PLAIN, 40); //text when not hovered is a bit smaller then hovered
                             sizeOfFrontPng = 60; //change side of block image
                         }
+                        BufferedImage blockFront = loadImage("object\\" + block.getName() + "\\" + "front.jpg.jpg"); // add front png of block to block
+                        if (blockFront != null) {
+                            g.drawImage(blockFront, 30, y-50, sizeOfFrontPng, sizeOfFrontPng, this);
+                        }
                     }
 
                     //DRAW THE TEXT FOR OBJECTS
                     g.setFont(font); // finish setting the done
-                    int y = (scrollDist) + (i * 100) + 100 + 20; // Adjust Y position based on loop iteration (for drwaing name and desc)
                     String text = String.valueOf(i + 1); //get the index of the block
                     g.drawString(text, 990, y); // draw the index of block on right side
                     text = blocksArray[i]; //get name of block
                     g.drawString(text, 110, y); //draw the name of each block
 
-                    //RUN PARSER AGAIN (why idk)
-                    parserAndReadin parser = new parserAndReadin();
-                    ArrayList<Block> blocks = parser.readInData("data/Blocks.txt");
-                    Block block = parser.getBlockByName(blocks, blocksArray[i]);
 
                     //DRAW DESCRIPTION
                     font = new Font("Arial", Font.PLAIN, 20); //font for details
@@ -110,11 +126,6 @@ public class BlockListGUI {
                     g.drawString("It spawns in the " + block.getDimension() + ". Stackability: " + block.getStackability() +"." , 450, y-40);
                     g.drawString("Hardness: " + block.getHardness() + ". Blast Resistance: " + block.getBlastres() + "." , 450, y+25-40);
                     g.drawString("Is Renewable: " + block.getRenewability() + ". " + flammableInfo, 450, y+50-40); //bild da strings
-
-                    BufferedImage blockFront = loadImage("object\\" + block.getName() + "\\" + "front.jpg.jpg"); // add front png of block to block
-                    if (blockFront != null) {
-                        g.drawImage(blockFront, 30, y-50, sizeOfFrontPng, sizeOfFrontPng, this);
-                    }
 
                     numberOfObjects += 1; //unused for now
                 }
@@ -389,6 +400,7 @@ public class BlockListGUI {
                 isDropDownOpen = false;
                 performSortAction("Name");
                 scrollDist = 0;
+                backgroundType = "ViewPannelAssets/Background.png";
             } else if (isWithinButtonRange(x, y, 544, 819, 100, 150)) {
                 sortType = "Stackability";
                 isDropDownOpen = false;
