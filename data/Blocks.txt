@@ -98,4 +98,13 @@ Waxed Block of Copper,true,Yes (64),6,3,0,false,N/A,true,WaxedCopperBlock.wav
 Packed Mud,true,Yes (64),0.5,0.5,0,false,Overworld,true,PackedMud.wav
 Pearlescent,true,Yes (64),0.3,0.3,13,false,Overworld,false,Pearlescent.wav
 Dropper,true,Yes (64),3.5,3.5,0,false,Overworld,true,Dropper.wav
-Null,true,Yes (64),3.5,3.5,0,false,Overworld,true,Dropper.wav
+Ancient Debris,false,Yes (64),1200,30,0,false,Nether,false,Ancient Debris.wav
+Snow Block,true,Yes (64),0.2,0.2,0,false,Overworld,false,Snow Block.wav
+Glowstone,true,Yes (64),0.3,0.3,15,false,Nether,false,Glowstone.wav
+Andesite,true,Yes (64),6,1.5,0,false,Overworld,false,Andesite.wav
+Crying Obsidian,true,Yes (64),1200,50,10,false,Overworld/Nether,false,Crying Obsidian.wav
+Stripped Warped Log,true,Yes (64),2,2,0,true,Nether,false,Stripped Warped Log.wav
+Sculk Catalyst,false,Yes (64),3,3,6,false,Overworld,false,Sculk Catalyst.wav
+Soul Soil,true,Yes (64),0.5,0.5,0,false,Nether,false,Soul Soil.wav
+White Glazed Terracotta,true,Yes (64),1.4,1.4,0,false,Overworld,true,White Glazed Terracotta.wav
+Cut Copper,true,Yes (64),6,3,0,false,Overworld,false,Cut Copper.wav
