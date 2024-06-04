@@ -1,6 +1,10 @@
 //The gui in this file is by Jacob Mobin, The Background is by Lucas Chu
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
@@ -29,6 +33,7 @@ public class MainMenuGUI {
 
     private static String[] musicFiles = {"Music/1.wav", "Music/2.wav", "Music/3.wav", "Music/4.wav", "Music/5.wav", "Music/6.wav"};
     private static int currentMusicIndex = 0;
+    private static Clip musicClip;
 
     public static void mainMenu() {
         // Create and set up the window
@@ -108,8 +113,9 @@ public class MainMenuGUI {
         });
         timer.start(); // Start the timer
 
-        //music shit
 
+        // Start playing music in a loop
+        new Thread(MainMenuGUI::playMusicLoop).start();
 
 
     }
@@ -147,6 +153,50 @@ public class MainMenuGUI {
                 return null;
             }
         }
+    }
+
+    public static void playMusicLoop() {
+        while (true) {
+            try {
+                // Load and play the current music file
+                AudioInputStream audioStream = AudioSystem.getAudioInputStream(new File(musicFiles[currentMusicIndex]));
+                musicClip = AudioSystem.getClip();
+                musicClip.open(audioStream);
+                musicClip.start();
+
+                // Wait for the clip to finish playing
+                Thread.sleep(musicClip.getMicrosecondLength() / 1000);
+
+                // Set volume to 25%
+                FloatControl volumeControl = (FloatControl) musicClip.getControl(FloatControl.Type.MASTER_GAIN);
+                volumeControl.setValue(-12.0f); // Reduce volume by 12 decibels
+
+                // Close the clip
+                musicClip.close();
+
+                // Move to the next music file (loop back to the first file if at the end)
+                currentMusicIndex = (currentMusicIndex + 1) % musicFiles.length;
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("Runtime error when adding audio file " + musicFiles[currentMusicIndex]);
+            }
+        }
+    }
+
+    public Clip playSFX(String song, float volume) {
+        Clip clip = null;
+        try {
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(this.getClass().getResource("/res/" + song));
+            clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            FloatControl setVolume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            setVolume.setValue(volume); // Reduces the volume by the input value
+            clip.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Runtime error when adding audio file " + song);
+        }
+        return clip;
     }
 
 
