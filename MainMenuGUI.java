@@ -27,7 +27,7 @@ public class MainMenuGUI {
     private static JPanel canvasPanel;
     private static Map<String, BufferedImage> imageCache = new HashMap<>(); //optimising buffered images so compuyter dosent lag
 
-    private static String[] musicFiles = {"Music/1.mp3", "Music/2.mp3", "Music/3.mp3", "Music/4.mp3", "Music/5.mp3", "Music/6.mp3"};
+    private static String[] musicFiles = {"Music/1.wav", "Music/2.wav", "Music/3.wav", "Music/4.wav", "Music/5.wav", "Music/6.wav"};
     private static int currentMusicIndex = 0;
 
     public static void mainMenu() {
