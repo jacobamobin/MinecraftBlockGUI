@@ -26,7 +26,7 @@ public class BlockListGUI {
     private static Map<String, BufferedImage> imageCache = new HashMap<>(); //this optimises the images we are rendering through buffered images, so it dosent have to create a new object each time
     private static String[] blocksArray; // this is an array of all the block names, from the blocks.txt file
     private static JPanel blankCanvasPanel; // i dont know why this is here but shit breaks if its gone
-    private static String backgroundType = "ViewPannelAssets/Background.png";
+    private static String backgroundType = "HighRes/Background 1.png";
 
     //THE GUI
     public static void blockListGUI() {
@@ -52,7 +52,7 @@ public class BlockListGUI {
                 //BACKGROUND WITH SCROLL OFFSET
                 BufferedImage backgroundImage = loadImage(backgroundType);
                 if (backgroundImage != null) {
-                    g.drawImage(backgroundImage, 0, -2000 + 50 + (scrollDist) / 4, 1080, 10000, this);
+                    g.drawImage(backgroundImage, 0, -2000 + 50 + (scrollDist) / 3, 1080, 10000, this);
                 }
                 /*
                 BufferedImage backgroundDarken = loadImage("ViewPannelAssets/Darken.png"); //darken the background by putting a shitty overlay onto it
@@ -403,41 +403,48 @@ public class BlockListGUI {
                 isDropDownOpen = false;
                 performSortAction("Name");
                 scrollDist = 0;
-                backgroundType = "ViewPannelAssets/Background.png";
+                backgroundType = "HighRes/Background 1.png";
             } else if (isWithinButtonRange(x, y, 544, 819, 100, 150)) {
                 sortType = "Stackability";
                 isDropDownOpen = false;
                 performSortAction("Stackability");
                 scrollDist = 0;
+                backgroundType = "HighRes/Background 2.png";
             } else if (isWithinButtonRange(x, y, 544, 819, 150, 200)) {
                 sortType = "Dimension";
                 isDropDownOpen = false;
                 performSortAction("Dimension");
                 scrollDist = 0;
+                backgroundType = "HighRes/Background 3.png";
             } else if (isWithinButtonRange(x, y, 544, 819, 200, 250)) {
                 sortType = "Hardness";
                 isDropDownOpen = false;
                 performSortAction("Hardness");
                 scrollDist = 0;
+                backgroundType = "HighRes/Background 4.png";
             } else if (isWithinButtonRange(x, y, 544, 819, 250, 300)) {
                 sortType = "BlastRes";
                 isDropDownOpen = false;
                 performSortAction("BlastRes");
                 scrollDist = 0;
+                backgroundType = "HighRes/Background 5.png";
             } else if (isWithinButtonRange(x, y, 544, 819, 300, 350)) {
                 sortType = "Renewability";
                 isDropDownOpen = false;
                 performSortAction("Renewability");
                 scrollDist = 0;
+                backgroundType = "HighRes/Background 6.png";
             } else if (isWithinButtonRange(x, y, 544, 819, 350, 400)) {
                 sortType = "Luminous";
                 isDropDownOpen = false;
                 performSortAction("Luminous");
+                backgroundType = "HighRes/Background 7.png";
             } else if (isWithinButtonRange(x, y, 544, 819, 400, 450)) {
                 sortType = "Flammable";
                 isDropDownOpen = false;
                 performSortAction("Flammable");
                 scrollDist = 0;
+                backgroundType = "HighRes/Background 8.png";
             } else {
                 isDropDownOpen = false;
                 scrollDist = 0;

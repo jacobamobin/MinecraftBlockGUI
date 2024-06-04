@@ -22,6 +22,7 @@ public class BlockEditGUI {
     private static int scrollDist = 0;
     private static Map<String, BufferedImage> imageCache = new HashMap<>();
     private static String [] blocksArray;
+    private static String backgroundType = "HighRes/Background 1.png";
 
     public static void blockEditGUI() {
 
@@ -29,6 +30,7 @@ public class BlockEditGUI {
         newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         newFrame.setSize(Main.FRAME_WIDTH, Main.FRAME_HEIGHT);
         newFrame.setResizable(false);
+
 
         // Create the main panel to hold the canvases
         JPanel mainPanel = new JPanel();
@@ -179,9 +181,9 @@ public class BlockEditGUI {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                BufferedImage backgroundImage = loadImage("ViewPannelAssets\\Background.png");
+                BufferedImage backgroundImage = loadImage(backgroundType);
                 if (backgroundImage != null) {
-                    g.drawImage(backgroundImage, 0, -2000 + 50 + (scrollDist) / 4, 1080, 10000, this);
+                    g.drawImage(backgroundImage, 0, -2000 + 50 + (scrollDist) / 3, 1080, 10000, this);
                 }
 
                 parserAndReadin parser = new parserAndReadin(); // initiallize new parser
@@ -355,22 +357,31 @@ public class BlockEditGUI {
         if (isWithinButtonRange(x, y, 544, 819, 0, 50)) {
             if (sortType == "Name") {
                 sortType = "Stackable";
+                backgroundType = "HighRes/Background 2.png";
             } else if (sortType == "Stackable") {
                     sortType = "Dimension";
+                backgroundType = "HighRes/Background 3.png";
             } else if (sortType == "Dimension") {
                 sortType = "Hardness";
+                backgroundType = "HighRes/Background 4.png";
             } else if (sortType == "Hardness") {
                 sortType = "BlastRes";
+                backgroundType = "HighRes/Background 5.png";
             } else if (sortType == "BlastRes") {
                 sortType = "Luminous";
+                backgroundType = "HighRes/Background 6.png";
             } else if (sortType == "Luminous") {
                 sortType = "Renewable";
+                backgroundType = "HighRes/Background 7.png";
             } else if (sortType == "Renewable") {
                 sortType = "Fire";
+                backgroundType = "HighRes/Background 8.png";
             } else if (sortType == "Fire") {
                 sortType = "Name";
+                backgroundType = "HighRes/Background 1.png";
             } else {
                 sortType = "Name";
+                backgroundType = "HighRes/Background 1.png";
             }
         } else if (isWithinButtonRange(x, y, 820, 950, 0, 50)) {
             firstButton = true;
