@@ -484,12 +484,9 @@ public class BlockEditGUI {
                                 }
                                 break;
                             case 1: // Renewability
-                                // Similar to case 0, ask for new value and update the corresponding attribute
                                 break;
                             case 2: // Stackability
-                                // Similar to case 0, ask for new value and update the corresponding attribute
                                 break;
-                            // Add cases for other attributes here
                             default:
                                 System.out.println("Invalid choice.");
                                 break;
