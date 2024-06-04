@@ -323,15 +323,15 @@ public class BlockListGUI {
             return imageCache.get(filename);
         } else {
             File file = new File(filename);
-            System.out.println("Attempting to load image from: " + file.getAbsolutePath());
+            //System.out.println("Attempting to load image from: " + file.getAbsolutePath());
 
             if (!file.exists()) {
-                System.err.println("Error: File does not exist at path: " + file.getAbsolutePath());
+                //System.err.println("Error: File does not exist at path: " + file.getAbsolutePath());
                 return null;
             }
 
             if (!file.canRead()) {
-                System.err.println("Error: Cannot read file at path: " + file.getAbsolutePath());
+                //System.err.println("Error: Cannot read file at path: " + file.getAbsolutePath());
                 return null;
             }
 
@@ -341,12 +341,12 @@ public class BlockListGUI {
                     imageCache.put(filename, image);
                     return image;
                 } else {
-                    System.err.println("Error: File format not supported or file is corrupt: " + file.getAbsolutePath());
+                    //System.err.println("Error: File format not supported or file is corrupt: " + file.getAbsolutePath());
                     return null;
                 }
             } catch (IOException e) {
-                System.err.println("IOException while reading the image file: " + file.getAbsolutePath());
-                e.printStackTrace();
+                //System.err.println("IOException while reading the image file: " + file.getAbsolutePath());
+                //e.printStackTrace();
                 return null;
             }
         }

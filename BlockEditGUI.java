@@ -595,7 +595,7 @@ public class BlockEditGUI {
                 imageCache.put(filename, image);
                 return image;
             } catch (IOException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
                 return null;
             }
         }
