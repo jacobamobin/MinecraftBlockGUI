@@ -322,7 +322,7 @@ public class BlockView3dGUI {
         Texture textureLeft = loadAndRotateTexture("object/left.jpg.jpg", 90);
         Texture textureRight = loadAndRotateTexture("object/right.jpg.jpg", 90);
 
-        BufferedImage buffer  = loadImage("object\\" + "front.jpg.jpg");
+        BufferedImage buffer  = loadImage("object/" + name + "/front.jpg.jpg");
         if (buffer != null) {
              textureFront = loadAndRotateTexture("object/" + name + "/front.jpg.jpg", 90);
              textureBack = loadAndRotateTexture("object/" + name + "/back.jpg.jpg", 270);

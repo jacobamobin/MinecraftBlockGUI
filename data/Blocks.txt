@@ -98,3 +98,4 @@ Waxed Block of Copper,true,Yes (64),6,3,0,false,N/A,true,WaxedCopperBlock.wav
 Packed Mud,true,Yes (64),0.5,0.5,0,false,Overworld,true,PackedMud.wav
 Pearlescent,true,Yes (64),0.3,0.3,13,false,Overworld,false,Pearlescent.wav
 Dropper,true,Yes (64),3.5,3.5,0,false,Overworld,true,Dropper.wav
+Null,true,Yes (64),3.5,3.5,0,false,Overworld,true,Dropper.wav
