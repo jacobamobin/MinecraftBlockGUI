@@ -27,7 +27,7 @@ public class BlockEditGUI {
     public static void blockEditGUI() {
 
         JFrame newFrame = new JFrame("Edit Blocks");
-        newFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        newFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         newFrame.setSize(Main.FRAME_WIDTH, Main.FRAME_HEIGHT);
         newFrame.setResizable(false);
 
