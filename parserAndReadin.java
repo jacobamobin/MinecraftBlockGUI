@@ -44,8 +44,9 @@ public class parserAndReadin
         return blocks;
     }
     //edit entry function
-    public void editEntry(ArrayList<Block> blocks, String blockName, Block updatedBlock, String fileName) 
+    public boolean editEntry(ArrayList<Block> blocks, String blockName, Block updatedBlock, String fileName) 
     {
+        boolean edited = false;
         for (int i = 0; i < blocks.size(); i++) 
         {
             Block block = blocks.get(i);
@@ -53,9 +54,11 @@ public class parserAndReadin
             {
                 blocks.set(i, updatedBlock);
                 saveBlocksToFile(blocks, fileName); // Save to file after editing
+                edited = true;
                 break;
             }
         }
+        return edited;
     }
     
     //Remove entry function
@@ -100,19 +103,6 @@ public class parserAndReadin
             System.out.println("Problem Writing " + fileName);
         }
     }    
-    
-    public Object getBlockParameter(Block block, String parameterType)
-    {
-        try 
-        {
-            Method method = Block.class.getMethod("get" + parameterType);
-            return method.invoke(block);
-        } 
-        catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
     
     public Block getBlockByName(ArrayList<Block> blocks, String blockName) 
     {
