@@ -13,11 +13,11 @@ class Block {
     double luminous; // If this block gives off light
     boolean flammable; // If the block is flammable from natural fire
     String dimension; // Primary Dimension of the block
-    String texture; // texture file path that we will put on the block model
+    boolean craftability; // texture file path that we will put on the block model
     String sfx; // SFX path
 
     // Creating a block
-    public Block(String name, boolean renewable, String stackable, double blastRes, double hardness, double luminous,boolean flammable, String dimension, String texture, String sfx) 
+    public Block(String name, boolean renewable, String stackable, double blastRes, double hardness, double luminous,boolean flammable, String dimension, boolean craftability, String sfx) 
     {
         this.name = name;
         this.renewable = renewable;
@@ -27,18 +27,18 @@ class Block {
         this.luminous = luminous;
         this.flammable = flammable;
         this.dimension = dimension;
-        this.texture = texture;
+        this.craftability = craftability;
         this.sfx = sfx;
     }
-    
-    public String toString() {
+
+    public String toStringA() {
         String flammableInfo = "";
         if (flammable)
             flammableInfo = "This block also catches fire.";
         else
             flammableInfo = "This block is not flammable.";
 
-        return "It spawns in the " + dimension + ".  " + "Stackability: " + stackable + "  Hardness: " + hardness
+        return "It spawns in the " + dimension +".  " + "Stackability: " + stackable + "  Hardness: " + hardness
                 + "\nBlast Resistance: " + blastRes + "  Is Renewable: "
                 + renewable + ". " + flammableInfo;
     }
@@ -133,15 +133,30 @@ class Block {
         this.sfx = sfx;
     }
 
-    public String getTexture() 
+    public boolean getcraftability() 
     {
-        return texture;
+        return craftability;
     }
 
-    public void setTexture(String texture) 
+    public void setTexture(boolean craftability) 
     {
-        this.texture = texture;
+        this.craftability = craftability;
     }
+    
+    public String toCsvString() 
+    {
+        return String.join(",", 
+            getName(), 
+            Boolean.toString(getRenewability()), 
+            getStackability(), 
+            Double.toString(getBlastres()), 
+            Double.toString(getHardness()), 
+            Double.toString(getLuminous()), 
+            Boolean.toString(getFlammable()), 
+            getDimension(), 
+            Boolean.toString(getcraftability()), 
+            getSFX());
+    }    
     //End of setters and getters
 
      /* IMPORTANT: HOW TO USE - First create a Clip object:
@@ -170,6 +185,5 @@ class Block {
            System.out.println("Runtime error when adding audio file " + song);
         }
         return clip;
-
      }
-}  
+}   

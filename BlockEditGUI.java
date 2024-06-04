@@ -177,13 +177,13 @@ public class BlockEditGUI {
         
 
         // Create Canvas 2 on the left (60% height of the bottom space)
-    JPanel canvas2 = new JPanel() {
+        JPanel canvas2 = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                BufferedImage backgroundImage = loadImage(backgroundType);
+                BufferedImage backgroundImage = loadImage("ViewPannelAssets\\Background.png");
                 if (backgroundImage != null) {
-                    g.drawImage(backgroundImage, 0, -2000 + 50 + (scrollDist) / 3, 1080, 10000, this);
+                    g.drawImage(backgroundImage, 0, -2000 + 50 + (scrollDist) / 4, 1080, 10000, this);
                 }
 
                 parserAndReadin parser = new parserAndReadin(); // initiallize new parser
@@ -192,41 +192,27 @@ public class BlockEditGUI {
                 blocksArray = sorter.sortBlockParameter("name", "asc"); // Initial sorting when gui open                
                 Font font = new Font("Arial", Font.PLAIN, 60);
                 int numberOfObjects = 0;
-                int sizeOfFrontPng = 0;
-
 
                 for (int i = 0; i < blocksArray.length; i++) {
-                    int y = (scrollDist) + (i * 100) + 100 + 20; // Adjust Y position based on loop iteration (for drwaing name and desc)
-                    Block block = parser.getBlockByName(blocks, blocksArray[i]);
                     if (isWithinButtonRange(mouseX, mouseY, 5, 950, (scrollDist) + (i * 100) + 50, (scrollDist) + (i * 100) + 150)) {
                         BufferedImage highlighted = loadImage("ViewPannelAssets\\BackGroundOfBlockSelected.png");
                         if (highlighted != null) {
-                            g.drawImage(highlighted, 0 - 5 , (scrollDist) + (i * 100) - 5, 1080 + 10, 720 + 10, this);
+                            g.drawImage(highlighted, 0 - 5, (scrollDist) + (i * 100) - 5, getWidth() + 10, getHeight() + 10, this);
                             g.setColor(Color.WHITE);
-                            font = new Font("Arial", Font.PLAIN, 45);
-                            sizeOfFrontPng = 70;
-                        }
-                        BufferedImage blockFront = loadImage("object\\" + block.getName() + "\\" + "front.jpg.jpg"); // add front png of block to block
-                        if (blockFront != null) {
-                            g.drawImage(blockFront, 60, y-60, sizeOfFrontPng, sizeOfFrontPng, this);
+                            font = new Font("Arial", Font.PLAIN, 70);
                         }
 
                     } else {
                         BufferedImage unselected = loadImage("ViewPannelAssets\\BackGroundOfBlockUnselected.png");
                         if (unselected != null) {
-                            g.drawImage(unselected, 0 , (scrollDist) + (i * 100), 1080, 720, this);
+                            g.drawImage(unselected, 0, (scrollDist) + (i * 100), getWidth(), getHeight(), this);
                             g.setColor(Color.LIGHT_GRAY);
-                            font = new Font("Arial", Font.PLAIN, 40);
-                            sizeOfFrontPng = 60;
-                        }
-                        BufferedImage blockFront = loadImage("object\\" + block.getName() + "\\" + "front.jpg.jpg"); // add front png of block to block
-                        if (blockFront != null) {
-                            g.drawImage(blockFront, 70, y-50, sizeOfFrontPng, sizeOfFrontPng, this);
+                            font = new Font("Arial", Font.PLAIN, 60);
                         }
                     }
 
                     g.setFont(font);
-                    y = (scrollDist) + (i * 100) + 100 + 20 - 10; // Adjust Y position based on loop iteration
+                    int y = (scrollDist) + (i * 100) + 100 + 20 - 10; // Adjust Y position based on loop iteration
                     String text = String.valueOf(i + 1);
                     g.drawString(text, 30, y);
                     text = blocksArray[i];
@@ -279,55 +265,161 @@ public class BlockEditGUI {
 
         // Add buttons to canvas3
         canvas3.setLayout(new GridLayout(3, 1)); // 3 rows, 1 column
-        JButton button1 = new JButton();
-        JButton button2 = new JButton();
-        JButton button3 = new JButton();
+        JButton addButton = new JButton();
+        JButton removeButton = new JButton();
+        JButton editButton = new JButton();
 
         // Load images for the buttons' states
-        ImageIcon button1IconON = new ImageIcon("ViewPannelAssets\\addOn.png");
-        ImageIcon button1IconOFF = new ImageIcon("ViewPannelAssets\\addOff.png");
-        ImageIcon button2IconON = new ImageIcon("ViewPannelAssets\\removeOn.png");
-        ImageIcon button2IconOFF = new ImageIcon("ViewPannelAssets\\removeOff.png");
-        ImageIcon button3IconON = new ImageIcon("ViewPannelAssets\\editOn.png");
-        ImageIcon button3IconOFF = new ImageIcon("ViewPannelAssets\\editOff.png");
+        ImageIcon addButtonIconON = new ImageIcon("ViewPannelAssets\\addOn.png");
+        ImageIcon addButtonIconOFF = new ImageIcon("ViewPannelAssets\\addOff.png");
+        ImageIcon removeButtonIconON = new ImageIcon("ViewPannelAssets\\removeOn.png");
+        ImageIcon removeButtonIconOFF = new ImageIcon("ViewPannelAssets\\removeOff.png");
+        ImageIcon editButtonIconON = new ImageIcon("ViewPannelAssets\\editOn.png");
+        ImageIcon editButtonIconOFF = new ImageIcon("ViewPannelAssets\\editOff.png");
 
         // Set icons to the buttons
-        button1.setIcon(button1IconOFF);
-        button1.setPressedIcon(button1IconON);
-        button2.setIcon(button2IconOFF);
-        button2.setPressedIcon(button2IconON);
-        button3.setIcon(button3IconOFF);
-        button3.setPressedIcon(button3IconON);
+        addButton.setIcon(addButtonIconOFF);
+        addButton.setPressedIcon(addButtonIconON);
+        removeButton.setIcon(removeButtonIconOFF);
+        removeButton.setPressedIcon(removeButtonIconON);
+        editButton.setIcon(editButtonIconOFF);
+        editButton.setPressedIcon(editButtonIconON);
 
         // Add action listeners to buttons
-        button1.addActionListener(new ActionListener() {
+        addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Add functionality for Button 1 here
+                // Initialize variables
+                String blockName;
+                boolean blockRenewability = false; // default value
+                String blockStackability;
+                double blockBlastRes;
+                double blockHardness;
+                double blockLuminous;
+                boolean blockFlammability = false; // default value
+                String blockDimension;
+
+                parserAndReadin parser = new parserAndReadin();
+                ArrayList<Block> blocks = parser.readInData("data/Blocks.txt");
                 System.out.println("Button 1 clicked");
+
+                // Get Block Name
+                blockName = JOptionPane.showInputDialog(null, "Enter the name:");
+                if (blockName != null && !blockName.trim().isEmpty()) {
+                    System.out.println("You entered: " + blockName);
+                    
+                    // Get Renewability
+                    int isRenewable = JOptionPane.showConfirmDialog(null, "Is the block renewable?", "Renewability", JOptionPane.YES_NO_OPTION);
+                    if (isRenewable == JOptionPane.YES_OPTION) {
+                        System.out.println("User chose Yes.");
+                        blockRenewability = true;
+                    } else if (isRenewable == JOptionPane.NO_OPTION) {
+                        System.out.println("User chose No.");
+                        blockRenewability = false;
+                    } else {
+                        System.out.println("User cancelled the operation.");
+                        return;
+                    }
+
+                    // Get Stackability
+                    blockStackability = JOptionPane.showInputDialog(null, "Enter the stackability:");
+                    if (blockStackability == null || blockStackability.trim().isEmpty()) {
+                        System.out.println("Input dialog was cancelled.");
+                        return;
+                    }
+
+                    // Get Blast Resistance
+                    try {
+                        blockBlastRes = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter the blast resistance:"));
+                    } catch (NumberFormatException ex) {
+                        System.out.println("Invalid input for blast resistance.");
+                        JOptionPane.showMessageDialog(null, "Please put in a numeric value next time!");
+                        return;
+                    }
+
+                    // Get Hardness
+                    try {
+                        blockHardness = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter the hardness:"));
+                    } catch (NumberFormatException ex) {
+                        System.out.println("Invalid input for hardness.");
+                        JOptionPane.showMessageDialog(null, "Please put in a numeric value next time!");
+                        return;
+                    }
+
+                    // Get Luminous
+                    try {
+                        blockLuminous = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter the luminous:"));
+                    } catch (NumberFormatException ex) {
+                        System.out.println("Invalid input for luminous.");
+                        JOptionPane.showMessageDialog(null, "Please put in a numeric value next time!");
+                        return;
+                    }
+
+                    // Get Flammability
+                    int isFlammable = JOptionPane.showConfirmDialog(null, "Is the block flammable?", "Flammability", JOptionPane.YES_NO_OPTION);
+                    if (isFlammable == JOptionPane.YES_OPTION) {
+                        System.out.println("User chose Yes.");
+                        blockFlammability = true;
+                    } else if (isFlammable == JOptionPane.NO_OPTION) {
+                        System.out.println("User chose No.");
+                        blockFlammability = false;
+                    } else {
+                        System.out.println("User cancelled the operation.");
+                        return;
+                    }
+
+                    // Get Dimension
+                    blockDimension = JOptionPane.showInputDialog(null, "Enter the dimension:");
+                    if (blockDimension == null || blockDimension.trim().isEmpty()) {
+                        System.out.println("Input dialog was cancelled.");
+                        return;
+                    }
+
+                    // Create a new Block and add it to the list
+                    Block newBlock = new Block(blockName, blockRenewability, blockStackability, blockBlastRes, blockHardness, blockLuminous, blockFlammability, blockDimension, false, "null");
+                    if (parser.addEntry(blocks, newBlock, "data//blocks.txt"))           
+                        System.out.println("New block added: " + newBlock);
+                    else
+                        JOptionPane.showMessageDialog(null, "Block of the same name already exists!");
+                } else {
+                    System.out.println("Input dialog was cancelled or empty.");
+                }
             }
         });
-
-        button2.addActionListener(new ActionListener() {
+        
+        removeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Add functionality for Button 2 here
                 System.out.println("Button 2 clicked");
             }
         });
 
-        button3.addActionListener(new ActionListener() {
+        editButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Add functionality for Button 3 here
                 System.out.println("Button 3 clicked");
-            }
+                parserAndReadin parser = new parserAndReadin();
+                ArrayList<Block> blocks = parser.readInData("data/Blocks.txt");
+                Object[] options = {"Option 1", "Option 2", "Option 3", "Option 4", "5", "6", "7", "8"};
+                int choice = JOptionPane.showOptionDialog(null, 
+                                                  "Choose an option", 
+                                                  "Custom Option Dialog", 
+                                                  JOptionPane.YES_NO_CANCEL_OPTION, 
+                                                  JOptionPane.QUESTION_MESSAGE, 
+                                                  null, 
+                                                  options, 
+                                                  options[0]);
+        if (choice != -1) {
+            System.out.println("User chose: " + options[choice]);
+        } else {
+            System.out.println("User cancelled the operation.");
+        }            }
         });
 
         // Add buttons to canvas3
-        canvas3.add(button1);
-        canvas3.add(button2);
-        canvas3.add(button3);
+        canvas3.add(addButton);
+        canvas3.add(removeButton);
+        canvas3.add(editButton);
 
         // Create a nested panel for Canvas 2 and Canvas 3
         JPanel bottomPanel = new JPanel();
@@ -353,6 +445,8 @@ public class BlockEditGUI {
         });
         timer.start(); // Start the timer
     }
+
+    
     private static void handleClickEventSort(int x, int y) {
         if (isWithinButtonRange(x, y, 544, 819, 0, 50)) {
             if (sortType == "Name") {

@@ -1,17 +1,23 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
-public class parserAndReadin {
-    public ArrayList<Block> readInData(String fileName) {
+public class parserAndReadin 
+{
+    public ArrayList<Block> readInData(String fileName) 
+    {
         ArrayList<Block> blocks = new ArrayList<>();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) 
+        {
             String line;
 
-            while ((line = reader.readLine()) != null) {
+            while ((line = reader.readLine()) != null) 
+            {
                 String[] data = line.split(",");
                 if (data.length == 10) {
                     String name = data[0];
@@ -22,24 +28,29 @@ public class parserAndReadin {
                     double luminous = Double.parseDouble(data[5]);
                     boolean flammable = Boolean.parseBoolean(data[6]);
                     String dimension = data[7];
-                    String SFX = data[8];
-                    String texture = data[9];
+                    boolean craftabilty = Boolean.parseBoolean(data[8]);
+                    String SFX = data[9];
 
-                    Block block = new Block(name, renewability, stackability, blastres, hardness, luminous, flammable, dimension, SFX, texture);
+                    Block block = new Block(name, renewability, stackability, blastres, hardness, luminous, flammable, dimension, craftabilty, SFX);
                     blocks.add(block);
                 }
             }
-        } catch (IOException iox) {
+        } 
+        catch (IOException iox) 
+        {
             System.out.println("Problem Reading " + fileName);
         }
 
         return blocks;
     }
     //edit entry function
-    public void editEntry(ArrayList<Block> blocks, String blockName, Block updatedBlock) {
-        for (int i = 0; i < blocks.size(); i++) {
+    public void editEntry(ArrayList<Block> blocks, String blockName, Block updatedBlock) 
+    {
+        for (int i = 0; i < blocks.size(); i++) 
+        {
             Block block = blocks.get(i);
-            if (block.getName().equals(blockName)) {
+            if (block.getName().equals(blockName)) 
+            {
                 blocks.set(i, updatedBlock);
                 break;
             }
@@ -47,73 +58,61 @@ public class parserAndReadin {
     }
     
     //Remove entry function
-    public void removeEntry(ArrayList<Block> blocks, String blockName) {
+    public void removeEntry(ArrayList<Block> blocks, String blockName, String fileName) 
+    {
         blocks.removeIf(block -> block.getName().equals(blockName));
     }
     
     //Add entry function
-    public boolean addEntry(ArrayList<Block> blocks, Block newBlock) {
-        for (Block block : blocks) {
-            if (block.getName().equals(newBlock.getName())) {
+    public boolean addEntry(ArrayList<Block> blocks, Block newBlock, String fileName) 
+    {
+        for (Block block : blocks) 
+        {
+            if (block.getName().equals(newBlock.getName())) 
+            {
                 return false; // Block with the same name already exists
             }
         }
         blocks.add(newBlock);
+        saveBlocksToFile(blocks, fileName); // Save to file after adding the new block
         return true; // Block added successfully
     }
     
-    // Gets and sends a list of a certain given parameter.
-    public Object getBlockParameterList(ArrayList<Block> blocks, String parameterType) {
-        Object[] parameterList = new Object[blocks.size()];
-
-        try {
-            Method method = Block.class.getMethod("get" + parameterType);
-            Class<?> returnType = method.getReturnType();
-
-            if (returnType == String.class) {
-                String[] result = new String[blocks.size()];
-                for (int i = 0; i < blocks.size(); i++) {
-                    result[i] = (String) method.invoke(blocks.get(i));
-                }
-                return result;
-            } else if (returnType == boolean.class) {
-                boolean[] result = new boolean[blocks.size()];
-                for (int i = 0; i < blocks.size(); i++) {
-                    result[i] = (boolean) method.invoke(blocks.get(i));
-                }
-                return result;
-            } else if (returnType == double.class) {
-                double[] result = new double[blocks.size()];
-                for (int i = 0; i < blocks.size(); i++) {
-                    result[i] = (double) method.invoke(blocks.get(i));
-                }
-                return result;
-            } else {
-                for (int i = 0; i < blocks.size(); i++) {
-                    parameterList[i] = method.invoke(blocks.get(i));
-                }
-                return parameterList;
+    public void saveBlocksToFile(ArrayList<Block> blocks, String fileName) 
+    {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) 
+        {
+            for (Block block : blocks) 
+            {
+                writer.write(block.toCsvString());
+                writer.newLine();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } 
+        catch (IOException iox) 
+        {
+            System.out.println("Problem Writing " + fileName);
         }
-
-        return parameterList;
-    }
+    }    
     
-    public Object getBlockParameter(Block block, String parameterType) {
-        try {
+    public Object getBlockParameter(Block block, String parameterType)
+    {
+        try 
+        {
             Method method = Block.class.getMethod("get" + parameterType);
             return method.invoke(block);
-        } catch (Exception e) {
+        } 
+        catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
     
-    public Block getBlockByName(ArrayList<Block> blocks, String blockName) {
-        for (Block block : blocks) {
-            if (block.getName().equalsIgnoreCase(blockName)) {
+    public Block getBlockByName(ArrayList<Block> blocks, String blockName) 
+    {
+        for (Block block : blocks) 
+        {
+            if (block.getName().equalsIgnoreCase(blockName)) 
+            {
                 return block;
             }
         }
