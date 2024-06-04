@@ -407,35 +407,101 @@ public class BlockEditGUI {
             }
         });
         
-        removeButton.addActionListener(new ActionListener() {
+        removeButton.addActionListener(new ActionListener() 
+        {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String blockName;
+                
+                parserAndReadin parser = new parserAndReadin();
+                ArrayList<Block> blocks = parser.readInData("data/Blocks.txt");
                 System.out.println("Button 2 clicked");
+                blockName = JOptionPane.showInputDialog(null, "Enter the name:");
+                if (blockName != null && !blockName.trim().isEmpty())
+                {
+                    System.out.println("You're trying to remove: " + blockName);
+                    if (parser.removeEntry(blocks, blockName, "data//blocks.txt")) 
+                        JOptionPane.showMessageDialog(null, "Successfully removed" + blockName);
+                    else 
+                        JOptionPane.showMessageDialog(null, "Hm, can't find"+blockName+", are you sure you spelled it right?");
+                }
+                else              
+                    System.out.println("dialog closed.");
             }
         });
 
         editButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) 
+            {
+                String blockName;
+                boolean blockRenewability = false; // default value
+                String blockStackability;
+                double blockBlastRes;
+                double blockHardness;
+                double blockLuminous;
+                boolean blockFlammability = false; // default value
+                String blockDimension;                
+                
                 System.out.println("Button 3 clicked");
                 parserAndReadin parser = new parserAndReadin();
                 ArrayList<Block> blocks = parser.readInData("data/Blocks.txt");
-                Object[] options = {"Option 1", "Option 2", "Option 3", "Option 4", "5", "6", "7", "8"};
-                int choice = JOptionPane.showOptionDialog(null, 
-                                                  "Choose an option", 
-                                                  "Custom Option Dialog", 
-                                                  JOptionPane.YES_NO_CANCEL_OPTION, 
-                                                  JOptionPane.QUESTION_MESSAGE, 
-                                                  null, 
-                                                  options, 
-                                                  options[0]);
-        if (choice != -1) {
-            System.out.println("User chose: " + options[choice]);
-        } else {
-            System.out.println("User cancelled the operation.");
-        }            }
+                blockName = JOptionPane.showInputDialog(null, "Enter the name:");
+                if (blockName != null && !blockName.trim().isEmpty()) 
+                {
+                    System.out.println("You entered: " + blockName);
+                    Block preEditBlock = parser.getBlockByName(blocks, blockName);
+                    blockRenewability = preEditBlock.getRenewability();
+                    blockStackability = preEditBlock.getStackability();
+                    blockBlastRes = preEditBlock.getBlastres();
+                    blockHardness = preEditBlock.getHardness();
+                    blockLuminous = preEditBlock.getLuminous();
+                    blockFlammability = preEditBlock.getFlammable();
+                    blockDimension = preEditBlock.getDimension();
+                    Object[] options = {"Name", "Renewability", "Stackability", "Blastres", "Hardness", "Luminousity", "Flammability", "Dimension"};
+                    int choice = JOptionPane.showOptionDialog(null, 
+                                                        "What attribute would you like to change?", 
+                                                        "Block Edit Panel", 
+                                                        JOptionPane.YES_NO_CANCEL_OPTION, 
+                                                        JOptionPane.QUESTION_MESSAGE, 
+                                                        null, 
+                                                        options, 
+                                                        options[0]);
+                    if (choice != -1) 
+                    {
+                        System.out.println("User chose: " + options[choice]);
+                        switch (choice)
+                        {
+                            case 0: // Name
+                                String newName = JOptionPane.showInputDialog(null, "Enter the new name:");
+                                if (newName != null && !newName.trim().isEmpty()) 
+                                {
+                                    Block updatedNameBlock = new Block(newName, blockRenewability, blockStackability, blockBlastRes, blockHardness, blockLuminous, blockFlammability, blockDimension, false, "null");
+                                    if (parser.editEntry(blocks, blockName, updatedNameBlock, "data/Blocks.txt"))
+                                        JOptionPane.showMessageDialog(null, "Success!");
+                                    else 
+                                        JOptionPane.showMessageDialog(null, "err, problem occured. Try again!");
+                                }
+                                break;
+                            case 1: // Renewability
+                                // Similar to case 0, ask for new value and update the corresponding attribute
+                                break;
+                            case 2: // Stackability
+                                // Similar to case 0, ask for new value and update the corresponding attribute
+                                break;
+                            // Add cases for other attributes here
+                            default:
+                                System.out.println("Invalid choice.");
+                                break;
+                        }
+                    } 
+                    else 
+                    {
+                        System.out.println("User cancelled the operation.");
+                    }
+                }            
+            }
         });
-
         // Add buttons to canvas3
         canvas3.add(addButton);
         canvas3.add(removeButton);
