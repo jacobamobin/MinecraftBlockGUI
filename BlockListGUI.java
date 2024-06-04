@@ -94,6 +94,9 @@ public class BlockListGUI {
                         BufferedImage blockFront = loadImage("object\\" + block.getName() + "\\" + "front.jpg.jpg"); // add front png of block to block
                         if (blockFront != null) {
                             g.drawImage(blockFront, 25, y-60, sizeOfFrontPng, sizeOfFrontPng, this);
+                        } else {
+                            blockFront = loadImage("object\\" + "front.jpg.jpg");
+                            g.drawImage(blockFront, 25, y-60, sizeOfFrontPng, sizeOfFrontPng, this);
                         }
 
                     } else {
@@ -107,6 +110,9 @@ public class BlockListGUI {
                         BufferedImage blockFront = loadImage("object\\" + block.getName() + "\\" + "front.jpg.jpg"); // add front png of block to block
                         if (blockFront != null) {
                             g.drawImage(blockFront, 30, y-50, sizeOfFrontPng, sizeOfFrontPng, this);
+                        } else {
+                            blockFront = loadImage("object\\" + "front.jpg.jpg");
+                            g.drawImage(blockFront, 25, y-60, sizeOfFrontPng, sizeOfFrontPng, this);
                         }
                     }
 

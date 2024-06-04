@@ -315,12 +315,23 @@ public class BlockView3dGUI {
     //This method sets the textures on each face of the cube, and uses the rotate image method to fix texture orientation
     private static void setTexture(Box box, String name) {
         // Load textures for each side
-        Texture textureFront = loadAndRotateTexture("object/" + name + "/front.jpg.jpg", 90);
-        Texture textureBack = loadAndRotateTexture("object/" + name + "/back.jpg.jpg", 270);
-        Texture textureBottom = new TextureLoader("object/" + name + "/bottom.jpg.jpg", null).getTexture(); // No rotation needed
-        Texture textureTop = new TextureLoader("object/" + name + "/top.jpg.jpg", null).getTexture(); // No rotation needed
-        Texture textureLeft = loadAndRotateTexture("object/" + name + "/left.jpg.jpg", 90);
-        Texture textureRight = loadAndRotateTexture("object/" + name + "/right.jpg.jpg", 90);
+        Texture textureFront = loadAndRotateTexture("object/front.jpg.jpg", 90);
+        Texture textureBack = loadAndRotateTexture("object/back.jpg.jpg", 270);
+        Texture textureBottom = new TextureLoader("object/bottom.jpg.jpg", null).getTexture(); // No rotation needed
+        Texture textureTop = new TextureLoader("object/top.jpg.jpg", null).getTexture(); // No rotation needed
+        Texture textureLeft = loadAndRotateTexture("object/left.jpg.jpg", 90);
+        Texture textureRight = loadAndRotateTexture("object/right.jpg.jpg", 90);
+
+        BufferedImage buffer  = loadImage("object\\" + "front.jpg.jpg");
+        if (buffer != null) {
+             textureFront = loadAndRotateTexture("object/" + name + "/front.jpg.jpg", 90);
+             textureBack = loadAndRotateTexture("object/" + name + "/back.jpg.jpg", 270);
+             textureBottom = new TextureLoader("object/" + name + "/bottom.jpg.jpg", null).getTexture(); // No rotation needed
+             textureTop = new TextureLoader("object/" + name + "/top.jpg.jpg", null).getTexture(); // No rotation needed
+             textureLeft = loadAndRotateTexture("object/" + name + "/left.jpg.jpg", 90);
+             textureRight = loadAndRotateTexture("object/" + name + "/right.jpg.jpg", 90);
+        }
+    
         //System.out.println(name);
 
         Appearance front = new Appearance();
