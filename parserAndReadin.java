@@ -44,7 +44,7 @@ public class parserAndReadin
         return blocks;
     }
     //edit entry function
-    public void editEntry(ArrayList<Block> blocks, String blockName, Block updatedBlock) 
+    public void editEntry(ArrayList<Block> blocks, String blockName, Block updatedBlock, String fileName) 
     {
         for (int i = 0; i < blocks.size(); i++) 
         {
@@ -52,15 +52,22 @@ public class parserAndReadin
             if (block.getName().equals(blockName)) 
             {
                 blocks.set(i, updatedBlock);
+                saveBlocksToFile(blocks, fileName); // Save to file after editing
                 break;
             }
         }
     }
     
     //Remove entry function
-    public void removeEntry(ArrayList<Block> blocks, String blockName, String fileName) 
+    public boolean removeEntry(ArrayList<Block> blocks, String blockName, String fileName) 
     {
-        blocks.removeIf(block -> block.getName().equals(blockName));
+        boolean blockRemoved = blocks.removeIf(block -> block.getName().equals(blockName));
+        
+        if (blockRemoved) {
+            saveBlocksToFile(blocks, fileName); // Save to file after removing
+        }
+        
+        return blockRemoved;
     }
     
     //Add entry function
