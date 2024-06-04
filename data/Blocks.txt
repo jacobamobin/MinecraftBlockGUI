@@ -109,3 +109,4 @@ Soul Soil,true,Yes (64),0.5,0.5,0.0,false,Nether,false,Soul Soil.wav
 White Glazed Terracotta,true,Yes (64),1.4,1.4,0.0,false,Overworld,true,White Glazed Terracotta.wav
 Cut Copper,true,Yes (64),6.0,3.0,0.0,false,Overworld,false,Cut Copper.wav
 Null,true,6.0,6.0,6.09,6.0,true,Overowild,false,null
+Obama,true,0,0.0,0.0,0.0,true,0,false,null
