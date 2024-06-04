@@ -1,9 +1,9 @@
-//The gui in this file is by Jacob Mobin (Top bar and left), The connection to the block class and logic is Lucas Chu,
-//The right gui pannel for editing block properties is by Lucas Chu and Jacob Mobin
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ArrayList;
 
 public class BlockEditGUI {
 
@@ -20,6 +21,7 @@ public class BlockEditGUI {
     protected static int mouseX;
     private static int scrollDist = 0;
     private static Map<String, BufferedImage> imageCache = new HashMap<>();
+    private static String [] blocksArray;
 
     public static void blockEditGUI() {
 
@@ -33,15 +35,12 @@ public class BlockEditGUI {
         mainPanel.setLayout(new BorderLayout());
 
         // Create Canvas 1 at the top
-
-
         JPanel canvas1 = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
 
                 Font font = new Font("Arial", Font.PLAIN, 60);
-
 
                 BufferedImage textBar = loadImage("ViewPannelAssets\\TopTypeBar.png");
                 if (textBar != null) {
@@ -108,7 +107,7 @@ public class BlockEditGUI {
                         }
                         break;
                     case "Renewable":
-                        buttonFilePath = "ViewPannelAssets\\Renewability.png";
+                        buttonFilePath = "ViewPannelAssets\\Renewable.png";
                         if (firstButton) {
                             buttonFilePathON = "ViewPannelAssets\\TrueON.png";
                             buttonFilePathOFF = "ViewPannelAssets\\FalseOFF.png";
@@ -128,7 +127,7 @@ public class BlockEditGUI {
                         }
                         break;
                     case "Fire":
-                        buttonFilePath = "ViewPannelAssets\\Flammable.png";
+                        buttonFilePath = "ViewPannelAssets\\Fire.png";
                         if (firstButton) {
                             buttonFilePathON = "ViewPannelAssets\\TrueON.png";
                             buttonFilePathOFF = "ViewPannelAssets\\FalseOFF.png";
@@ -176,7 +175,7 @@ public class BlockEditGUI {
         
 
         // Create Canvas 2 on the left (60% height of the bottom space)
-        JPanel canvas2 = new JPanel() {
+    JPanel canvas2 = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -185,11 +184,14 @@ public class BlockEditGUI {
                     g.drawImage(backgroundImage, 0, -2000 + 50 + (scrollDist) / 4, 1080, 10000, this);
                 }
 
-                String testArray[] = {"Grass", "Dirt", "Wood", "Sand", "Grass", "Dirt", "Wood", "Sand", "Grass", "Dirt", "Wood", "Sand"};
+                parserAndReadin parser = new parserAndReadin(); // initiallize new parser
+                performSortingMethods sorter = new performSortingMethods(); // initialize new sortingmethods
+                ArrayList<Block> blocks = parser.readInData("data/Blocks.txt"); // read in our blocks data file
+                blocksArray = sorter.sortBlockParameter("name", "asc"); // Initial sorting when gui open                
                 Font font = new Font("Arial", Font.PLAIN, 60);
                 int numberOfObjects = 0;
 
-                for (int i = 0; i < testArray.length; i++) {
+                for (int i = 0; i < blocksArray.length; i++) {
                     if (isWithinButtonRange(mouseX, mouseY, 5, 950, (scrollDist) + (i * 100) + 50, (scrollDist) + (i * 100) + 150)) {
                         BufferedImage highlighted = loadImage("ViewPannelAssets\\BackGroundOfBlockSelected.png");
                         if (highlighted != null) {
@@ -211,7 +213,7 @@ public class BlockEditGUI {
                     int y = (scrollDist) + (i * 100) + 100 + 20 - 10; // Adjust Y position based on loop iteration
                     String text = String.valueOf(i + 1);
                     g.drawString(text, 30, y);
-                    text = testArray[i];
+                    text = blocksArray[i];
                     g.drawString(text, 150, y);
 
                     numberOfObjects += 1;
@@ -259,7 +261,57 @@ public class BlockEditGUI {
         canvas3.setPreferredSize(new Dimension(220, 670)); // Adjust width as needed
         canvas3.setBackground(Color.GREEN); // Set background color for demonstration
 
+        // Add buttons to canvas3
+        canvas3.setLayout(new GridLayout(3, 1)); // 3 rows, 1 column
+        JButton button1 = new JButton();
+        JButton button2 = new JButton();
+        JButton button3 = new JButton();
 
+        // Load images for the buttons' states
+        ImageIcon button1IconON = new ImageIcon("ViewPannelAssets\\addOn.png");
+        ImageIcon button1IconOFF = new ImageIcon("ViewPannelAssets\\addOff.png");
+        ImageIcon button2IconON = new ImageIcon("ViewPannelAssets\\removeOn.png");
+        ImageIcon button2IconOFF = new ImageIcon("ViewPannelAssets\\removeOff.png");
+        ImageIcon button3IconON = new ImageIcon("ViewPannelAssets\\editOn.png");
+        ImageIcon button3IconOFF = new ImageIcon("ViewPannelAssets\\editOff.png");
+
+        // Set icons to the buttons
+        button1.setIcon(button1IconOFF);
+        button1.setPressedIcon(button1IconON);
+        button2.setIcon(button2IconOFF);
+        button2.setPressedIcon(button2IconON);
+        button3.setIcon(button3IconOFF);
+        button3.setPressedIcon(button3IconON);
+
+        // Add action listeners to buttons
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Add functionality for Button 1 here
+                System.out.println("Button 1 clicked");
+            }
+        });
+
+        button2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Add functionality for Button 2 here
+                System.out.println("Button 2 clicked");
+            }
+        });
+
+        button3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Add functionality for Button 3 here
+                System.out.println("Button 3 clicked");
+            }
+        });
+
+        // Add buttons to canvas3
+        canvas3.add(button1);
+        canvas3.add(button2);
+        canvas3.add(button3);
 
         // Create a nested panel for Canvas 2 and Canvas 3
         JPanel bottomPanel = new JPanel();
@@ -285,12 +337,11 @@ public class BlockEditGUI {
         });
         timer.start(); // Start the timer
     }
-
     private static void handleClickEventSort(int x, int y) {
         if (isWithinButtonRange(x, y, 544, 819, 0, 50)) {
             if (sortType == "Name") {
-                sortType = "Stackable";
-            } else if (sortType == "Stackable") {
+                sortType = "Stack";
+            } else if (sortType == "Stack") {
                     sortType = "Dimension";
             } else if (sortType == "Dimension") {
                 sortType = "Hardness";
