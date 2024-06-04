@@ -108,7 +108,7 @@ public class BlockEditGUI {
                         }
                         break;
                     case "Renewable":
-                        buttonFilePath = "ViewPannelAssets\\Renewable.png";
+                        buttonFilePath = "ViewPannelAssets\\Renewability.png";
                         if (firstButton) {
                             buttonFilePathON = "ViewPannelAssets\\TrueON.png";
                             buttonFilePathOFF = "ViewPannelAssets\\FalseOFF.png";
@@ -128,7 +128,7 @@ public class BlockEditGUI {
                         }
                         break;
                     case "Fire":
-                        buttonFilePath = "ViewPannelAssets\\Fire.png";
+                        buttonFilePath = "ViewPannelAssets\\Flammable.png";
                         if (firstButton) {
                             buttonFilePathON = "ViewPannelAssets\\TrueON.png";
                             buttonFilePathOFF = "ViewPannelAssets\\FalseOFF.png";
@@ -289,8 +289,8 @@ public class BlockEditGUI {
     private static void handleClickEventSort(int x, int y) {
         if (isWithinButtonRange(x, y, 544, 819, 0, 50)) {
             if (sortType == "Name") {
-                sortType = "Stack";
-            } else if (sortType == "Stack") {
+                sortType = "Stackable";
+            } else if (sortType == "Stackable") {
                     sortType = "Dimension";
             } else if (sortType == "Dimension") {
                 sortType = "Hardness";

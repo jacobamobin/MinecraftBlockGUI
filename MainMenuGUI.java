@@ -1,4 +1,5 @@
 //The gui in this file is by Jacob Mobin, The Background is by Lucas Chu
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
@@ -7,6 +8,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,6 +26,9 @@ public class MainMenuGUI {
 
     private static JPanel canvasPanel;
     private static Map<String, BufferedImage> imageCache = new HashMap<>(); //optimising buffered images so compuyter dosent lag
+
+    private static String[] musicFiles = {"Music/1.mp3", "Music/2.mp3", "Music/3.mp3", "Music/4.mp3", "Music/5.mp3", "Music/6.mp3"};
+    private static int currentMusicIndex = 0;
 
     public static void mainMenu() {
         // Create and set up the window
@@ -103,6 +108,9 @@ public class MainMenuGUI {
         });
         timer.start(); // Start the timer
 
+        //music shit
+
+
 
     }
 
@@ -140,4 +148,6 @@ public class MainMenuGUI {
             }
         }
     }
+
+
 }

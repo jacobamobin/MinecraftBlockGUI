@@ -54,10 +54,13 @@ public class BlockListGUI {
                 if (backgroundImage != null) {
                     g.drawImage(backgroundImage, 0, -2000 + 50 + (scrollDist) / 4, 1080, 10000, this);
                 }
+                /*
                 BufferedImage backgroundDarken = loadImage("ViewPannelAssets/Darken.png"); //darken the background by putting a shitty overlay onto it
                 if (backgroundDarken != null) {
                     g.drawImage(backgroundDarken, 0, 0, 1080, 720, this);
                 }
+                */
+
 
                 //LOAD THE SIDEBAR ON THE RIGHT SIDE OF THE SCREEN
                 BufferedImage overlay = loadImage("ViewPannelAssets\\Sidebar.png");
@@ -296,7 +299,7 @@ public class BlockListGUI {
             @Override
             public void windowClosing(WindowEvent e) {
                 // Action to perform when the window is closing
-                SwingUtilities.invokeLater(MainMenuGUI::mainMenu); // Opens the main menu again
+                //SwingUtilities.invokeLater(MainMenuGUI::mainMenu); // Opens the main menu again
                 newFrame.dispose(); // Dispose of the current frame
             }
         });
