@@ -46,19 +46,20 @@ public class parserAndReadin
     //edit entry function
     public boolean editEntry(ArrayList<Block> blocks, String blockName, Block updatedBlock, String fileName) 
     {
-        boolean edited = false;
+        System.out.println("Blocks before update: " + blocks); // Debugging
         for (int i = 0; i < blocks.size(); i++) 
         {
             Block block = blocks.get(i);
             if (block.getName().equals(blockName)) 
             {
                 blocks.set(i, updatedBlock);
-                saveBlocksToFile(blocks, fileName); // Save to file after editing
-                edited = true;
-                break;
+                saveBlocksToFile(blocks, fileName);
+                System.out.println("Blocks after update: " + blocks); // Debugging
+                return true;
             }
         }
-        return edited;
+        System.out.println("Block not found: " + blockName); // Debugging
+        return false; // Return false if block is not found
     }
     
     //Remove entry function

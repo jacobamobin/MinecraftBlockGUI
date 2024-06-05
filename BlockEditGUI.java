@@ -306,9 +306,11 @@ public class BlockEditGUI {
         editButton.setPressedIcon(editButtonIconON);
 
         // Add action listeners to buttons
-        addButton.addActionListener(new ActionListener() {
+        addButton.addActionListener(new ActionListener() 
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) 
+            {
                 // Initialize variables
                 String blockName;
                 boolean blockRenewability = false; // default value
@@ -325,72 +327,94 @@ public class BlockEditGUI {
 
                 // Get Block Name
                 blockName = JOptionPane.showInputDialog(null, "Enter the name:");
-                if (blockName != null && !blockName.trim().isEmpty()) {
+                if (blockName != null && !blockName.trim().isEmpty()) 
+                {
                     System.out.println("You entered: " + blockName);
                     
                     // Get Renewability
                     int isRenewable = JOptionPane.showConfirmDialog(null, "Is the block renewable?", "Renewability", JOptionPane.YES_NO_OPTION);
-                    if (isRenewable == JOptionPane.YES_OPTION) {
+                    if (isRenewable == JOptionPane.YES_OPTION) 
+                    {
                         System.out.println("User chose Yes.");
                         blockRenewability = true;
-                    } else if (isRenewable == JOptionPane.NO_OPTION) {
+                    } 
+                    else if (isRenewable == JOptionPane.NO_OPTION) 
+                    {
                         System.out.println("User chose No.");
                         blockRenewability = false;
-                    } else {
+                    } 
+                    else 
+                    {
                         System.out.println("User cancelled the operation.");
                         return;
                     }
 
                     // Get Stackability
                     blockStackability = JOptionPane.showInputDialog(null, "Enter the stackability:");
-                    if (blockStackability == null || blockStackability.trim().isEmpty()) {
+                    if (blockStackability == null || blockStackability.trim().isEmpty()) 
+                    {
                         System.out.println("Input dialog was cancelled.");
                         return;
                     }
 
                     // Get Blast Resistance
-                    try {
+                    try 
+                    {
                         blockBlastRes = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter the blast resistance:"));
-                    } catch (NumberFormatException ex) {
+                    } 
+                    catch (NumberFormatException ex) 
+                    {
                         System.out.println("Invalid input for blast resistance.");
-                        JOptionPane.showMessageDialog(null, "Please put in a numeric value next time!");
+                        JOptionPane.showMessageDialog(null, "Invalid input for blast resistance. Please put in a numeric value next time!");
                         return;
                     }
 
                     // Get Hardness
-                    try {
+                    try 
+                    {
                         blockHardness = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter the hardness:"));
-                    } catch (NumberFormatException ex) {
+                    } 
+                    catch (NumberFormatException ex) 
+                    {
                         System.out.println("Invalid input for hardness.");
-                        JOptionPane.showMessageDialog(null, "Please put in a numeric value next time!");
+                        JOptionPane.showMessageDialog(null, "Invalid input for blast hardness. Please put in a numeric value next time!");
                         return;
                     }
 
                     // Get Luminous
-                    try {
+                    try 
+                    {
                         blockLuminous = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter the luminous:"));
-                    } catch (NumberFormatException ex) {
+                    } 
+                    catch (NumberFormatException ex) 
+                    {
                         System.out.println("Invalid input for luminous.");
-                        JOptionPane.showMessageDialog(null, "Please put in a numeric value next time!");
+                        JOptionPane.showMessageDialog(null, "Invalid input for luminous. Please put in a numeric value next time!");
                         return;
                     }
 
                     // Get Flammability
                     int isFlammable = JOptionPane.showConfirmDialog(null, "Is the block flammable?", "Flammability", JOptionPane.YES_NO_OPTION);
-                    if (isFlammable == JOptionPane.YES_OPTION) {
+                    if (isFlammable == JOptionPane.YES_OPTION) 
+                    {
                         System.out.println("User chose Yes.");
                         blockFlammability = true;
-                    } else if (isFlammable == JOptionPane.NO_OPTION) {
+                    } 
+                    else if (isFlammable == JOptionPane.NO_OPTION) 
+                    {
                         System.out.println("User chose No.");
                         blockFlammability = false;
-                    } else {
+                    } 
+                    else 
+                    {
                         System.out.println("User cancelled the operation.");
                         return;
                     }
 
                     // Get Dimension
                     blockDimension = JOptionPane.showInputDialog(null, "Enter the dimension:");
-                    if (blockDimension == null || blockDimension.trim().isEmpty()) {
+                    if (blockDimension == null || blockDimension.trim().isEmpty()) 
+                    {
                         System.out.println("Input dialog was cancelled.");
                         return;
                     }
@@ -401,16 +425,17 @@ public class BlockEditGUI {
                         System.out.println("New block added: " + newBlock);
                     else
                         JOptionPane.showMessageDialog(null, "Block of the same name already exists!");
-                } else {
+                } 
+                else 
                     System.out.println("Input dialog was cancelled or empty.");
-                }
             }
         });
         
         removeButton.addActionListener(new ActionListener() 
         {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) 
+            {
                 String blockName;
                 
                 parserAndReadin parser = new parserAndReadin();
@@ -421,16 +446,17 @@ public class BlockEditGUI {
                 {
                     System.out.println("You're trying to remove: " + blockName);
                     if (parser.removeEntry(blocks, blockName, "data//blocks.txt")) 
-                        JOptionPane.showMessageDialog(null, "Successfully removed" + blockName);
+                        JOptionPane.showMessageDialog(null, "Successfully removed " + blockName);
                     else 
-                        JOptionPane.showMessageDialog(null, "Hm, can't find"+blockName+", are you sure you spelled it right?");
+                        JOptionPane.showMessageDialog(null, "Hm, can't find "+blockName+", are you sure you spelled it right?");
                 }
                 else              
                     System.out.println("dialog closed.");
             }
         });
 
-        editButton.addActionListener(new ActionListener() {
+        editButton.addActionListener(new ActionListener() 
+        {
             @Override
             public void actionPerformed(ActionEvent e) 
             {
@@ -442,63 +468,222 @@ public class BlockEditGUI {
                 double blockLuminous;
                 boolean blockFlammability = false; // default value
                 String blockDimension;                
-                
+        
                 System.out.println("Button 3 clicked");
                 parserAndReadin parser = new parserAndReadin();
                 ArrayList<Block> blocks = parser.readInData("data/Blocks.txt");
-                blockName = JOptionPane.showInputDialog(null, "Enter the name:");
-                if (blockName != null && !blockName.trim().isEmpty()) 
+                String blockChoice = JOptionPane.showInputDialog(null, "Enter the name:");
+                if (blockChoice != null && !blockChoice.trim().isEmpty()) 
                 {
-                    System.out.println("You entered: " + blockName);
-                    Block preEditBlock = parser.getBlockByName(blocks, blockName);
-                    blockRenewability = preEditBlock.getRenewability();
-                    blockStackability = preEditBlock.getStackability();
-                    blockBlastRes = preEditBlock.getBlastres();
-                    blockHardness = preEditBlock.getHardness();
-                    blockLuminous = preEditBlock.getLuminous();
-                    blockFlammability = preEditBlock.getFlammable();
-                    blockDimension = preEditBlock.getDimension();
-                    Object[] options = {"Name", "Renewability", "Stackability", "Blastres", "Hardness", "Luminousity", "Flammability", "Dimension"};
-                    int choice = JOptionPane.showOptionDialog(null, 
-                                                        "What attribute would you like to change?", 
-                                                        "Block Edit Panel", 
-                                                        JOptionPane.YES_NO_CANCEL_OPTION, 
-                                                        JOptionPane.QUESTION_MESSAGE, 
-                                                        null, 
-                                                        options, 
-                                                        options[0]);
-                    if (choice != -1) 
+                    System.out.println("You entered: " + blockChoice);
+                    try 
                     {
-                        System.out.println("User chose: " + options[choice]);
-                        switch (choice)
+                        Block preEditBlock = parser.getBlockByName(blocks, blockChoice);
+                        if (preEditBlock == null) 
                         {
-                            case 0: // Name
-                                String newName = JOptionPane.showInputDialog(null, "Enter the new name:");
-                                if (newName != null && !newName.trim().isEmpty()) 
-                                {
-                                    Block updatedNameBlock = new Block(newName, blockRenewability, blockStackability, blockBlastRes, blockHardness, blockLuminous, blockFlammability, blockDimension, false, "null");
-                                    if (parser.editEntry(blocks, blockName, updatedNameBlock, "data/Blocks.txt"))
-                                        JOptionPane.showMessageDialog(null, "Success!");
+                            throw new Exception("Block not found");
+                        }
+                        blockName = preEditBlock.getName();
+                        blockRenewability = preEditBlock.getRenewability();
+                        blockStackability = preEditBlock.getStackability();
+                        blockBlastRes = preEditBlock.getBlastres();
+                        blockHardness = preEditBlock.getHardness();
+                        blockLuminous = preEditBlock.getLuminous();
+                        blockFlammability = preEditBlock.getFlammable();
+                        blockDimension = preEditBlock.getDimension();
+                        Block updatedBlock = new Block(blockName, blockRenewability, blockStackability, blockBlastRes, blockHardness, blockLuminous, blockFlammability, blockDimension, false, "null");
+                        Object[] options = {"Name", "Renewability", "Stackability", "Blastres", "Hardness", "Luminousity", "Flammability", "Dimension"};
+                        int choice = JOptionPane.showOptionDialog(null, 
+                                                                "What attribute would you like to change?", 
+                                                                "Block Edit Panel", 
+                                                                JOptionPane.YES_NO_CANCEL_OPTION, 
+                                                                JOptionPane.QUESTION_MESSAGE, 
+                                                                null, 
+                                                                options, 
+                                                                options[0]);
+                        if (choice != -1) 
+                        {
+                            System.out.println("User chose: " + options[choice]);
+                            switch (choice) 
+                            {
+                                case 0: // Name
+                                    String newName = JOptionPane.showInputDialog(null, "Enter the new name:");
+                                    if (newName != null && !newName.trim().isEmpty()) 
+                                    {
+                                        updatedBlock = new Block(newName, blockRenewability, blockStackability, blockBlastRes, blockHardness, blockLuminous, blockFlammability, blockDimension, false, "null");
+                                        if (parser.editEntry(blocks, blockChoice, updatedBlock, "data/Blocks.txt")) 
+                                        {
+                                            JOptionPane.showMessageDialog(null, "Success!");
+                                            blockName = newName; // Update blockName if the name changes
+                                        } 
+                                        else 
+                                        {
+                                            JOptionPane.showMessageDialog(null, "Error occurred. Try again!");
+                                        }
+                                    }
+                                    break;
+                                case 1: // Renewability
+                                    boolean newRenewability;
+                                    int renewabilityChoice = JOptionPane.showConfirmDialog(null, "Is the block renewable?", "Renewability", JOptionPane.YES_NO_OPTION);
+                                    if (renewabilityChoice == JOptionPane.YES_OPTION) 
+                                    {
+                                        System.out.println("User chose Yes.");
+                                        newRenewability = true;
+                                    } 
+                                    else if (renewabilityChoice == JOptionPane.NO_OPTION) 
+                                    {
+                                        System.out.println("User chose No.");
+                                        newRenewability = false;
+                                    } 
                                     else 
-                                        JOptionPane.showMessageDialog(null, "err, problem occured. Try again!");
-                                }
-                                break;
-                            case 1: // Renewability
-                                break;
-                            case 2: // Stackability
-                                break;
-                            default:
-                                System.out.println("Invalid choice.");
-                                break;
+                                    {
+                                        System.out.println("User cancelled the operation.");
+                                        return;
+                                    }
+                                    updatedBlock = new Block(blockName, newRenewability, blockStackability, blockBlastRes, blockHardness, blockLuminous, blockFlammability, blockDimension, false, "null");
+                                    if (parser.editEntry(blocks, blockChoice, updatedBlock, "data/Blocks.txt")) 
+                                    {
+                                        JOptionPane.showMessageDialog(null, "Success!");
+                                    } 
+                                    else 
+                                    {
+                                        JOptionPane.showMessageDialog(null, "Error occurred. Try again!");
+                                    }
+                                    break;
+                                case 2: // Stackability
+                                    String newStackability = JOptionPane.showInputDialog(null, "Enter the new stackability:");
+                                    if (newStackability != null && !newStackability.trim().isEmpty()) 
+                                    {
+                                        updatedBlock = new Block(blockName, blockRenewability, newStackability, blockBlastRes, blockHardness, blockLuminous, blockFlammability, blockDimension, false, "null");
+                                        if (parser.editEntry(blocks, blockChoice, updatedBlock, "data/Blocks.txt")) 
+                                        {
+                                            JOptionPane.showMessageDialog(null, "Success!");
+                                        } 
+                                        else 
+                                        {
+                                            JOptionPane.showMessageDialog(null, "Error occurred. Try again!");
+                                        }
+                                    }
+                                    break;
+                                case 3: // Blast resistance
+                                    try 
+                                    {
+                                        double newBlastRes = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter the new blast resistance:"));
+                                        updatedBlock = new Block(blockName, blockRenewability, blockStackability, newBlastRes, blockHardness, blockLuminous, blockFlammability, blockDimension, false, "null");
+                                        if (parser.editEntry(blocks, blockChoice, updatedBlock, "data/Blocks.txt")) 
+                                        {
+                                            JOptionPane.showMessageDialog(null, "Success!");
+                                        } 
+                                        else 
+                                        {
+                                            JOptionPane.showMessageDialog(null, "Error occurred. Try again!");
+                                        }
+                                    } 
+                                    catch (NumberFormatException ex) 
+                                    {
+                                        JOptionPane.showMessageDialog(null, "Invalid input. Please enter a numeric value!");
+                                    }
+                                    break;
+                                case 4: // Hardness
+                                    try 
+                                    {
+                                        double newHardness = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter the new hardness:"));
+                                        updatedBlock = new Block(blockName, blockRenewability, blockStackability, blockBlastRes, newHardness, blockLuminous, blockFlammability, blockDimension, false, "null");
+                                        if (parser.editEntry(blocks, blockChoice, updatedBlock, "data/Blocks.txt")) 
+                                        {
+                                            JOptionPane.showMessageDialog(null, "Success!");
+                                        } 
+                                        else 
+                                        {
+                                            JOptionPane.showMessageDialog(null, "Error occurred. Try again!");
+                                        }
+                                    } 
+                                    catch (NumberFormatException ex) 
+                                    {
+                                        JOptionPane.showMessageDialog(null, "Invalid input. Please enter a numeric value!");
+                                    }
+                                    break;
+                                case 5: // Luminosity
+                                    try 
+                                    {
+                                        double newLuminous = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter the new luminosity:"));
+                                        updatedBlock = new Block(blockName, blockRenewability, blockStackability, blockBlastRes, blockHardness, newLuminous, blockFlammability, blockDimension, false, "null");
+                                        if (parser.editEntry(blocks, blockChoice, updatedBlock, "data/Blocks.txt")) 
+                                        {
+                                            JOptionPane.showMessageDialog(null, "Success!");
+                                        } 
+                                        else 
+                                        {
+                                            JOptionPane.showMessageDialog(null, "Error occurred. Try again!");
+                                        }
+                                    } 
+                                    catch (NumberFormatException ex) 
+                                    {
+                                        JOptionPane.showMessageDialog(null, "Invalid input. Please enter a numeric value!");
+                                    }
+                                    break;
+                                case 6: // Flammability
+                                    boolean newFlammability;
+                                    int flammChoice = JOptionPane.showConfirmDialog(null, "Is it flammable?", "Flammability", JOptionPane.YES_NO_OPTION);
+                                    if (flammChoice == JOptionPane.YES_OPTION) 
+                                    {
+                                        System.out.println("User chose Yes.");
+                                        newFlammability = true;
+                                    } 
+                                    else if (flammChoice == JOptionPane.NO_OPTION) 
+                                    {
+                                        System.out.println("User chose No.");
+                                        newFlammability = false;
+                                    } 
+                                    else 
+                                    {
+                                        System.out.println("User cancelled the operation.");
+                                        return;
+                                    }
+                                    updatedBlock = new Block(blockName, blockRenewability, blockStackability, blockBlastRes, blockHardness, blockLuminous, newFlammability, blockDimension, false, "null");
+                                    if (parser.editEntry(blocks, blockChoice, updatedBlock, "data/Blocks.txt")) 
+                                    {
+                                        JOptionPane.showMessageDialog(null, "Success!");
+                                    } 
+                                    else 
+                                    {
+                                        JOptionPane.showMessageDialog(null, "Error occurred. Try again!");
+                                    }
+                                    break;
+                                case 7: // Dimension
+                                    String newDimension = JOptionPane.showInputDialog(null, "Where does the block spawn?");
+                                    if (newDimension != null && !newDimension.trim().isEmpty()) 
+                                    {
+                                        updatedBlock = new Block(blockName, blockRenewability, blockStackability, blockBlastRes, blockHardness, blockLuminous, blockFlammability, newDimension, false, "null");
+                                        if (parser.editEntry(blocks, blockChoice, updatedBlock, "data/Blocks.txt")) 
+                                        {
+                                            JOptionPane.showMessageDialog(null, "Success!");
+                                        }
+                                        else 
+                                        {
+                                            JOptionPane.showMessageDialog(null, "Error occurred. Try again!");
+                                        }
+                                    }
+                                    break;
+                                default:
+                                    System.out.println("I don't know what happened???");
+                                    break;
+                            }
+                        } 
+                        else 
+                        {
+                            System.out.println("User cancelled the operation.");
                         }
                     } 
-                    else 
+                    catch (Exception ex) 
                     {
-                        System.out.println("User cancelled the operation.");
+                        JOptionPane.showMessageDialog(null, "Block not found: " + blockChoice);
+                        System.out.println("Block not found: " + blockChoice);
                     }
                 }            
             }
         });
+                   
         // Add buttons to canvas3
         canvas3.add(addButton);
         canvas3.add(removeButton);
@@ -600,5 +785,4 @@ public class BlockEditGUI {
             }
         }
     }
-
 }
