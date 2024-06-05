@@ -223,7 +223,7 @@ public class BlockListGUI {
                         }
                         break;
                     case "Flammable":
-                        buttonFilePath = "ViewPannelAssets\\Fire.png";
+                        buttonFilePath = "ViewPannelAssets\\Flammable.png";
                         if (firstButton) {
                             buttonFilePathON = "ViewPannelAssets\\TrueON.png";
                             buttonFilePathOFF = "ViewPannelAssets\\FalseOFF.png";
