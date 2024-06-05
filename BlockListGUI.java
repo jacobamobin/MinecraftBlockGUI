@@ -133,8 +133,8 @@ public class BlockListGUI {
                     else
                         flammableInfo = "This block is not flammable.";
                     g.drawString("It spawns in the " + block.getDimension() + ". Stackability: " + block.getStackability() +"." , 450, y-40);
-                    g.drawString("Hardness: " + block.getHardness() + ". Blast Resistance: " + block.getBlastres() + "." , 450, y+25-40);
-                    g.drawString("Is Renewable: " + block.getRenewability() + ". " + flammableInfo, 450, y+50-40); //bild da strings
+                    g.drawString("Hardness: " + block.getHardness() + ". Blast Resistance: " + block.getBlastres() + ". Light lvl: " + block.getLuminous() + ".", 450, y+25-40);
+                    g.drawString("Is Renewable: " + block.getRenewability() + ". " + flammableInfo + ".", 450, y+50-40 ); //bild da strings
 
                     numberOfObjects += 1; //unused for now
                 }
@@ -165,11 +165,11 @@ public class BlockListGUI {
                     case "Stackability":
                         buttonFilePath = "ViewPannelAssets\\Stack.png";
                         if (firstButton) {
-                            buttonFilePathON = "ViewPannelAssets\\StackedON.png";
-                            buttonFilePathOFF = "ViewPannelAssets\\NotOFF.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\StackedOFF.png";
+                            buttonFilePathON = "ViewPannelAssets\\NotON.png";
                         } else {
-                            buttonFilePathON = "ViewPannelAssets\\StackedOFF.png";
-                            buttonFilePathOFF = "ViewPannelAssets\\NotON.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\StackedON.png";
+                            buttonFilePathON = "ViewPannelAssets\\NotOFF.png";
                         }
                         break;
                     case "Dimension":
@@ -185,51 +185,51 @@ public class BlockListGUI {
                     case "Hardness":
                         buttonFilePath = "ViewPannelAssets\\Hardness.png";
                         if (firstButton) {
-                            buttonFilePathON = "ViewPannelAssets\\HardestON.png";
-                            buttonFilePathOFF = "ViewPannelAssets\\SoftestOFF.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\HardestOFF.png";
+                            buttonFilePathON = "ViewPannelAssets\\SoftestON.png";
                         } else {
-                            buttonFilePathON = "ViewPannelAssets\\HardestOFF.png";
-                            buttonFilePathOFF = "ViewPannelAssets\\SoftestON.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\HardestON.png";
+                            buttonFilePathON = "ViewPannelAssets\\SoftestOFF.png";
                         }
                         break;
                     case "BlastRes":
                         buttonFilePath = "ViewPannelAssets\\BlastRes.png";
                         if (firstButton) {
-                            buttonFilePathON = "ViewPannelAssets\\MostON.png";
-                            buttonFilePathOFF = "ViewPannelAssets\\LeastOFF.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\MostOFF.png";
+                            buttonFilePathON = "ViewPannelAssets\\LeastON.png";
                         } else {
-                            buttonFilePathON = "ViewPannelAssets\\MostOFF.png";
-                            buttonFilePathOFF = "ViewPannelAssets\\LeastON.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\MostON.png";
+                            buttonFilePathON = "ViewPannelAssets\\LeastOFF.png";
                         }
                         break;
                     case "Renewability":
                         buttonFilePath = "ViewPannelAssets\\Renewability.png";
                         if (firstButton) {
-                            buttonFilePathON = "ViewPannelAssets\\TrueON.png";
-                            buttonFilePathOFF = "ViewPannelAssets\\FalseOFF.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\TrueOFF.png";
+                            buttonFilePathON = "ViewPannelAssets\\FalseON.png";
                         } else {
-                            buttonFilePathON = "ViewPannelAssets\\TrueOFF.png";
-                            buttonFilePathOFF = "ViewPannelAssets\\FalseON.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\TrueON.png";
+                            buttonFilePathON = "ViewPannelAssets\\FalseOFF.png";
                         }
                         break;
                     case "Luminous":
                         buttonFilePath = "ViewPannelAssets\\Luminous.png";
                         if (firstButton) {
-                            buttonFilePathON = "ViewPannelAssets\\TrueON.png";
-                            buttonFilePathOFF = "ViewPannelAssets\\FalseOFF.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\MostOFF.png";
+                            buttonFilePathON = "ViewPannelAssets\\LeastON.png";
                         } else {
-                            buttonFilePathON = "ViewPannelAssets\\TrueOFF.png";
-                            buttonFilePathOFF = "ViewPannelAssets\\FalseON.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\MostON.png";
+                            buttonFilePathON = "ViewPannelAssets\\LeastOFF.png";
                         }
                         break;
                     case "Flammable":
                         buttonFilePath = "ViewPannelAssets\\Flammable.png";
                         if (firstButton) {
-                            buttonFilePathON = "ViewPannelAssets\\TrueON.png";
-                            buttonFilePathOFF = "ViewPannelAssets\\FalseOFF.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\TrueOFF.png";
+                            buttonFilePathON = "ViewPannelAssets\\FalseON.png";
                         } else {
-                            buttonFilePathON = "ViewPannelAssets\\TrueOFF.png";
-                            buttonFilePathOFF = "ViewPannelAssets\\FalseON.png";
+                            buttonFilePathOFF = "ViewPannelAssets\\TrueON.png";
+                            buttonFilePathON = "ViewPannelAssets\\FalseOFF.png";
                         }
                         break;
                 }
