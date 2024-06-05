@@ -281,7 +281,7 @@ public class BlockEditGUI {
         // Create Canvas 3 on the right of Canvas 2 (40% height of the bottom space)
         JPanel canvas3 = new JPanel();
         canvas3.setPreferredSize(new Dimension(220, 670)); // Adjust width as needed
-        canvas3.setBackground(Color.GREEN); // Set background color for demonstration
+        canvas3.setBackground(Color.LIGHT_GRAY); // Set background color for demonstration
 
         // Add buttons to canvas3
         canvas3.setLayout(new GridLayout(3, 1)); // 3 rows, 1 column
