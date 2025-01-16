@@ -3,9 +3,13 @@
         "."
     ],
     "java.project.referencedLibraries": [
-        "c:\\Users\\jacob\\Downloads\\fbx-importer-win-x64\\FbxImporter\\JFbxViewer.jar",
-        "c:\\Users\\jacob\\Downloads\\j3dcore.jar",
-        "c:\\Users\\jacob\\Downloads\\j3dutils.jar",
-        "c:\\Users\\jacob\\Downloads\\vecmath.jar"
+        "/Users/jacobmobin/Downloads/vecmath.jar",
+        "/Users/jacobmobin/Downloads/java3d-1_5_1-macosx/lib/ext/vecmath.jar",
+        "/Users/jacobmobin/Downloads/jogl-all.jar",
+        "/Users/jacobmobin/Downloads/j3dutils.jar",
+        "/Users/jacobmobin/Downloads/java3d-1_5_1-macosx/lib/ext/j3dutils.jar",
+        "/Users/jacobmobin/Downloads/java3d-1_5_1-macosx/lib/ext/j3dcore.jar",
+        "/Users/jacobmobin/Downloads/j3dcore.jar",
+        "/Users/jacobmobin/Downloads/joal-natives-macosx-universal.jar"
     ]
 }
