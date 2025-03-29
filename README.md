@@ -2,11 +2,16 @@
 
 A Java-based 3D visualization tool for Minecraft blocks, allowing users to explore block properties and appearances in an interactive 3D environment. This project provides an immersive way to learn about Minecraft blocks and their properties through an intuitive 3D interface.
 
-## Screenshots
-
 ### Main Interface
-[Insert screenshot of the main 3D viewer interface showing a block with the overlay panel]
+<img width="538" alt="image" src="https://github.com/user-attachments/assets/48ec94b8-6a7e-4b62-b108-65a6d68738f3" />
 *The main interface displays the 3D block model with an information overlay panel on the left side.*
+
+### List View
+*Displays all blocks, can be sorted by properties and name background changes with sorting method*
+<img width="537" alt="image2" src="https://github.com/user-attachments/assets/90a28438-871b-4824-b1e1-a9366e5f2905" />
+<img width="537" alt="image3" src="https://github.com/user-attachments/assets/359dc453-da95-489b-9f60-d5cff6c639bc" />
+<img width="537" alt="image4" src="https://github.com/user-attachments/assets/07cfefc4-b2b7-43d7-b75c-03e1ae5f1f54" />
+
 
 ### Block Rotation
 [Insert screenshot demonstrating block rotation and different viewing angles]
@@ -147,7 +152,7 @@ Add the following dependencies to your project:
 
 ## License
 
-[Add your license information here]
+MIT
 
 ## Acknowledgments
 
